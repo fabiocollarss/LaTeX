@@ -1,0 +1,465 @@
+\documentclass{report}
+
+\usepackage[a4paper, left=2cm, right=2cm, top=3cm, bottom=3cm]{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath} %usa questo per scrivere le formule matematiche
+\usepackage{parskip} %Questo pack elimina l'indentazione fastidiosa 
+\usepackage{amsthm} % Questo pack permette di scrivere in modo carino i teoremi,
+\usepackage{amssymb}
+\usepackage{xcolor}    % Per i colori
+\usepackage{framed}    % Per le cornici
+\usepackage{mdframed}  % Cornici più avanzatedefinizioni, proposizioni ecc.
+
+%Quelli che seguono sono i risultati dell'uso del pack amsthm
+\newtheorem{teo}{Teorema}
+\newtheorem{prop}{Proposizione}
+\newtheorem{corollario}{Corollario}[teo] % Numerato in base ai teoremi
+\newtheorem{defi}{Definizione}
+\newtheorem{oss}{Osservazione}
+\newtheorem{nota}{Nota}
+\newtheorem{es}{Esempio}
+
+% Definizione di un ambiente "Dimostrazione" senza numerazione
+\renewenvironment{proof}{{\noindent\bfseries Dimostrazione. }}{\qed}
+
+\newenvironment{nothing}{}{}
+
+
+
+
+
+
+
+\title{Logica Matematica}
+\author{Fabio Colletti}
+\date{February 2025}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{nothing}
+    \begin{center}
+\huge\textbf{{premesse}}    
+\end{center}
+
+
+\[E=mc^2\]
+
+Divideremo il corso in \textbf{2 parti:}
+
+\begin{enumerate}
+
+\item Logica Proposizionale
+\item Logica Predicativa
+
+\end{enumerate}
+    La Logica proposizionale si occupa di valutare la verità o la falsità di un insieme di elementi, senza andare a verificare cosa sono, quando e perché. 
+
+La logica predicativa \emph{estende naturalmente} quella proposizionale, aggiungendo più contesto alle nostre teorie. 
+\vspace{3cm}
+\begin{center}
+Immergiamoci in questo mare di divertimento!
+\end{center} 
+\end{nothing}
+
+\newpage
+
+\chapter{Logica Proposizionale}
+\begin{nothing}
+    Iniziamo con un semplice esempio.
+Immagina di aver appena visto l'uomo dei tuoi sogni, alto, moro, riccio, e, come direbbe Vannacci, di etnia non italica.
+
+Cerchiamo ora di \emph{formalizzare} queste informazioni.
+Per farlo utilizziamo 4 proposizioni:
+
+    $P1=$ "L'uomo è alto"
+
+    $P2=$ "L'uomo è moro"
+
+    $P3=$ "L'uomo è riccio"
+
+    $P4=$ "L'uomo non è di etnia italica"
+
+In questo scenario, queste sono tutte affermazioni VERE.
+
+Ora se inserissimo un'altra proprietà, come ad esempio:
+
+$P5=$ "L'uomo è basso"
+
+Otterremmo che questa proposizione è FALSA.
+
+In generale, data una proposizione $P$, se $P$ è vera allora avrà valore 1, mentre se è falsa avrà valore 0. 
+Formuleremo meglio questo concetto in seguito.
+
+\bigskip
+Bene, quello che faremo in logica proposizionale sarà fare questo (e qualcosa di più).
+\end{nothing}
+\section{Introduzione alla Logica}
+\begin{defi}[Linguaggio Proposizionale]
+    Un \textbf{Linguaggio Proposizionale} è un insieme di variabili proposizioni \textbf{L}=\{$P1, P2, P3,$ ...\}.
+
+    Un linguaggio proposizionale può essere:
+    \begin{itemize}
+        \item Finito
+        \item Numerabile
+        \item Non numerabile
+    \end{itemize}
+    
+\end{defi} %Linguaggio Proposizionale
+\bigskip
+
+\begin{nota}
+    Una variabile proposizionale è una proposizione che non è ulteriormente scomponibile. \\E' come i numeri, ossia è un concetto primitivo, non ulteriormente definibile.
+\end{nota} 
+\bigskip
+
+\begin{defi}[Connettivi Logici]
+    I \textbf{Connettivi Logici} servono, appunto, a delle proposizioni, per formarne altre di più complesse.
+    Questi sono: $\rightarrow$ , $\land$ , $\lor$ , $\neg$ .
+    Il loro significato intuitivo è:
+    \begin{itemize}
+        \item $A\land B$ significa A e B
+        \item $A\lor B$ significa A o B
+        \item $\neg A$ significa non A
+        \item $A\rightarrow B$ significa se A allora B
+    \end{itemize}
+\end{defi} %Connettivi Logici
+\bigskip
+
+\begin{nothing}
+    Quello che vorremmo fare adesso è trovare un modo per dare dei valori di verità e di falsità alle nostre variabili.  \\Diamo per assodato che una proposizione o è vera o è falsa, non può essere entrambe e deve essere almeno una delle due.
+Potrebbe sembrare ambiguo, ma tranquilli, la situazione peggiorerà.
+\end{nothing}
+\bigskip
+
+\begin{defi}[Assegnamento]
+    Un \textbf{Assegnamento} è una funzione $\alpha$ che associa ad ogni variabile proposizionale 0 oppure 1.
+    \[\alpha : L\rightarrow\{0,1\}\ \]
+    
+\end{defi}
+\bigskip %assegnamento
+
+\begin{defi}[Insieme degli enunciati]
+    Dato un linguaggio L, l'\textbf{Insieme delle Proposizioni} (o degli enunciati) del linguaggio è il più piccolo insieme chiuso sotto l'utilizzo dei connettivi logici.
+\end{defi}
+\bigskip
+
+\begin{oss}[costruzione di P]
+    Costruiamo per ricorsione l'insieme delle proposizioni. 
+    \\Sia $L$ un linguaggio,Poniamo: 
+    \\[\baselineskip]
+    $P_0=$L
+    \\$P_{n+1}=\{\neg A,\quad A\land B,\quad A\rightarrow B,\quad A\lor B\ |\ A,B\in P_n\}$
+    \\$P=\bigcup\limits_{n=0}^{\infty} P_n $
+    \\[\baselineskip]
+    La verifica che $P$ sia chiuso rispetto ai connettivi logici è lasciata alla lettrice \\(se sei un lettORE non mi interessa che tu abbia questo file).
+\end{oss}
+\bigskip 
+
+\begin{prop}[Estensione dell'assegnamento]
+    Sia L un linguaggio e $\alpha$ un suo assegnamento. Allora possiamo definire un assegnamento $\tilde\alpha : P \rightarrow \{0,1\}$ coerente.
+\end{prop}
+\begin{proof}
+Sia $\alpha$ un asegnamento di $L$ e $F\in P$, definiamo l'assegnamento per induzione:
+\begin{itemize}
+    \item Se $F = p$ per qualche $p\in L$, allora è già definito.
+    \item Se $F=\neg G$ definiamo $\tilde\alpha(\neg G)=$ 
+    $\begin{cases}
+        0, & \text{se } \alpha(G)=1 \\ 
+        1, & \text{se } \alpha(G)=0
+    \end{cases}$
+    \item così via per gli altri 3 connettivi logici.
+\end{itemize}
+\end{proof}
+\bigskip
+
+\begin{oss}
+    Sia L un linguaggio, P il suo insieme delle proposizioni e $F\in P$, $p_1,..,p_n$ le variabili proposizionali che compaiono in F. Se $\alpha$ e $\beta$ sono due assegnamenti di L che concordano du quelle variabili, allora $\tilde\alpha(F) = \tilde\beta(F)$.
+\end{oss}
+\bigskip
+
+\begin{nota}
+    Quando non è necessario specificarlo, faremo abuso di notazione e chiamaremo allo stesso modo l'assegnamento sulle variabili proposizionali e quello sulle proposizioni.\\
+    Del resto faremo abuso di notazione e "confonderemo" un linguaggio con il suo insieme delle proposizioni.\bigskip
+
+    N.B: Una Proposizione è SEMPRE finita!
+\end{nota}
+\bigskip
+
+\begin{defi}[Forma Normale]
+    E' facile convincersi (al massimo con qualche esempio), che è possibile "esprimersi" usando 3 dei 4 connettivi definiti prima, scartando quello dell'implicazione. \\
+    Usare SOLO $\neg,\ \lor,\ \land$ è detta \textbf{Forma Normale}
+\end{defi}
+\bigskip
+
+\begin{teo}[Completezza Funzionale]
+    Sia L un linguaggio numerabile, sia $f:\{0,1\}^n \rightarrow \{0,1\}$. \\
+    Esiste una proposizione A contenente n var proposizionali $p_1,...,p_n$ t.c. $\alpha(A)=f(\alpha(p_1),...,\alpha(p_n)),\ \forall\alpha$ assegnamento.
+\end{teo}
+\begin{proof}
+    dimostriamo per induzione.
+    \begin{itemize}
+        \item Base induttiva: n=1.
+        \item Supponiamo vero per n.
+        \item Dimostriamo per n+1.
+    \end{itemize}
+\end{proof}
+\bigskip
+
+\section{Implicazione Logica \& Soddisfacibilità}
+\begin{defi}[Implicazione Logica]
+    Siano $A_1,...,A_n,A_{n+1}$ proposizioni. \\Diciamo che $A_1,...,A_n$ \textbf{Implicano Logicamente} $A_{n+1}$ sse:
+    
+    $\forall \alpha\ | \ \alpha(A_1)=...=\alpha(A_n)=1 \,$ si ha che $\alpha(A_{n+1})=1 $ 
+
+    In tal caso scriveremo: $A_1,...,A_n \models A_{n+1}$
+\end{defi}
+\bigskip
+
+\begin{defi}.\par
+   \begin{itemize}
+       \item A sat sse $\exists \alpha \ | \ \alpha(A)=1 $
+       \item A unsat sse $ \nexists \alpha \ | \ \alpha(A)=1$
+       \item A tatut sse $\forall\alpha, \ \alpha(A)=1$ 
+   \end{itemize} 
+\end{defi}
+\bigskip
+
+\begin{defi}[Teoria]
+    Sia L un lingaggio, una \textbf{Teoria} è un insieme di proposizioni T=\{A1, A2, ...\}. T può essere:
+    \begin{itemize}
+        \item Finita
+        \item Numerabile
+        \item Non numerabile
+    \end{itemize}
+\end{defi}
+\bigskip
+
+\begin{prop}
+    Sono equivalenti:
+    \begin{enumerate}
+        \item T è sat
+        \item $\forall A, se \ T\models A \ \rightarrow T \not\models A$
+        \item $\exists A \ t.c. \ T\not\models A$
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}. \par
+(1 $\Rightarrow$ 2) \\
+Sia T è soddisfacile Sia A t.c. $T \models A$ \\
+$\Rightarrow \ \forall a \ t.c. \ a(T)=1, \ a(A)=1$ \\
+$\Rightarrow \ \forall a \ t.c. \ a(T)=1, \ a(\neg A)=0$
+$\Rightarrow \ T \not\models A$
+
+(2 $\Rightarrow$ 3) \\
+Sia $A \ t.c. \ T \models A$ \\
+$\Rightarrow T \not\models \neg A$
+
+(3 $\Rightarrow 1$) \\
+dimostriamo con la contronominale.
+Se T è unsat allora segue qualunque cosa, dunque T implica logicamente ogni proposizione.
+\end{proof}
+\bigskip
+
+
+
+
+
+
+\section{Compattezza \& Conseguenze}
+
+\begin{teo}[Erdős--de Bruijn]
+Sia $G = (V, E)$ un grafo (eventualmente infinito). Se ogni sottografo finito di $G$ è $k$-colorabile, allora $G$ è $k$-colorabile.
+\end{teo}
+
+\begin{proof}
+Per ogni vertice $v \in V$ e ogni colore $i \in \{1, \dots, k\}$, introduciamo una proposizionale $P_{v,i}$, da interpretare come ``il vertice $v$ ha colore $i$''.
+
+Definiamo una teoria proposizionale $\Gamma$ contenente le seguenti formule:
+
+\begin{itemize}
+  \item[\textbf{(A)}] Assegnamento di almeno un colore:
+  \[
+  \bigvee_{i=1}^k P_{v,i} \quad \text{per ogni } v \in V.
+  \]
+  
+  \item[\textbf{(U)}] Unicità del colore:
+  \[
+  \lnot (P_{v,i} \land P_{v,j}) \quad \text{per ogni } v \in V,\; i \ne j.
+  \]
+  
+  \item[\textbf{(D)}] Diversità tra vertici adiacenti:
+  \[
+  \lnot (P_{u,i} \land P_{v,i}) \quad \text{per ogni } \{u,v\} \in E,\; i = 1, \dots, k.
+  \]
+\end{itemize}
+
+Sia $\Gamma_0 \subseteq \Gamma$ un sottoinsieme finito. Allora $\Gamma_0$ coinvolge solo un numero finito di vertici e archi, e quindi corrisponde a un sottografo finito $G_0 \subseteq G$.
+
+Per ipotesi, ogni sottografo finito di $G$ è $k$-colorabile. Dunque $\Gamma_0$ è soddisfacibile.
+
+Per il Teorema di Compattezza, $\Gamma$ è soddisfacibile.
+
+Pertanto esiste un'assegnazione dei colori ai vertici di $G$ che soddisfa $\Gamma$, ossia una $k$-colorazione valida di $G$.
+\end{proof}
+
+
+
+\bigskip
+\bigskip
+\bigskip
+    
+\begin{teo}[Teorema delle Estensioni Totali]
+Sia $(X, <)$ un ordine parziale. Allora esiste un ordine totale $\prec$ su $X$ tale che
+\[
+\forall x, y \in X,\; x < y \Rightarrow x \prec y.
+\]
+\end{teo}
+
+\begin{proof}
+Introduciamo, per ogni coppia distinta $x, y \in X$, una proposizionale $P_{x,y}$, da interpretare come ``$x \prec y$''.
+
+Definiamo una teoria proposizionale $\Gamma$ composta dalle seguenti formule:
+
+\begin{itemize}
+  \item[\textbf{(T)}] Totalità:
+  \[
+  P_{x,y} \lor P_{y,x} \quad \text{per ogni } x \ne y \in X.
+  \]
+  
+  \item[\textbf{(A)}] Antisimetricità:
+  \[
+  \lnot (P_{x,y} \land P_{y,x}) \quad \text{per ogni } x \ne y \in X.
+  \]
+  
+  \item[\textbf{(Tr)}] Transitività:
+  \[
+  (P_{x,y} \land P_{y,z}) \rightarrow P_{x,z} \quad \text{per ogni } x, y, z \in X \text{ distinti}.
+  \]
+  
+  \item[\textbf{(E)}] Estensione dell’ordine parziale:
+  \[
+  P_{x,y} \quad \text{per ogni } x < y.
+  \]
+\end{itemize}
+
+Sia $\Gamma_0 \subseteq \Gamma$ un sottoinsieme finito. Allora $\Gamma_0$ coinvolge solo un insieme finito $X_0 \subseteq X$. L'ordine parziale $<$ ristretto a $X_0$ può essere esteso a un ordine totale $\prec_0$ su $X_0$, che soddisfa tutte le formule di $\Gamma_0$.
+
+Infatti:
+
+
+Quindi ogni sottoinsieme finito $\Gamma_0$ è soddisfacibile.
+
+Per il Teorema di Compattezza, anche $\Gamma$ è soddisfacibile. Pertanto, esiste un ordine totale $\prec$ su $X$ che soddisfa $\Gamma$, e in particolare estende l'ordine parziale $<$.
+\end{proof}
+
+\bigskip
+\bigskip
+\bigskip
+
+
+\begin{teo}[Lemma di Kőnig (via compattezza)]
+Sia $T \subseteq \{0,1\}^{<\omega}$ un albero binario infinito, ovvero:
+
+\begin{itemize}
+  \item $\varepsilon \in T$ (dove $\varepsilon$ è la stringa vuota),
+  \item se $s \in T$ e $t \preceq s$ (prefisso), allora $t \in T$,
+  \item per ogni $n \in \mathbb{N}$, l'insieme $\{s \in T : |s| = n\}$ è finito e non vuoto.
+\end{itemize}
+
+Allora esiste una funzione $f : \mathbb{N} \to \{0,1\}$ tale che per ogni $n$, $f \upharpoonright n \in T$.
+\end{teo}
+
+\begin{proof}
+Per ogni $n \in \mathbb{N}$, siano $T_n = \{ s \in T : |s| = n \}$ i nodi al livello $n$.
+
+Introduciamo proposizionali $P_s$ per ogni $s \in T$, da interpretare come ``il cammino scelto passa per $s$''.
+
+Definiamo una teoria proposizionale $\Gamma$ contenente le seguenti formule:
+
+\begin{itemize}
+  \item[\textbf{(L)}] Ad ogni livello $n$ si sceglie esattamente un nodo:
+  \[
+  \bigvee_{s \in T_n} P_s \quad \text{e} \quad \lnot(P_s \land P_t) \quad \text{per } s, t \in T_n,\; s \ne t.
+  \]
+  
+  \item[\textbf{(C)}] Coerenza per prefissi:
+  \[
+  P_s \rightarrow P_t \quad \text{per ogni } s, t \in T,\; t \preceq s.
+  \]
+\end{itemize}
+
+Sia $\Gamma_0 \subseteq \Gamma$ un sottoinsieme finito. Esiste un massimo livello $n$ tale che $\Gamma_0$ contiene solo proposizionali $P_s$ con $|s| \leq n$. Poiché $T_n$ è finito e non vuoto, possiamo scegliere un cammino finito \( s_0 \prec s_1 \prec \dots \prec s_n \) in \( T \), e assegnare verità a \( P_{s_i} \) coerentemente con $\Gamma_0$.
+
+Quindi ogni sottoinsieme finito $\Gamma_0$ è soddisfacibile. Per il Teorema di Compattezza, anche $\Gamma$ è soddisfacibile.
+
+Una valutazione che soddisfa $\Gamma$ seleziona per ogni $n$ esattamente un nodo $s_n \in T_n$, con $s_n \preceq s_{n+1}$. Definendo $f(n) = s_{n+1}(n)$ otteniamo una funzione $f : \mathbb{N} \to \{0,1\}$ tale che ogni prefisso $f \upharpoonright n \in T$.
+\end{proof}
+
+
+
+\section{Completezza}
+
+\begin{prop}[Correttezza]
+    tutti gli assiomi sono tautologie
+\end{prop}
+
+\begin{proof}
+    Ogni istanza di un assioma `e una tautologia, e il Modus Ponens conserva la verità: se A è vera e A → B `e vera, allora B è vera.    
+\end{proof}
+
+\bigskip
+
+
+\begin{teo}[Completezza della logica proposizionale]
+Sia $\Gamma$ una teoria proposizionale (insieme di formule proposizionali), e sia $\varphi$ una formula proposizionale tale che:
+\[
+\Gamma \models \varphi
+\]
+cioè ogni valutazione che soddisfa tutte le formule di $\Gamma$ soddisfa anche $\varphi$.
+
+Allora:
+\[
+\Gamma \vdash \varphi.
+\]
+\end{teo}
+
+\begin{proof}
+Supponiamo per assurdo che $\Gamma \not\vdash \varphi$.
+
+Allora l'insieme $\Gamma \cup \{\lnot\varphi\}$ è **consistente**, ovvero **non** dimostra una contraddizione:
+\[
+\Gamma \cup \{\lnot\varphi\} \not\vdash \bot.
+\]
+
+Poiché la logica proposizionale è finitamente consistente (ogni dimostrazione è finita), ciò equivale a dire che **ogni sottoinsieme finito** di $\Gamma \cup \{\lnot\varphi\}$ è consistente.
+
+Per il Teorema di Completezza finita (o più precisamente: per il Teorema di Compattezza proposizionale), da tale consistenza segue che:
+\[
+\Gamma \cup \{\lnot\varphi\} \text{ è soddisfacibile}.
+\]
+
+Cioè esiste una valutazione booleana $v$ tale che:
+\[
+v(\psi) = 1 \quad \text{per ogni } \psi \in \Gamma,\quad \text{e} \quad v(\varphi) = 0.
+\]
+
+Ma ciò contraddice l’ipotesi iniziale $\Gamma \models \varphi$, secondo cui ogni valutazione che soddisfa $\Gamma$ deve soddisfare anche $\varphi$.
+
+Segue che $\Gamma \vdash \varphi$.
+\end{proof}
+
+
+
+
+
+\chapter{Logica Predicativa}
+\section{Introduzione alla Logica Predicativa}
+
+
+
+
+\end{document}
+
