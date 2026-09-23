@@ -1,0 +1,103 @@
+\documentclass{report}
+\usepackage{lmodern}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[a4paper, left=2cm, right=2cm, top=3cm, bottom=3cm]{geometry}
+\usepackage{amsmath} %usa questo per scrivere le formule matematiche
+\usepackage{parskip} %Questo pack elimina l'indentazione fastidiosa 
+\usepackage{amsthm} % Questo pack permette di scrivere in modo carino i teoremi,
+\usepackage{amssymb}
+\usepackage{xcolor}    % Per i colori
+\usepackage{framed}    % Per le cornici
+\usepackage{mdframed}  % Cornici più avanzate, definizioni, proposizioni ecc.
+\usepackage{xfrac} %per fare le diagonali carine
+
+%Quelli che seguono sono i risultati dell'uso del pack amsthm
+\newtheorem{theo}{Theorem}
+\newtheorem{prop}{Proposition}
+\newtheorem{crlr}{Corollario}[theo] % Numerato in base ai teoremi
+\newtheorem{defi}{Definition}
+\newtheorem{note}{Note}
+\newtheorem{xpl}{Example}
+\newenvironment{pop}{}{}
+\renewenvironment{proof}{{\noindent\bfseries Proof. }}{\qed}
+
+
+
+\title{Algebra}
+\author{Fabio Colletti}
+\date{September 2026}
+
+\begin{document}
+
+\maketitle
+
+\chapter{Groups}
+\section{Introduction}
+    \begin{defi}[Group]
+        A \textbf{Group} $(G,\cdot)$ is a set $G$ which has an operation $\cdot : G \times G \rightarrow G $ that is:
+        \begin{enumerate}
+            \item $f\cdot (g \cdot h) = (f \cdot g) \cdot h \quad \forall f,g,h \in G$ \quad \textbf{(Associativity)}
+            \item $\exists \space e \in G \quad \text{t.c.} \quad g \cdot e = e \cdot g = g \quad \forall g \in G$ \quad \textbf{(Neutral Element $\mathbf{e}$)}
+            \item $\forall \space g \in G \space \exists g^{-1} \quad \text{t.c.} \quad g^{-1}\cdot g = g \cdot g^{-1} = e $ \quad \textbf{(Inverse Element)}
+        \end{enumerate}
+    \end{defi}\vspace{.5 cm}
+    \begin{note}
+        There's the Associativity property, so I can always write:
+        $$f\cdot g\cdot h=(f\cdot g)\cdot h = f\cdot(g \cdot h)$$
+        I'll also obmit the dot when it is clear in the context.
+    \end{note}\vspace{.5 cm}
+    \begin{defi}
+        A group is called:
+        \begin{enumerate}
+            \item An \textbf{Abelian Group} if $f\cdot g = g\cdot f \quad \forall f,g \in G$
+            \item A \textbf{Finite Group} if $|G| < \infty$
+        \end{enumerate}
+    \end{defi}\vspace{.5 cm}
+    \begin{defi}[Subgroup]
+        Let $(G,\cdot)$ be a group. Let $H \subseteq G$ be a subset.\\
+        $H$ is a $G$\textbf{-Subgroup} if $(H,\cdot)$ is a group.
+    \end{defi}\vspace{.5 cm}
+    \begin{prop}
+        Let $G$ be a group.\\ 
+        Let $H\quad t.c.\quad  |H|<\infty $ a G subset. It is a $G$-subgroup if it is closed in the group operation. 
+    \end{prop}
+    \begin{proof}
+        We need to demonstrate that $(H,\cdot)$ is a group.\\
+        Let's start by assuming that $H$ is finite and closed in the group operation.
+        \begin{itemize}
+            \item $\forall g \in H, \quad g \in G \quad \Rightarrow \text{Associativity is granted.}$
+            \item $|H| < \infty\quad\Rightarrow grad(g)=n_g \quad\Rightarrow g^{n_g}=e \quad\Rightarrow e\in H,\quad g^{-1}=g^{n_g-1}\in H$
+        \end{itemize}
+        
+    \end{proof}\vspace{.5cm}
+    \newpage    
+    
+\section{Lagrange Theorem}
+    \begin{defi}[Congruent in module]
+        Let $G$ be a group, $H\leq G$ a subgroup, $f,g\in G$.\\
+        $f$ is called \textbf{congruent to $g$ mod $H$} if: 
+        $$f^{-1}\cdot g \quad\in H  $$
+        \\In this case I'll write: $f\equiv g \quad (mod H)\quad$ or $\quad f \equiv_{H} g$
+    \end{defi}\vspace{.5 cm}
+    \begin{prop}
+        The property of being congruent in module is a class of equivalence.\\
+        \begin{proof}
+            Exercise.
+        \end{proof}
+    \end{prop}\vspace{.5 cm}
+    \begin{prop}[Class of equivalence]
+        Let $(G,\cdot)$ be a group, $H\le G$ a subgroup, $g \in G$.\\ 
+        Therefore the class of equivalence of $g$ in $H$ is:
+        $$gH:=\{g\cdot h \quad|\quad h\in H  \}$$
+        \begin{proof}
+            Exercise.
+        \end{proof}
+    \end{prop}\vspace{.5 cm}
+    \begin{defi}
+        The set of $gH$ for all $g \in G$ is written: $\sfrac{G}{H}$
+    \end{defi}\vspace{.5 cm}
+    \begin{defi}
+        let a group be $G$ and $H\leq G$ a subgroup. $H$ is called \textbf{Normal} if: $\quad gH = Hg \quad\forall g \in G$.\\ In that case It's written: $\quad H\unlhd G$. 
+    \end{defi}\vspace{.5 cm}
+    
+\end{document}
