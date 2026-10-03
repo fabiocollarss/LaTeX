@@ -7,7 +7,7 @@
 
 
 
-= Richiami di Analisi 2
+= Richiami di Analisi
 
 Sia *$Omega$*$subset.eq RR^3 ("oppure" RR^2)$ un aperto limitato con $partial Omega$ frontiera regolare.\
 Siano $n(x) "e" sigma(x)$ le funzioni che descrivono rispettivamente la normale esterna alla frontiera e la frontiera.
@@ -16,13 +16,24 @@ Siano $n(x) "e" sigma(x)$ le funzioni che descrivono rispettivamente la normale 
   Sia $u in C^1(Omega) inter C(dash(Omega)) $. Allora si ha
 
   $ integral_Omega d x (partial u)/(partial x_i) = integral_(partial Omega) d sigma(x)u(x)n_i (x) wide , wide i=1,2,3  $
-  #proof[
-  
-    Corso di Analisi 2.
 
-  ]
-] <prediv>
-\
+  #proof[
+
+    Sia $Omega subset RR^n$ regolare scomponibile e normale rispetto ad ogni $x_i, i=1,...,n$.\
+    Fisso $i in [1,...,n]$.\
+    sia $x = (x',y), quad$ dove $y=x_i, quad x'=(x_1,...,x_(i-1),x_(i+1),...,x_n)$.\
+    Sia $D subset RR^(n-1)$ la proiezione di $Omega$ su $y$.\
+    Visto che $Omega$ è normale rispetto ad $y space (x_i) space$, allora $exists alpha, beta: D arrow RR space$ t.c.    
+    $ Omega = {x in RR^n | x' in D, space alpha(x') <= y <= beta(x')} $
+    #figure(
+      image("images/Dominio-normalità_asse_x.jpg", width: 20%),
+      caption: [Grafico di un dominio normale rispetto ad x],
+    )
+    Ora uso il teorema di Fubini per la riduzione della dimensione dell'integrale.
+    
+  ]<prediv>
+]
+
 #theo(title: "Teorema della Divergenza")[\
   Sia $F$ un campo vettoriale, con le componenti regolari come nella @prediv. Allora
   $ integral_Omega d x div F = integral_(partial Omega) d sigma(x) F(x)dot n(x) $
