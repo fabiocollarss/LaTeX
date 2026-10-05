@@ -3,8 +3,8 @@
 #import "@preview/physica:0.9.8": *
 
 #set heading(numbering: "1.1")
-#set align(left)
 #show: great-theorems-init
+
 #show link: text.with(fill: blue)
 
 #let mathcounter = rich-counter(
@@ -15,19 +15,19 @@
 #let theo = mathblock(
   blocktitle: "Theorem",
   counter: mathcounter,
-  
-  inset: 10 pt,
-  stroke: 1 pt,
-  radius: 10 pt,
+  inset: 10pt,
+  stroke: 1pt,
+  radius: 10pt,
+
 )
 
 #let lemma = mathblock(
   blocktitle: "Lemma",
   counter: mathcounter,
-  
-  inset: 10 pt,
-  stroke: 1 pt,
-  radius: 10 pt,
+  inset: 10pt,
+  stroke: 1pt,
+  radius: 10pt,
+
 )
 
 #let rmk = mathblock(
@@ -43,7 +43,6 @@
   blocktitle: "Definition",
   counter: mathcounter, 
   inset: 10pt,
-
   stroke: 1pt,
   radius: 10pt,
 )
@@ -54,17 +53,15 @@
 
 #let oss = mathblock(
   blocktitle: "Oss",
+  inset: 10pt,
+  stroke: 1pt,
 )
 
 #let prop = mathblock(
   blocktitle: "Proposition",
-  counter: mathcounter,
-
-  inset: 10 pt,
-  stroke: 1 pt,
-  radius: 10 pt,
+  inset: 10pt,
+  stroke: 1pt,
+  radius: 10pt,
 )
 
 #let proof = proofblock()
-
-

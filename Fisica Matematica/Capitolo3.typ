@@ -1,3 +1,69 @@
+/*#import "@preview/great-theorems:0.1.2": *
+#import "@preview/rich-counters:0.2.1": *
+#import "@preview/physica:0.9.8": *
+
+#set heading(numbering: "1.1")
+#show: great-theorems-init
+
+#show link: text.with(fill: blue)
+
+#let mathcounter = rich-counter(
+  identifier: "mathblocks",
+  inherited_levels: 1
+)
+
+#let theo = mathblock(
+  blocktitle: "Theorem",
+  counter: mathcounter,
+  inset: 10pt,
+  stroke: 1pt,
+  radius: 10pt,
+
+)
+
+#let lemma = mathblock(
+  blocktitle: "Lemma",
+  counter: mathcounter,
+  inset: 10pt,
+  stroke: 1pt,
+  radius: 10pt,
+
+)
+
+#let rmk = mathblock(
+  blocktitle: "Remark",
+  //prefix: [_Remark._], con questo non funziona il counter.
+  counter: mathcounter,
+  inset: 5pt,
+  fill: lime.lighten(80%),
+  radius: 5pt,
+)
+
+#let def = mathblock(
+  blocktitle: "Definition",
+  counter: mathcounter, 
+  inset: 10pt,
+  stroke: 1pt,
+  radius: 10pt,
+)
+
+#let xpl = mathblock(
+  blocktitle: "Example",
+)
+
+#let oss = mathblock(
+  blocktitle: "Oss",
+)
+
+#let prop = mathblock(
+  blocktitle: "Proposition",
+  inset: 10pt,
+  stroke: 1pt,
+  radius: 10pt,
+)
+
+#let proof = proofblock()*/
+
 #import "template.typ": *
 
 #set heading(numbering: "1.1")
@@ -46,6 +112,7 @@ Per comprendere euristicamente il concetto di distribuzione, partiamo dal seguen
 
   In atri termini, la delta di Dirac in $y$ si può pensare come limite di funzioni che si stringono in $y$, con la peculiarità che il loro integrale su $RR^n$ valga 1, e il cui valore in $y$ diverga a $+infinity$.\
   Questo ragionamento rende ragionevole la scrittura che si trova spesso nei testi di fisica:
-  $ <delta_y,phi.alt> = integral d x delta(y-x)phi.alt(x) $
-]
 
+  $ <delta_y,phi.alt> = integral d x delta(y-x)phi.alt(x) $
+
+]
