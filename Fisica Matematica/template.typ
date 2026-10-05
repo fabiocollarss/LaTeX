@@ -15,11 +15,19 @@
 #let theo = mathblock(
   blocktitle: "Theorem",
   counter: mathcounter,
+  
+  inset: 10 pt,
+  stroke: 1 pt,
+  radius: 10 pt,
 )
 
 #let lemma = mathblock(
   blocktitle: "Lemma",
   counter: mathcounter,
+  
+  inset: 10 pt,
+  stroke: 1 pt,
+  radius: 10 pt,
 )
 
 #let rmk = mathblock(
@@ -51,6 +59,10 @@
 #let prop = mathblock(
   blocktitle: "Proposition",
   counter: mathcounter,
+
+  inset: 10 pt,
+  stroke: 1 pt,
+  radius: 10 pt,
 )
 
 #let proof = proofblock()
