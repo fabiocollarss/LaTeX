@@ -35,4 +35,40 @@ di Jon Kleinberg e Sendhil Mullainathan.
 \begin{pop}
   In questa sezione vediamo quali sono le notazioni utilizzate nel corso dell'elaborato, e le definizioni non banali.
 \end{pop}
+\begin{defi}
+  Si definisce \textbf{Alfabeto} un insieme \textbf{$\Sigma$} di caratteri.
+
+  Esempi di Alfabeti sono l'insieme dei numeri naturali $N := \{1,2,3,\dots \} $, \\ 
+  o l'insieme delle lettere dell'alfabeto $A=\{a,b,c,\dots,z\}$
+\end{defi}
+\begin{defi}
+  Si definisce \textbf{Universo delle parole $\Sigma^*$} l'insieme di tutte le possibili
+  stringhe di caratteri $\Sigma$ compresa la stringa vuota $\epsilon$.
+
+  Ogni stringa (o parola) è un elemento di \textbf{$\Sigma^*$}.
+\end{defi}
+
+\begin{note}
+  L'operazione che permette il passaggio dall'alfabeto $\Sigma$ all'universo delle parole $\Sigma^*$ 
+  è nota come \textbf{Chiusura di Kleene}.
+\end{note}
+
+\begin{defi}
+  Un \textbf{Linguaggio $L$} è un sottoinsieme di qualche $\Sigma^*$.\\ 
+  In particolare un linguaggio può rispondere o meno a delle regole.
+\end{defi}
+
+\begin{xpl}{(Esempio di alfabeto, universo, linguaggio, e parole)}
+
+  Sia $\Sigma$ un alfabeto. $\Sigma := \{0,1\}$.
+
+  Sia $\Sigma^*$ l'universo delle parole generato da $\Sigma$, ossia $\Sigma^* := \{\epsilon, 0, 1, 01, 111, 1010, 0000000, 10101, \dots \}$.
+  
+  Sia $L$ il linguaggio formato solo dalle stringhe che iniziano con zero, ossia $L :=\{0, 01, 00, 0101, \dots\}$
+
+  La stringa "$1010$" è un elemento di $\Sigma^*$, ma non è un elemento di $L$.
+
+
+\end{xpl}
+
 \end{document}

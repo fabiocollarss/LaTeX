@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.9.20)  6 OCT 2026 18:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.9.20)  6 OCT 2026 19:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -489,6 +489,11 @@ l.34 \chapter
 
 ]
 Chapter 2.
+
+Overfull \hbox (2.88187pt too wide) in paragraph at lines 52--54
+[][]\OT1/cmr/bx/n/10 Note 1. []\OT1/cmr/m/it/10 L'operazione che per-me-tte il pas-sag-gio dall'alfabeto $\OT1/cmr/m/n/10 ^^F$ \OT1/cmr/m/it/10 all'universo delle pa-role $\OT1/cmr/m/n/10 ^^F[]$ \OT1/cmr/m/it/10 ^^Re nota come \OT1/cmr/bx/it/10 Chiusura
+ []
+
 [2
 
 ] (./Tesi.aux)
@@ -500,18 +505,18 @@ Package rerunfilecheck Info: File `Tesi.out' has not changed.
 (rerunfilecheck)             Checksum: 492E23C98C9A5FF954E2C8F76B03B62C;267.
  ) 
 Here is how much of TeX's memory you used:
- 11755 strings out of 469515
- 180632 string characters out of 5470807
- 609699 words of memory out of 5000000
- 40247 multiletter control sequences out of 15000+600000
- 633578 words of font info for 62 fonts, out of 8000000 for 9000
+ 11793 strings out of 469515
+ 181364 string characters out of 5470807
+ 613699 words of memory out of 5000000
+ 40275 multiletter control sequences out of 15000+600000
+ 636290 words of font info for 73 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  76i,6n,79p,577b,467s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on Tesi.pdf (3 pages, 50767 bytes).
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on Tesi.pdf (3 pages, 120940 bytes).
 PDF statistics:
- 50 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
- 5 named destinations out of 1000 (max. 500000)
+ 87 PDF objects out of 1000 (max. 8388607)
+ 61 compressed objects within 1 object stream
+ 10 named destinations out of 1000 (max. 500000)
  17 words of extra memory for PDF output out of 10000 (max. 10000000)
 
