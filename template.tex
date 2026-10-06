@@ -1,33 +1,74 @@
-\documentclass{report}
-\usepackage{graphicx} % Required for inserting images
-\usepackage[a4paper, left=2cm, right=2cm, top=3cm, bottom=3cm]{geometry}
-\usepackage{amsmath} %usa questo per scrivere le formule matematiche
-\usepackage{parskip} %Questo pack elimina l'indentazione fastidiosa 
-\usepackage{amsthm} % Questo pack permette di scrivere in modo carino i teoremi,
-\usepackage{amssymb}
-\usepackage{xcolor}    % Per i colori
-\usepackage{framed}    % Per le cornici
-\usepackage{mdframed}  % Cornici più avanzate, definizioni, proposizioni ecc.
+\documentclass{article} 
+\usepackage{graphicx} % Required for inserting images 
+\usepackage[a4paper, left=2cm, right=2cm, top=3cm, bottom=3cm]{geometry} 
+\usepackage{amsmath} %usa questo per scrivere le formule matematiche 
+\usepackage{parskip} %Questo pack elimina l'indentazione fastidiosa  
+\usepackage{amssymb} 
+\usepackage{amsthm} 
 
-%Quelli che seguono sono i risultati dell'uso del pack amsthm
-\newtheorem{theo}{Theorem}
-\newtheorem{prop}{Proposition}
-\newtheorem{crlr}{Corollario}[theo] % Numerato in base ai teoremi
-\newtheorem{defi}{Definition}
-\newtheorem{note}{Note}
-\newtheorem{xpl}{Example}
-\newenvironment{pop}{}{}
+% --- NUOVO PACCHETTO PER I BOX (Sostituisce mdframed/framed) ---
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{theorems} % Permette di gestire i teoremi direttamente dentro i box
 
+% --- DEFINIZIONE DEI COLORI ---
+\definecolor{winered}{rgb}{0.6,0,0}      % Rosso scuro per Teoremi e Proposizioni
+\definecolor{navyblue}{rgb}{0,0,0.5}     % Blu scuro per Definizioni
+\definecolor{darkgray}{rgb}{0.3,0.3,0.3} % Grigio per Note ed Esempi
 
+% --- CREAZIONE DEGLI AMBIENTI BOXATI ---
+% Questa sintassi crea direttamente il box colorato e gestisce la numerazione in modo sicuro.
+% I nomi degli ambienti (theo, prop, defi, ecc.) sono IDENTICI ai tuoi originali.
 
-\title{Title}
-\author{Fabio Colletti}
-\date{September 2025}
+% 1. Teoremi (Rosso scuro, numerazione progressiva standard)
+\newtcbtheorem[number within=section]{theo}{Theorem}{
+    colback=winered!5, colframe=winered, fonttitle=\bfseries,
+    colupper=black, coltitle=black,
+    sharp corners, boxrule=0pt, leftrule=3pt,
+    enhanced, attach title to upper
+}{th}
+
+% 2. Proposizioni (Stesso stile di Theorem)
+\newtcbtheorem[use counter from=theo]{prop}{Proposition}{
+    colback=winered!5, colframe=winered, fonttitle=\bfseries,
+    colupper=black, coltitle=black,
+    sharp corners, boxrule=0pt, leftrule=3pt,
+    enhanced, attach title to upper
+}{pr}
+
+% 3. Corollari (Numerati in base al teorema corrente)
+\newtcbtheorem[number within=theo]{crlr}{Corollario}{
+    colback=winered!3, colframe=winered, fonttitle=\bfseries,
+    colupper=black, coltitle=black,
+    sharp corners, boxrule=0pt, leftrule=3pt,
+    enhanced, attach title to upper
+}{co}
+
+% 4. Definizioni (Blu scuro)
+\newtcbtheorem[number within=section]{defi}{Definition}{
+    colback=navyblue!5, colframe=navyblue, fonttitle=\bfseries,
+    colupper=black, coltitle=black,
+    sharp corners, boxrule=0pt, leftrule=3pt,
+    enhanced, attach title to upper
+}{def}
+
+%\newtcbtheorem{proof}{proof}{}{proof}
+
+% 5. Note (Grigio, senza numerazione)
+\newtcolorbox{note}{
+    colback=darkgray!5, colframe=darkgray,
+    sharp corners, boxrule=0pt, leftrule=3pt,
+    enhanced, before upper={\textbf{Note. }}
+}
+
+% 6. Esempi (Grigio, senza sfondo, solo linea a sinistra, senza numerazione)
+\newtcolorbox{xpl}{
+    colback=white, colframe=darkgray,
+    sharp corners, boxrule=0pt, leftrule=2pt,
+    enhanced, before upper={\textbf{Example. }}
+}
+
+\newenvironment{pop}{}{} 
+
 
 \begin{document}
 
-\maketitle
-
-\chapter{Group}
-
-\end{document}
