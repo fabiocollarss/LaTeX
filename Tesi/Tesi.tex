@@ -9,6 +9,8 @@
 \usepackage{framed}    % Per le cornici
 \usepackage{mdframed}  % Cornici più avanzate, definizioni, proposizioni ecc.
 \usepackage{hyperref}  % Per inserire i link
+\usepackage{dsfont}
+\usepackage[OT1]{fontenc}
 
 %Quelli che seguono sono i risultati dell'uso del pack amsthm
 \newtheorem{theo}{Theorem}
@@ -31,30 +33,34 @@
 \chapter{Introduction}
 La tesi si basa sulla descrizione e discussione dei risultati dell'articolo \href{https://arxiv.org/pdf/2404.06757}{Language Generation in the Limit} \\
 di Jon Kleinberg e Sendhil Mullainathan.
-\chapter{Notazione e Definizioni}
+
+\section{Notazione e Definizioni}
+
 \begin{pop}
   In questa sezione vediamo quali sono le notazioni utilizzate nel corso dell'elaborato, e le definizioni non banali.
 \end{pop}
+
 \begin{defi}
   Si definisce \textbf{Alfabeto} un insieme \textbf{$\Sigma$} di caratteri.
 
-  Esempi di Alfabeti sono l'insieme dei numeri naturali $N := \{1,2,3,\dots \} $, \\ 
+  Esempi di Alfabeti sono l'insieme dei numeri naturali $\mathds{N} := \{1,2,3,\dots \} $, \\ 
   o l'insieme delle lettere dell'alfabeto $A=\{a,b,c,\dots,z\}$
 \end{defi}
+
 \begin{defi}
   Si definisce \textbf{Universo delle parole $\Sigma^*$} l'insieme di tutte le possibili
   stringhe di caratteri $\Sigma$ compresa la stringa vuota $\epsilon$.
 
   Ogni stringa (o parola) è un elemento di \textbf{$\Sigma^*$}.
-\end{defi}
+\end{defi} 
 
 \begin{note}
   L'operazione che permette il passaggio dall'alfabeto $\Sigma$ all'universo delle parole $\Sigma^*$ 
-  è nota come \textbf{Chiusura di Kleene}.
+è nota come \textbf{Chiusura di Kleene}.
 \end{note}
 
 \begin{defi}
-  Un \textbf{Linguaggio $L$} è un sottoinsieme di qualche $\Sigma^*$.\\ 
+  Un \textbf{Linguaggio $L$} è un sottoinsieme di qualche $\Sigma^*$.  
   In particolare un linguaggio può rispondere o meno a delle regole.
 \end{defi}
 
@@ -67,8 +73,78 @@ di Jon Kleinberg e Sendhil Mullainathan.
   Sia $L$ il linguaggio formato solo dalle stringhe che iniziano con zero, ossia $L :=\{0, 01, 00, 0101, \dots\}$
 
   La stringa "$1010$" è un elemento di $\Sigma^*$, ma non è un elemento di $L$.
-
-
 \end{xpl}
 
+\begin{note}
+  In seguito, gli universi delle parole $\Sigma^*$ saranno sempre considerati \textbf{numerabili}.
+\end{note}
+
+\section{Modello Formale}
+\begin{pop}
+  In questa sezione verrà descritto formalmente il modello utilizzato.
+
+  Sia dato un alfabeto $Sigma$ ed il suo universo delle parole (numerabile) $Sigma^*$. \\  
+  Da questo, si estrae una lista numerabile di linguaggi $C = \{L_1,L_2,\dots\}$.\\ 
+  Sia ogni linguaggio $L_i,\ i \in \mathds{N} \ $ infinito e numerabile.
+
+  Ha senso osservare che i linguaggi si possono ripetere.
+  
+  Un avversario ed un algoritmo giocano secondo la seguente dinamica: in principio l'avversario fissa 
+un linguaggio in $C$, che denotiamo con $K$. L'algoritmo non è a conoscenza del linguaggio scelto.\\ 
+A questo punto l'avversario inizia ad enunciare le stringhe di $K$ una ad una secondo una sequenza $t=[1,2,\dots]$.\\
+  In questa enumerazione ci possono essere ripetizioni, l'importante è che per ogni parola $w \in K$ esiste almeno un "tempo" $t$ in cui verrà enunciata.\\ 
+  Sia $w_i$ la parola enunciata al tempo $t=i$.
+
+  Definiamo $S_t$ come l'insieme delle parole che l'avversario ha enunciato dal tempo inziale $t'=1$ al tempo $t'=t$, ossia $S_t := \{w_1, w_2, \dots , w_t\}$
+
+  In questo modello possiamo ora specificare il Problema di identificazione (problema di Gold-Angluin) e il Problema di Generazione
+
+  \begin{enumerate}
+    \item Identificazione - Ad ogni step $t$, l'algoritmo osserva l'insieme $S_t$ e deve mandare in output un indice $i$, 
+      che il suo tentativo di indovinare il linguaggio $K$. \\ 
+      Si dirà che l'algoritmo \textbf{Identifica K nel limite} se $\exists t^*$ t.c. 
+      l'algoritmo manda in output l'indice di $K \forall t \geq t^*$. 
+    \item Generazione - Ad ogni step $t$ l'algoritmo osserva l'insieme $S_t$ e manda in un output una stringa $a_t$ 
+      che è il suo tentativo di indovinare una stringa mai vista di $K$.\\ 
+      Si dirà che l'algoritmo \textbf{Genera da $K$ nel limite} se $\exists t^*$ t.c. $a_t \in K \backslash S_t \quad \forall t \geq t^*$.
+  \end{enumerate}
+  
+  Il fatto che i linguaggi considerati nell'insieme $C$ siano infiniti è un'importante differenza rispetto 
+al modello originale di Gold-Angluin. Questo è necessario nel modello perché l'obiettivo è quello 
+di stampare, nel caso della generazioene, infiniti elementi di un linguaggio fissato non ancora enunciatii. 
+Ciò porta ovviamente ad avere un insieme dei possibili output vuoto
+nel caso in cui il linguaggio fissato sia finito, in quanto esso verrebbe esaurito nell'enumerazione. 
+
+  La seconda importante osservazione è che l'algoritmo non ha feedback né nel caso della generazione,
+né in quello dell'identificazione. 
+Quindi non sa né se le sue guess sull'indice i sono corrette,
+né se le stringhe in output appartengono o meno all'insieme designato.
+\end{pop}
+
+\section{Risultati}
+\begin{pop}
+  Sappiamo dai risultati degli studi di Gold-Angluin che un algoritmo di questo tipo non riesce ad identificare $K$. \\ 
+  Ed è anche per questo motivo che i seguenti risultati della ricerca sono così sbalorditivi. 
+\end{pop}
+\begin{theo}
+  Sia data una collezione enumerabile di linguaggi $C=\{L_1,L_2,\dots\}$. 
+  Sia fissato ed enumerato uno di questi linguaggi $K$.
+
+  Allora esiste una funzione $f_C : \mathds{P}(U) \rightarrow U $. 
+  con la proprietà che $\exists \ t^* \ t.c.\ f_C (S_t) \in K\backslash S_t \forall \ t \geq t^* $. 
+\end{theo}
+\begin{theo}
+  Sia data una collezione enumerabile di linguaggi $C=\{L_1,L_2,\dots\}$. 
+  Sia fissato ed enumerato uno di questi linguaggi $K$. 
+  Allora esiste un algoritmo che genera da $K$ nel limite.
+\end{theo}
+
+
+\chapter{Identificazione nel limite}
+
+\chapter{Generazione nel Limite attraverso una funzione}
+
+\chapter{Generazione nel Limite attraverso un algoritmo}
+
+\chapter{Conclusioni}
 \end{document}
