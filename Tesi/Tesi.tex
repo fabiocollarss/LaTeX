@@ -83,7 +83,7 @@ di Jon Kleinberg e Sendhil Mullainathan.
 \begin{pop}
   In questa sezione verrà descritto formalmente il modello utilizzato.
 
-  Sia dato un alfabeto $Sigma$ ed il suo universo delle parole (numerabile) $Sigma^*$. \\  
+  Sia dato un alfabeto $\Sigma$ ed il suo universo delle parole (numerabile) $\Sigma^*$. \\
   Da questo, si estrae una lista numerabile di linguaggi $C = \{L_1,L_2,\dots\}$.\\ 
   Sia ogni linguaggio $L_i,\ i \in \mathds{N} \ $ infinito e numerabile.
 
@@ -139,12 +139,50 @@ né se le stringhe in output appartengono o meno all'insieme designato.
   Allora esiste un algoritmo che genera da $K$ nel limite.
 \end{theo}
 
-
 \chapter{Identificazione nel limite}
+\begin{pop}
+  In questa sezione vediamo un caso in cui l'identificazione fallisce. \\ 
+  Sia $\Sigma^*$ l'insieme dei numeri interi.
+
+  Siano $a \in \mathds{Z}, \ b \in \mathds{N}$, definisco le due progressioni artimetiche (Linguaggi) 
+  \begin{itemize}
+    \item   $P_{a,b}:= \{ a+ib \ | \ i \in \mathds{Z}_{\geq 0} \} $
+    \item $Q_{a,b} := \{ a+ib \ | \ i \in \mathds{Z} \}$
+  \end{itemize}
+  
+  Sia $C$ la collezione di tutti i linguaggi $P_{a,b}, \ Q_{a,b}$.
+\end{pop}
+
+\begin{pop}
+  Supponiamo per assurdo che esista un algoritmo in grado di identificare un linguaggio fissato $K \in C$. \\ 
+  Costruisco una enumerazione di $K$ che fa fallire l'identificazione.
+  
+  In particolare scelgo $K=Q_{0,1}$
+
+  Dati due interi $a,b \in \mathds{Z} $ definisco $I[a,b]$ l'intervallo di tutti gli interi $a \leq n \leq b$. \\ 
+  Enumero gli elementi di $ \Sigma^* $ in vari stage $ s $. \\
+  \begin{enumerate}
+    \item Per induzione lo stage $s$ ha enumerato l'intervallo $I[-s,j(s)]$ 
+      per qualche $j(s)\geq 0$.
+    \item Nello stage $s+1$ vengono enumerati altri valori così da arrivare ad enumerare $I[-(s+1),j(s+1)]$. \\ 
+      In particolare vengono enumerati prima $-(s+1)$ e $j(s)+1$ e poi $j(s)+2, \ j(s)+3,\ \dots$
+      fino ad arrivare a j(s+1).
+
+        Ad un certo punto l'algoritmo darà come tentativo la prograssione $P_{-(s+1),1}$.\\ 
+        A questo punto definiamo $j(s+1)$ come l'intero più grande generato nello stage $s+1$
+    \item Comincia lo stage $s+2$ in modo analogo.
+  \end{enumerate}
+  Dunque durante questa enumerazione di $Q_{0,1}$ l'algoritmo contninuerà a dare proposte per $K$ della forma $P_{-j,0}$
+  e quindi proporrà mai $Q_{0,1}$ nel limite.
+\end{pop}
 
 \chapter{Generazione nel Limite attraverso una funzione}
+\begin{pop}
+  
+\end{pop}
 
-\chapter{Generazione nel Limite attraverso un algoritmo}
+%\chapter{Generazione nel Limite attraverso un algoritmo}
 
-\chapter{Conclusioni}
+%\chapter{Conclusioni}
+
 \end{document}
