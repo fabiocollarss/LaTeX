@@ -72,6 +72,9 @@
 #show link: text.with(fill: blue)
 
 = Distribuzioni
+
+== Introduzione alle distribuzioni
+
 Per comprendere euristicamente il concetto di distribuzione, partiamo dal seguente esempio.
 #xpl[\
  Consideriamo la funzione di Heaviside. 
@@ -146,3 +149,80 @@ Denoto con $D^alpha := (partial^(alpha_1))/(partial x_1^(alpha_1)) dot dots dot 
   Questo ragionamento rende ragionevole la scrittura che si trova spesso nei testi di fisica:
   $ <delta_y , phi.alt> space = integral dif x space delta(y-x) phi.alt(x) $
 ]
+
+== Derivata di una distribuzione 
+In questo paragrafo introduciamo in concetto di derivata di una distribuzione.\
+L'euristica è quella di scaricare la derivata sulla funzione test.\
+Otteniamo quindi uno sviluppo simile all'integrazione per parti, e teniamo conto che la funzione $phi.alt in D(Omega)$ è nulla su $partial Omega$. 
+
+#def(title : "Derivata di una distribuzione")[\
+  Sia $F in D'(Omega)$, si dice derivata (nel senso delle distribuzioni) di $F$ rispetto a $x_i$ la distribuzione $partial_(x_i)F$ data data
+  $ <partial_(x_i)F, phi.alt> = <F, partial_(x_i)phi.alt>, quad forall phi.alt in D(Omega) $
+]\
+#oss[
+  Dato che le funzioni test sono in $C^infinity (Omega)$ si possono continuare a reiterare le derivazioni, e quindi anche le distribuzioni sono "infinitamente derivabili" visto che 
+  $ <partial^2_(x_i)F, phi.alt> eq minus <partial_(x_i) F, partial_x_i phi.alt> = <F, partial^2_x_i phi.alt> $
+  Quindi risulta anche
+  $ < Delta F , phi.alt > eq <F, Delta phi.alt> $ 
+]\
+
+#xpl(title : "Derivata della funzione di Heaviside" )[\
+  Sia $H$ la funzione di Heaviside. 
+  Come distribuzione essa è data da: 
+  $ <H,phi.alt> = integral dif x H(x)phi.alt(x) eq integral^infinity_0 dif x phi.alt(x) $
+  Dunque la sua derivata nel senso delle distribuzioni è data da:
+  $ <H',phi.alt> &= -<H,phi.alt'> \ &= - integral dif x H(x)phi.alt'(x) \ &eq - integral^infinity_0 dif x phi.alt'(x) 
+  \ &eq - [phi.alt(infinity) - phi.alt(0)] 
+  \ &eq phi.alt(0) $
+  Come introdotto nell'esempio all'inizio del capitolo, la derivata di $H$ è la delta di dirac valutata in zero $delta_0$.
+]\
+
+#xpl(title : "Derivata della delta di Dirac")[\
+  Come sappiamo $<delta_y, phi.alt> eq phi.alt(y)$. Da questo deduciamo che 
+
+  $ <delta'_y, phi.alt> eq minus <delta_y, phi.alt'> eq minus phi.alt'(y) $
+  ragionando allo stesso modo per la derivata seconda, si ottiene: 
+  $ <delta''_y, phi.alt> space eq space <delta_y, phi.alt''> space eq space phi.alt''(y) $
+  Si procede allo stesso modo per le derivate successive. 
+]\
+
+== Moltiplicazione per una funzione $C^infinity$
+  
+#def(title : $"Distribuzione" u F$)[\
+  Sia $F in D'(Omega) " e " u in C^infinity (Omega)$. Allora la distribuzione $u F$ è definita da 
+  $ <u F, phi.alt> space eq space <F, u phi.alt>, quad forall phi.alt in D(Omega) $
+]\
+
+#oss[
+ 1. La funzione $u phi.alt$ è ancora in $D(Omega)$
+ 2. Vale la regola di Leibniz, ossia 
+ $ <partial_x_i u F , phi.alt> space &eq space minus <u F, partial_x_i phi.alt > \
+  &eq space minus < F,u partial_x_i phi.alt > \ 
+  &eq space minus < F , partial_x_i (u phi.alt) > plus <F,(partial_x_i u) phi.alt> \ 
+  &eq space <partial_x_i F, u phi.alt > plus < partial_x_i u dot F, phi.alt> \
+  &eq space <partial_x_i u dot F + u dot partial_x_i F space,space phi.alt > $
+]\
+#oss[*NON* è definito il prodotto tra due distribuzioni, infatti la proprieta' $<F*G,phi.alt>$
+non è sempre verificata. 
+]
+#pagebreak(weak : false)
+== Esercizio sulle distribuzioni
+#xpl(title : $"Esercizio 1, funzione di Green per l'operatore di Laplace in d=1"$)[\
+  Sia $ G_y (x) = 1/2 |x-y|, x,y in RR $
+  Verificare che per ogni $y in RR "si ha"$ $ dif^2/(dif x^2)G_y  = delta_y " in " D'(RR) $
+]
+#proof[\
+  Per iniziare considero la sola derivata prima, il cui calcolo esplicito è: 
+  
+  $ dif/(dif x)G_y (x) &eq 1/2 (dif)/(dif x)|x-y| \ 
+  &= 1/2 (x-y)/(|x-y|) \
+  &= cases(1/2 quad quad & x >= y, -1/2 & x<=y) $ 
+
+  Ora considero una funzione test $phi.alt in D(Omega)$.
+  $ < dif^2/(dif x^2) G_y (x),phi.alt(x)> space &eq space - < dif/(dif x) G_y (x),  dif/(dif x) phi.alt(x)> \
+  &= - integral^infinity_(-infinity) dif x quad 1/2(x-y)/(|x-y|)phi.alt'(x) \
+  &= - 1/2 ( integral^infinity_y phi.alt'(x) dif x - integral^y_(-infinity)phi.alt'(x)dif x ) \
+  &= -1/2 (-phi.alt(y) - phi.alt(y)) \
+  &= phi.alt(y) \ 
+  &= <delta_y, phi.alt  > $
+]\
