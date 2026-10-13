@@ -164,14 +164,78 @@ Un’altra importante proprieta’ della trasformata di Fourier e’ quella di t
   $ cal(F)(f * g) eq (2pi)^(n/2) (cal(F)f dot cal(F)g ) $
 ]\
 == Trasformata in $S(RR^n)$
+#def()[\
+  E' detto *Spazio di Schwartz in dimensione uno* l'insieme di funzioni
+  $ bold(S(RR)) eq { f:RR arrow CC, space f in c^infinity (RR) space "t.c." space sup_x abs(x^p f^((q))(x)) < infinity quad forall p,q in NN } $ 
 
+  Analogamente, in dimensione n, si ha 
+  $ S(RR^n) eq {f:RR^n arrow CC, space f in c^infinity (RR^n) space "t.c." sup_x abs(x^(beta_1)_1 dot dot dot x^(beta_n)_n D^alpha f(x))<infinity quad \ forall beta_1,dots,beta_n in NN, alpha in NN^n } $
+]\
+#rmk[$ D^alpha f(x) eq (partial^abs(alpha) f(x))/(partial x^(alpha_1)_1 dot dot dot partial x^(alpha_n)_n ) quad quad quad abs(alpha) eq alpha_1 plus dots plus alpha_n $]\
+#oss[$D(Omega) subset S(RR^n)$]\
+#def(title : $"Convergenza in" S(RR^n)$)[\
+  Siano $v_k, v in S(RR^n). "Allora" v_k arrow v "in" S "se"$
+  $ x^(beta_1)_1 dot dot dot x^(beta_n)_n D^alpha v_k(x) quad arrow_k quad  x^(beta_1)_1 dot dot dot x^(beta_n)_n D^alpha v(x) quad quad quad "uniformemente in" RR^n $
+]\
+#oss[se $v_k, v in D(Omega) "e" v_k arrow v "in" D(Omega) space " allora " space v_k arrow v in S(RR^n) $]\
+#prop[\
+  $cal(F) $ è un'applicazione biunivoca da $S(RR^n) "in" S(RR^n) $
+]
+#proof[\
+  Prima o poi la scriverò 
+]\
+#prop[\
+  Siano $f,g in S(RR^n)$. Allora
+  $ integral dif x space dash(f(x)) space g(x) eq integral dif lambda space dash(hat(f)(lambda)) space hat(g)(lambda) $
+]
+#proof[\
+  Prima o poi la scriverò 
+]\
+#pagebreak(weak : false)
 
 == Trasformata in $L^2(RR^n)$
+In generale *non* possiamo assicurare che le funzioni in $L^2(RR^n) "siano sempre in" L^1(RR^n)$ \
+Per questo innanzitutto enunciamo il seguente risultao
+#theo(title : "Teorema di Plancherel")[\
+  sia $f in L^2(RR^n), " sia" f_N eq Chi_N f in L^1(RR^n)inter L^2(RR^n), " dove" Chi_N $ è la funzione caratteristica della palla centrata in zero di raggio N. Allora
 
-== Trasformata di una dimostrazione
+  $i) quad hat(f)_N in L^2(RR^n) "e" norm(f_N)_(L^2) eq norm(hat(f)_N)_(L^2)  $
 
+  $i i) exists g in L^2(RR^n) "t.c. " norm(hat(f)_N -g )_(L^2) arrow 0$  
+
+  $i i i) norm(g)_(L^2) eq norm(f)_(L^2) $
+
+  $i v) "se" f in L^1(RR^n) inter L^2(RR^n) " allora " g eq cal(F)f $
+]
+#proof[(Non è da sapere per l'esame)
+
+]\
+#def()[\
+  Si dice *Trasformata di Fourier di $f in L^2(RR^n)$* la fuzione
+  $ hat(f) :eq lim_N hat(Chi_N f) $
+  Dove il limite è inteso nella topologia di $L^2$.
+]\
+#pagebreak(weak : true)
+== Trasformata di una distribuzione 
+Data una funzione $F in D'(Omega)$, voglio definire la sua trasformata di Fourier $hat(cal(F))F$ scaricando 
+l'operazione di trasformata sulla fuzione test nel solito modo, ossia 
+$ <hat(F), phi> space eq space <F,hat(phi)> $
+Questa operazione, però, non è sempre possibile, infatti *non* è sempre vero che la trasformata di una funzione in $D(Omega)$ sia sempre a supporto compatto.
+
+Per questo motivo allargo lo spazio delle funzioni test a $S(RR^n)$, in modo da restringere lo spazio dei funzionali lineari. 
+
+#def[\
+  Una distribuzione si dice *distribuzione temperata* se si può estendere ad un funzionale lineare e continuo su $S(RR^n)$
+
+  Lo spazio delle distribuzioni temperate di denota con $S'(RR^n)$.
+]\
+#def[\
+  Sia $F in S'(RR^n)$. Allora $hat(F) eq cal(F)F$ è la distribuzione temperata definita da 
+  $ <hat(F), phi> space eq space <F,hat(phi)> quad quad quad forall phi in S(RR^n) $
+]\
+#pagebreak(weak : false)
 == Esercizi
-#xpl(title : "Esercizio 2")[Si considera la funzione
+#xpl(title : "Esercizio 2")[\ Si considera la funzione
   $ f(x) = cases(1 quad quad & x >=0, 0 & x<=0 ) $
   Verificare che la sua trasformata di Fourier è la distribuzione definita da: 
   $ hat(f) eq - (i)/(sqrt(2 pi)) cal(P)(1/x) + sqrt(pi/2)delta_0  $
