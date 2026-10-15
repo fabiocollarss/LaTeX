@@ -15,5 +15,7 @@
 #pagebreak(weak : true)
 #include "Capitolo5.typ"
 #pagebreak(weak : true)
+#include "Capitolo6.typ"
+#pagebreak(weak : true)
 
 
