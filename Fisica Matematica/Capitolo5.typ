@@ -1,6 +1,7 @@
 #import "template.typ": *
 
 #set heading(numbering: "1.1")
+#set math.equation(numbering: "(1)")
 #set align(left)
 #show: great-theorems-init
 #show link: text.with(fill: blue)
@@ -75,7 +76,7 @@ $
 U(u(dot , t)) &eq tau delta L \
 &eq tau integral^L_0 norm( M(x,u(x,t)) ) dif x space - L \ 
 &eq tau integral^L_0 norm((partial)/(partial x)  (x,u(x,t)))  \
-&eq tau integral^L_0 sqrt(1^2+ ((partial u)/(partial x))^2 ) dif x space - L &#h(8em) & (sqrt(1 + a^2) eq^("taylor") 1 + a^2 / 2 + O(a^4) ) \
+&eq tau integral^L_0 sqrt(1^2+ ((partial u)/(partial x))^2 ) dif x space - L &#h(6em) & (sqrt(1 + a^2) eq^("taylor") 1 + a^2 / 2 + O(a^4) ) \
 &eq tau integral^L_0 1 + 1/2 ((partial u)/(partial x))^2 -1 space dif x \
 &eq tau / 2 integral^L_0 ( (partial u)/(partial x) )^2 dif x
 $
@@ -131,19 +132,31 @@ Che è verificata per: $wide  rho par^2_t u - tau par^2_x u eq 0$
 Defiendo $c eq sqrt(tau/rho)$ ottengo 
 $ par^2_t u eq c^2 par^2_x u $
 
+== Vibrazioni forzate 
+Nel caso in cui sulla corda agisca una forza, che indichiamo con $F(x,t)$ si ottiene *l'equazione delle vibrazioni forzate della corda* 
+
+$ rho par^2_t u (x,t) - tau par^2_x u(x,t) eq F(x,t) $<eqvibfor>
+
+Mettendo a fattor comune come prima, quindi $c eq sqrt(tau/rho), space f(x,t) eq F(x,t)/rho$ l'eq diventa
+
+$ par^2_t u eq par^2_x u + f $
+
+L'@eqvibfor si ottiene nello stesso modo del caso precedente. Ossia si costruisce il funzionale d'azione e poi si applica il principio di Hamilton. \ 
+Da ricordare che in questo caso nel potenziale compare l'addendo $+F(x,t)u(x,t)$
+
 == Corda con estremi liberi 
 Supponiamo ora che la corda non abbia gli esremi fissati in 0, ma che questi siano "liberi" di muoversi. 
 In particolare immaginiamo che tali estremi siano sottoposti ad una tensione $f_0 (t) "e" f_L (t) $ e siano collegati con una molla ciascuno all'asse x, quindi su di essi agiscono anche due forze di richiamo $k_0 u_0(t) "e" k_L u_L (t)$. \
 Infine consideriamo anche che la corda sia sottoposta ad una forza costa constante $F$ (ad esempio la forza di gravità.). 
 
 L'energia potenziale in questo caso diventa
-$ U(u(x,t),t) eq integral^L_0 tau/2 (pux)^2 - F u dif x quad + k_0/2 u_0(t)^2 + k_L/2 u_L (t)^2- f_0(t)u_0(t) - f_L (t)u_L (t) $
+$ U(u(x,t),t) &eq integral^L_0 tau/2 (pux)^2 - F u dif x \ &+ k_0/2 u_0(t)^2 + k_L/2 u_L (t)^2- f_0(t)u_0(t) - f_L (t)u_L (t) $
 
 Quindi l'azione diventa: 
 
 $ 
   az[u] &eq integral^T_0 lag[u,v] dif t \ 
-  &eq integral^T_0 ( integral^L_0 rho/2 (put)^2 - tau/2 (pux)^2 + F u dif x - k_0/2 u_0(t)^2 - k_L/2 u_L (t)^2+ f_0(t)u_0(t) + f_L (t)u_L (t) ) dif t
+  &eq integral^T_0  integral^L_0 rho/2 (put)^2 - tau/2 (pux)^2 + F u dif x dif t \ &+ integral^T_0 - k_0/2 u_0(t)^2 - k_L/2 u_L (t)^2+ f_0(t)u_0(t) + f_L (t)u_L (t) dif t
 $
 
 Cambiano anche i relativi spazi delle funzioni. Infatti 
@@ -192,3 +205,35 @@ Suppongo inoltre che $y_j (t)$ sia equivalente al valore in $x_j eq ep j $ di un
 Allora l'equazione della corda può essere scritta nella forma 
 
 $ rho par^2_t u_ep (j ep, t) eq ep^(-1) K [u_ep (j ep + ep, t) + u_ep (j ep -ep,t) - 2 u_ep (j ep,t)]  $ 
+
+#rmk[
+  $
+    f(x+ep) + f(x-ep) - 2f(x) &eq (f(x+ep)-f(x))+(f(x-ep)-f(x)) \
+    &eq^"Taylor" f'(x)ep + 1/2f''(x)ep^2 - f'(x)ep +1/2f''(x)ep^2 +o(ep^2) \
+    &eq f''(x)ep^2 + o(ep^2)\
+    &eq o(ep)
+  $
+]
+
+Pertando l'equazione del moto si riscrive nella forma 
+$
+  rho par^2_t u_ep (j ep,t) eq ep K par^2_x u_ep (j ep,t) + K o(ep)
+$
+
+Ora scelgo $K eq tau/ep$. \
+Valuto l'equazione precedente per $j eq [ep^(-1) x]$ (dove [$dot$] in indica la parte intera) e ottengo
+
+$
+  rho par^2_t u_ep (x + o(1), t)eq tau par^2_x u_ep (x+o(1),t) + o(1)
+$
+
+Da questa equazione appena ottenuta, dove $o(1) "è infinitesimo per" ep arrow 0$, deduco che, se la funzione $u_ep$ converge ad una funzione regolare $u(x,t) "per" ep arrow 0$, allora tale funzione è soluzione dell'equazione della corda vibrante.
+
+#oss[
+  il parametro $K$ diverge per $ep arrow 0$.\
+  Infatti, perché il profilo finale $u$ sia almeno continuo, è necessario che 
+  $
+    lim_(ep arrow 0) [ u_ep (j ep,t) - u_ep (j ep,t) ] eq lim_(ep arrow 0) [y_(j+1) (t) minus y_j (t)] eq 0 
+  $
+  Pertanto la forza che attrae i due oscillatori deve necessariamente divergere. #set math.equation(numbering: "(1)")
+]
