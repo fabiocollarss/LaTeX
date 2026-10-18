@@ -1,6 +1,9 @@
 #import "template.typ": *
 
 #set heading(numbering: "1.1")
+#show math.equation: i-figured.show-equation.with(only-labeled: false)
+#show heading: i-figured.reset-counters
+
 #set align(left)
 #show: great-theorems-init
 #show link: text.with(fill: blue)
@@ -17,5 +20,10 @@
 #pagebreak(weak : true)
 #include "Capitolo6.typ"
 #pagebreak(weak : true)
-
+#include "Capitolo7.typ"
+#pagebreak(weak : true)
+#include "Capitolo8.typ"
+#pagebreak(weak : true)
+#include "Capitolo9.typ"
+#pagebreak(weak : true)
 

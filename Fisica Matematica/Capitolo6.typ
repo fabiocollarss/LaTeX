@@ -1,7 +1,10 @@
 #import "template.typ": *
 
 #set heading(numbering: "1.1")
-#set math.equation(numbering: "(1)")
+// Mostra la numerazione per capitolo sulle equazioni matematiche
+#show math.equation: i-figured.show-equation//.with(only-labeled: false) 
+#show heading: i-figured.reset-counters
+
 #set align(left)
 #show: great-theorems-init
 #show link: text.with(fill: blue)
@@ -16,9 +19,7 @@
 #let put2 = $(par^2 u)/(par t^2)$
 #let pux2 = $(par^2 u)/(par x^2)$
 
-= Problemi ben posti e metodo dell'energia
-
-== Problemi ben posti 
+= Problemi ben posti 
 
 Attraverso il principio variazionale abbiamo caratterizzato il moto della corda in un intervallo di tempo $[0,T]$.
 Dati un profilo iniziale e uno finale 
@@ -80,7 +81,7 @@ $ cases(
   )
 $
 
-== Metodo dell'energia
+= Metodo dell'energia
 In questa sezione sono interessato a dimostrare per quale motivo, i problemi descritti in precedenza 
 sono ben posti, ossia se esiste ed è unica la soluzione. 
 
@@ -100,7 +101,7 @@ In seguito utilizzerò $H(u,t) eq T+U$ per l'energia meccanica totale, e $E(u,t)
 ]
 
 #theo(title : "unicità dei problemi (2), (3) e (4)")[\
-  Siano condiioni come in @encost. Allora esiste al più una soluzione in $C^2(dash(Q_T))$.
+  Siano condizioni come nel @encost[Teorema]. Allora esiste al più una soluzione in $C^2(dash(Q_T))$.
 ]
 #proof[Suppongo $u_1, u_2$ due soluzioni del problema e verifico che $u_1 - u_2 equiv 0$. 
 

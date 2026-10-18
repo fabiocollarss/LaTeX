@@ -1,7 +1,9 @@
 #import "template.typ": *
 
 #set heading(numbering: "1.1")
-#set math.equation(numbering: "(1)")
+#show math.equation: i-figured.show-equation.with(only-labeled: false)
+#show heading: i-figured.reset-counters
+
 #set align(left)
 #show: great-theorems-init
 #show link: text.with(fill: blue)
@@ -133,6 +135,7 @@ Defiendo $c eq sqrt(tau/rho)$ ottengo
 $ par^2_t u eq c^2 par^2_x u $
 
 == Vibrazioni forzate 
+
 Nel caso in cui sulla corda agisca una forza, che indichiamo con $F(x,t)$ si ottiene *l'equazione delle vibrazioni forzate della corda* 
 
 $ rho par^2_t u (x,t) - tau par^2_x u(x,t) eq F(x,t) $<eqvibfor>
@@ -141,10 +144,11 @@ Mettendo a fattor comune come prima, quindi $c eq sqrt(tau/rho), space f(x,t) eq
 
 $ par^2_t u eq par^2_x u + f $
 
-L'@eqvibfor si ottiene nello stesso modo del caso precedente. Ossia si costruisce il funzionale d'azione e poi si applica il principio di Hamilton. \ 
+L'@eqt:eqvibfor[equazione delle vibrazioni forzate] si ottiene nello stesso modo del caso precedente. Ossia si costruisce il funzionale d'azione e poi si applica il principio di Hamilton. \ 
 Da ricordare che in questo caso nel potenziale compare l'addendo $+F(x,t)u(x,t)$
 
 == Corda con estremi liberi 
+
 Supponiamo ora che la corda non abbia gli esremi fissati in 0, ma che questi siano "liberi" di muoversi. 
 In particolare immaginiamo che tali estremi siano sottoposti ad una tensione $f_0 (t) "e" f_L (t) $ e siano collegati con una molla ciascuno all'asse x, quindi su di essi agiscono anche due forze di richiamo $k_0 u_0(t) "e" k_L u_L (t)$. \
 Infine consideriamo anche che la corda sia sottoposta ad una forza costa constante $F$ (ad esempio la forza di gravità.). 
@@ -185,6 +189,7 @@ $
 $
 
 == Derivazione microscopica dell'equazione della corda vibrante
+
 In questa sezione vediamo un altro approccio per ricavare l'equazione della corda vibrante. \
 In particolare, l'idea è quella di considerare l'interazione di piccole porzioni della corda come se fossero molle tra loro collegate. \
 Questo modello è detto *catena di oscillatori.*
