@@ -19,6 +19,7 @@
 #let put2 = $(par^2 u)/(par t^2)$
 #let pux2 = $(par^2 u)/(par x^2)$ 
 #let int = $integral$
+#let inf = $infinity$
 
 = Soluzione di D'Alembert 
 In questa sezione si studia il problema di Cauchy globale nel caso omogeneo, ossia $f eq 0, gamma eq 0$, quindi
@@ -101,7 +102,7 @@ per l'equazione delle onde non omogenea, ossia
 
 $ cases(
     put2 eq c^2 pux2 +f & "in" RR times RR_+, 
-    u(x,0) eq g(X) "," put(x,0) eq h(x) "," #h(4em) & x in RR
+    u(x,0) eq g(x) "," put(x,0) eq h(x) "," #h(4em) & x in RR
 ) $
 
 L'idea è quella di trovare la soluzione per il problema omogeneo associato, ossia 
