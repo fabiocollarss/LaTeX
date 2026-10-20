@@ -78,6 +78,8 @@
 
 = Richiami di Analisi
 
+== Risultati di Analisi usati nel corso 
+
 Sia *$Omega$*$subset.eq RR^3 ("oppure" RR^2)$ un aperto limitato con $partial Omega$ frontiera regolare.\
 Siano $n(x) "e" sigma(x)$ le funzioni che descrivono rispettivamente la normale esterna alla frontiera e la frontiera.
 
@@ -193,7 +195,8 @@ Siano $n(x) "e" sigma(x)$ le funzioni che descrivono rispettivamente la normale 
   Basta usare 2 volte il @pp, la prima con $u=f (partial g)/(partial x_i) "e la seconda con " u eq (partial f)/(partial x_i) (partial g)/(partial x_i). $\
 ]
 #pagebreak(weak: true)
-= Soluzioni di alcune Equazioni Differenziali Ordinarie
+
+== Soluzioni di alcune Equazioni Differenziali Ordinarie
 == $y' + a(x)y eq f(x)$
 In questo caso $a "e" f in C(I)," dove" I subset.eq RR "è un intervallo." $\
 In primo luogo trovo la soluzione dell'equazione differenziale omogenea associata.

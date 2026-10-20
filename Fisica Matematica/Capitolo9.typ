@@ -24,14 +24,17 @@
 #let Arrow = $arrow.double$
 
 = Il metodo di Fourier 
+
+== Problema in dimensione finita 
+
 Il metodo di Fourier è utilizzato, in queste note, per trovare le soluzione dell'equazione della cora vibrante in vari casi in cui la corda abbia lunghezza finita $L$. \ 
 La risoluzione si basa ovviamente sull'utilizzo delle serie di Fourier, e quindi si utilizzano spazi di funzioni infinito dimensionali.
 
 Prima di analizzare il problema in dimensione infinita, che è quello che ci servirà per risolvere l'equazione delle onde, ha senso richiamare alcuni degli elementi principali in dimensione finita. 
 
+Cosa che scrverò semmai avrò tempo di farlo :)
 
-
-= Problema di Cauchy-Dirichlet omogeneo
+== Problema di Cauchy-Dirichlet omogeneo
 Vogliamo ora appplicare la precedente strategia nel caso dell'equazione delle onde. \
 In particolare studieremo il metodo per risolvere il problea di Cauchy-Dirichlet omogeneo 
 
@@ -123,7 +126,7 @@ B_k eq 2/(omega_k L) int^L_0 h(x) sin((k pi)/L x) dif x $
   Quindi il fattore $2$ se ne va per via del prolungamento
 ]
 
-= Problema di Cauchy-Neumann omogeneo 
+== Problema di Cauchy-Neumann omogeneo 
 
 Considero il problema di Cauchy-Neumann omogeneo 
 
@@ -193,7 +196,7 @@ $ &A_k eq 2/L int^L_0 g(x) cos((k pi)/L x) dif x &k>=0 \
 ) $
 
 
-= Vibrazioni forzate 
+== Vibrazioni forzate 
 Studiamo ora le vibrazioni forzate di una corda con estremi fissati, dunque il seguente problema di Cauchy-Dirichlet 
 
 $ cases( 
@@ -226,8 +229,8 @@ $ W_n (t) &eq int^t_0 (f_n(s))/(omega_n)sin( omega_n (t-s) ) dif s \
 
 Analogamente a questo metodo si possono risolvere altri problemi con condizioni al bordo omogenee
 
-= Problema misto 
+== Problema misto 
 
-= Equazione delle onde generalizzata 
+== Equazione delle onde generalizzata 
 
 

@@ -13,9 +13,14 @@
 
 // 1. PAGINA INIZIALE (TITOLO)
 #align(center + horizon)[
-  #text(size: 26pt, weight: "bold")[Titolo del Documento di Matematica]
+  #text(size: 26pt, weight: "bold" )[Note del corso di Fisica Matematica]
   #v(1cm)
-  #text(size: 14pt, style: "italic")[Nome dell'Autore]
+  #text(size: 14pt, style: "italic")[Fabio Colletti]
+  #v(4cm)
+  #text[Non ho idea di loghi o dei permessi/licenze che andrebbero inserite
+
+        :)
+        ]
 ]
 #pagebreak()
 

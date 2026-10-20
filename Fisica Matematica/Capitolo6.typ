@@ -19,7 +19,7 @@
 #let put2 = $(par^2 u)/(par t^2)$
 #let pux2 = $(par^2 u)/(par x^2)$
 
-= Problemi ben posti 
+== Problemi ben posti 
 
 Attraverso il principio variazionale abbiamo caratterizzato il moto della corda in un intervallo di tempo $[0,T]$.
 Dati un profilo iniziale e uno finale 
@@ -81,7 +81,7 @@ $ cases(
   )
 $
 
-= Metodo dell'energia
+== Metodo dell'energia
 In questa sezione sono interessato a dimostrare per quale motivo, i problemi descritti in precedenza 
 sono ben posti, ossia se esiste ed è unica la soluzione. 
 

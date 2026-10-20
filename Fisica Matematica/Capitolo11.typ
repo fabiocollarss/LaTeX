@@ -23,12 +23,14 @@
 #let qquad = $quad quad quad$
 #let Arrow = $arrow.double$
 
-= Separazione delle variabili per problemi in domini limitati 
+= Soluzione dei problemi 
 
-= Formula di Kirchoff 
+== Separazione delle variabili per problemi in domini limitati 
 
-= Formula di Poisson 
+== Formula di Kirchoff 
 
-= Potenziali ritardati 
+== Formula di Poisson 
 
-= Sulla velocità di propagazione 
+== Potenziali ritardati 
+
+== Sulla velocità di propagazione 

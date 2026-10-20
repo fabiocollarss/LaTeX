@@ -95,7 +95,7 @@ somma di infiniti contributi (sovrapposizione) di soluzioni particolari, dette $
 
 SCRIVERE CAPITOLO MA PER ORA NON SERVE 
 
-= Formula di Duhamel 
+== Formula di Duhamel 
 
 La formula di Duhamel si basa sull'utilizzo della soluzione fondamentale, vista nel capitolo precedente, e applicato al problema di Cauchy globale 
 per l'equazione delle onde non omogenea, ossia 
@@ -126,7 +126,7 @@ Dove
 
 $ w(x,t:s) &eq int K(x,y,t-s)f(y,s)dif y \ &eq 1/(2c) int^(x+c(t-s))_(x-c(t-s))f(y,s) dif y $
 
-= simmetrie e metodo delle riflessioni
+== simmetrie e metodo delle riflessioni
 In questa sezione vediamo come trovare la soluzione di alcuni problemi con condizioni al bordo in termini della soluzione di D'Alemert. \
 Siamo interessati ai casi in cui la soluzione $u$ è: 
 
