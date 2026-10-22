@@ -138,14 +138,41 @@ $ cases(
 ]
 
 #proof[
-  Indico con $S_r (z) "la frontiera" par B_r (z)$. 
-  Derivando rispetto al tempo ed utilizzando la I formula di Green come fatto in precedenza, ottengo 
+  Indico con $S_r (z) "la frontiera" par B_r (z)$. \ Scrivo l'integrale e lo scompongo, poi applico la regola di derivazione di Leibniz e infine utilizzo la prima formula di Green.   
+
+  #rmk[Formula di Leibniz 
+    $ dif/(dt) int_a(t)^b(t) f(x,t) dx eq f(b(t),t)b'(t)-f(a(t),t)a'(t)+int_a(t)^b(t)(par f)/(par t)(x,t) dx $
+  ]
+  
+  #rmk[Prima foruma di Green 
+    $ int_Omega grad f  dot grad g dx eq - int_Omega f Delta g dx + int_(par Omega) f (par g)/(par n) dif sigma $
+  ]
 
   $
-    dot(e) (t) &eq dift int_B_(c(t_0-t)(x_0)) 1/2 (put)^2 + c^2 /2 abs(grad u)^2 + gamma/2 u^2 dif x \
-    &eq dift int_0^(c(t_0-t)) int_(S_r (x_0)) 1/2 (put)^2 + c^2 /2 abs(grad u)^2 + gamma/2 u^2 dif sigma dif r \
-    &eq - c/2 int_(S_(c(t_0 -t))(x_0))
-  $ 
+    dot(e) (t) &eq dift int_(B_(c(t_0-t)) (x_0)) 1/2 (put)^2 + c^2 /2 abs(grad u)^2 + gamma/2 u^2 dif x qquad "(scompongo)" \
+    &eq dift int_(S_r (x_0)) int_0^(c(t_0 -t)) 1/2 (put)^2 + c^2 /2 abs(grad u)^2 + gamma/2 u^2 dif r dif sigma qquad ("Leibniz") \
+    &eq -c/2int_(S_(c(t_o-t))(x_0)) (put)^2 + c^2 abs(grad u)^2 + gamma u^2 dif sigma \
+    &+ int_(B_(c(t_0 -t))(x_0)) (par u)/(par t) [1/2 (put)^2 + c^2 /2 abs(grad u)^2 + gamma/2 u^2] dx
+  $<soleqCG>
+
+  Il secondo integrale ha derivata 
+
+  $ int_(B_(c(t_0 -t))(x_0)) par/(par t)(put2 + gamma u) + c^2 grad u dot grad put dx $
+
+  Ora applico la prima formula di Green al'ultimo membro con $v eq put$
+
+  $ int_Omega grad (par u)/(par t) dot grad u dx eq - int_(Omega) put laplace u dx + int_(par Omega) put (par u)/(par v) dif sigma  $
+  
+  Quindi il secondo membro dell' @eqt:soleqCG[integrale della] è nullo (perché compare l'equazione delle onde). Quindi rimango con 
+
+  $ dot(e) (t) eq  c/2 int_(S_(c(t_0 -t))(x_0)) 2c put (par u)/(par v) - (put)^2 - c^2 abs(grad u)^2 - gamma u^2 dif sigma  $
+
+  Osservo che 
+
+  $ 2c put (par u)/(par t) - (put)^2 - c^2 abs(grad u )^2 space &<= space 2c abs(put) abs(grad u)  - (put)^2 - c^2 abs(grad u)^2 \ &eq -(-c abs(grad u ) + put)^2 \ &<= 0 $
+
+  Quindi si ottiene $dot(e)(t) <= 0$.
+
 ]
 
 #theo(title : "unicità del problema (1) ")[\
@@ -153,9 +180,9 @@ $ cases(
 ]
 
 #proof[
-  La differenza $u eq u_1 - u_2$ soluzioni dello problema di Cauchy, soddisfa l'equazione della corda nel caso del problema omogeneo con dati iniziali nulli. \
+ La differenza $u eq u_1 - u_2$ soluzioni dello problema di Cauchy, soddisfa l'equazione della corda nel caso del problema omogeneo con dati iniziali nulli. \
   Avendo dati iniziali nulli $e(0)eq 0$. \
-  Essecondo contemporaneamente $e(t) >= 0 "e" dot(e)(t) <=0$ si conclude che $e(t) eq 0$. \
+  Essendo contemporaneamente $e(t) >= 0 "e" dot(e)(t) <=0$ si conclude che $e(t) eq 0$. \
   Per continuità segue che $u(x,t) eq 0$.
   
 ]

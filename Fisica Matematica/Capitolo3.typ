@@ -157,7 +157,7 @@ Otteniamo quindi uno sviluppo simile all'integrazione per parti, e teniamo conto
 
 #def(title : "Derivata di una distribuzione")[\
   Sia $F in D'(Omega)$, si dice derivata (nel senso delle distribuzioni) di $F$ rispetto a $x_i$ la distribuzione $partial_(x_i)F$ data data
-  $ <partial_(x_i)F, phi.alt> = <F, partial_(x_i)phi.alt>, quad forall phi.alt in D(Omega) $
+  $ <partial_(x_i)F, phi.alt> = - <F, partial_(x_i)phi.alt>, quad forall phi.alt in D(Omega) $
 ]\
 #oss[
   Dato che le funzioni test sono in $C^infinity (Omega)$ si possono continuare a reiterare le derivazioni, e quindi anche le distribuzioni sono "infinitamente derivabili" visto che 
