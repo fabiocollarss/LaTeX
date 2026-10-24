@@ -30,9 +30,11 @@ In particolare gli esercizi sono presi dalle schede di esercizi del corso di Fis
 
 == Corda vibrante in dimensione 1
 
+
+#pagebreak(weak : true)
 == Corda vibrante in dimensione $d>1$
 
-  *Foglio 6 - Esercizio 1* \
+*Foglio 6 - Esercizio 1* \
   Dat il problema di Cauchy 
   $ cases( 
       put2(x,t) eq 3 laplace u(x,t) &"per" (x,t) in RR^3 times RR_+,
@@ -54,6 +56,7 @@ In particolare gli esercizi sono presi dalle schede di esercizi del corso di Fis
   &eq par/(par t) [t e^(-3  t)] \
   &eq (1 - 2 t)e^(- 3t) $
 
+#pagebreak(weak : true)
 == Calore
 
 *Foglio 7 - Esercizio 3* \
@@ -106,5 +109,5 @@ In particolare gli esercizi sono presi dalle schede di esercizi del corso di Fis
 
   $ B_0 eq 1/2, B_1 eq 1/2, B_k eq 0 quad forall k >= 1 $
 
-
+#pagebreak(weak : true)
 == Laplace e Poisson

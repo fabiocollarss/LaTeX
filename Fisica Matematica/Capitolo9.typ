@@ -27,12 +27,50 @@
 
 == Problema in dimensione finita 
 
-Il metodo di Fourier è utilizzato, in queste note, per trovare le soluzione dell'equazione della cora vibrante in vari casi in cui la corda abbia lunghezza finita $L$. \ 
-La risoluzione si basa ovviamente sull'utilizzo delle serie di Fourier, e quindi si utilizzano spazi di funzioni infinito dimensionali.
+  Il metodo di Fourier è utilizzato, in queste note, per trovare le soluzione dell'equazione della corda vibrante in vari casi in cui la corda abbia lunghezza finita $L$. \ La risoluzione si basa ovviamente sull'utilizzo delle serie di Fourier, e quindi si utilizzano spazi di funzioni infinito dimensionali. \ Prima di verificare la soluzione dei problemi, ha senso fare un piccolo escursus su due tipi di problemi.
 
-Prima di analizzare il problema in dimensione infinita, che è quello che ci servirà per risolvere l'equazione delle onde, ha senso richiamare alcuni degli elementi principali in dimensione finita. 
+  1. Nel primo tratto un'equazione differenziale ordinaria lineare a coefficienti costanti della forma 
 
-Cosa che scrverò semmai avrò tempo di farlo :)
+    $ cases( 
+        dot(u)(t) eq A u(t),
+        u(0) eq c 
+    ) $
+
+    Dove $u(t)$ è la funzione incognita in $RR^n$. $c in RR^n "il dato iniziale e" A "matrice simmetrica."$ \ Visto che in questo caso compare una sola variabile (ossia come nel caso di $tilde(x)$ fissato) ragiono come segue. \ Cerco una soluzione del problema nella forma 
+
+    $ u(t) eq sum_(k eq 1)^n w_k (t) v_k $
+
+    Sostituisco nell'equazione, ricordando che $A dot v_k eq lambda_k v_k$ e ottengo 
+
+    $ 
+      sum_(k eq 1)^n [dot(w)_k (t) - lambda_k w_k (t)]v_k eq 0 \
+      sum_(k eq 1)^n w_k (0) v_k eq c   
+    $
+
+    Essendo $(v_1 , dots, v_n)$ una base ortogonale, ho che 
+
+    $ dot(w)_k (t) eq lambda_k w_k (t) \ w_k (0) eq (c dot v_k)/(v_k dot v_k) $
+
+    Per il capitolo sulla trasformata di Fourier, so che posso scrivere 
+
+    $ w_k (t) eq w_k (0) e^(lambda_k t) $
+
+    E quindi ottengo la formula risolutiva di $u$ come 
+
+    $ u(t) eq sum_(k eq 1)^n (c dot v_k)/(v_k dot v_k) e^(lambda_k t)v_k $
+
+  2. Il seocndo problema invece, sempre in dimensione finita, riguarda un'equazione differenziale del secondo ordine
+
+    $ cases( 
+        dot.double(u)(t) eq A u(t), 
+        u(0) eq c"," quad dot(u)(0) eq C
+    ) $
+
+    Anche in questo caso cerco la soluzione nella forma $u(t) eq sum_(k eq 1)^(n) w_k(t) v_k$.
+
+    Le $n$ funzioni scalari $w_k (t)$ sono soluzioni delle equazioni differenziali del secondo ordine 
+
+    $ dot.double(w)_k (t) eq lambda_k w_k (t) \ w_k (0) eq (c dot v_k)/(v_k dot v_k) \ dot(w)_k (0) eq (C dot v_k)/(v_k dot v_k)  $
 
 == Problema di Cauchy-Dirichlet omogeneo
 Vogliamo ora appplicare la precedente strategia nel caso dell'equazione delle onde. \
