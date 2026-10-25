@@ -1,4 +1,4 @@
-#import "template.typ": *
+#import "Capitoli/template.typ": *
 
 #set heading(numbering: "1.1")
 #show math.equation: i-figured.show-equation.with(only-labeled: false)
@@ -17,11 +17,22 @@
   #v(1cm)
   #text(size: 14pt, style: "italic")[Fabio Colletti]
   #v(4cm)
-  #text[Non ho idea di loghi o dei permessi/licenze che andrebbero inserite
-
-        :)
-        ]
+  #text[]
 ]
+
+#align(bottom + center)[
+  #block(
+  fill: luma(240),
+  inset: 10pt,
+  radius: 4pt,
+  stroke: 0.5pt + luma(150),
+    [
+      Questo documento è rilasciato sotto *licenza Creative Commons 
+      Attribuzione 4.0 Internazionale (CC-BY-NC-SA 4.0).*
+    ]
+  )
+]
+
 #pagebreak()
 
 // 2. INDICE (Generato automaticamente)
@@ -47,31 +58,31 @@ In ogni caso in queste note sono presenti molti errori, alcune cose sono state a
 #set page(numbering: "1")
 #counter(page).update(1) // Resetta il contatore a 1 per il primo capitolo
 
-#include "Capitolo1.typ"
+#include "Capitoli/Capitolo1.typ"
 #pagebreak(weak : true)
-#include "Capitolo2.typ"
+#include "/Capitoli/Capitolo2.typ"
 #pagebreak(weak : true)
-#include "Capitolo3.typ"
+#include "Capitoli/Capitolo3.typ"
 #pagebreak(weak : true)
-#include "Capitolo4.typ"
+#include "Capitoli/Capitolo4.typ"
 #pagebreak(weak : true)
-#include "Capitolo5.typ"
+#include "Capitoli/Capitolo5.typ"
 #pagebreak(weak : true)
-#include "Capitolo6.typ"
+#include "Capitoli/Capitolo6.typ"
 #pagebreak(weak : true)
-#include "Capitolo7.typ"
+#include "Capitoli/Capitolo7.typ"
 #pagebreak(weak : true)
-#include "Capitolo8.typ"
+#include "Capitoli/Capitolo8.typ"
 #pagebreak(weak : true)
-#include "Capitolo9.typ"
+#include "Capitoli/Capitolo9.typ"
 #pagebreak(weak : true)
-#include "Capitolo10.typ"
+#include "Capitoli/Capitolo10.typ"
 #pagebreak(weak : true)
-#include "Capitolo11.typ"
+#include "Capitoli/Capitolo11.typ"
 #pagebreak(weak : true)
-#include "Capitolo12.typ"
+#include "Capitoli/Capitolo12.typ"
 #pagebreak(weak : true)
-#include "Capitolo13.typ"
+#include "Capitoli/Capitolo13.typ"
 #pagebreak(weak : true)
-#include "Esercizi.typ"
+#include "Capitoli/Esercizi.typ"
 
