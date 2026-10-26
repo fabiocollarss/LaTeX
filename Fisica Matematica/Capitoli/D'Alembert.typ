@@ -88,12 +88,15 @@ Infatti se $g "e" h$ sono in $C^2 "e" C^1$ allora risolvono l'eqauzione. Vicever
 
 = Soluzione Fondamentale 
 
-La soluzione di D'Alembert per generici dati iniziali si scrive può esprimersi in termini di una particolare soluzione, detta fondamentale. \
-Questa soluzione corrisponde al problema di Cauchy generalizzato in cui $g eq 0$ e $h$ è un impulso unitario concentrato in un singolo punto. \
-L'idea della soluzione fondamentale, più in generale, offre una strategia risolutiva per le equazioni lineari, e l'integrale generale si esprime come 
-somma di infiniti contributi (sovrapposizione) di soluzioni particolari, dette $italic("soluzioni fondamentali (o funzioni di Green)")$.
+La soluzione di D'Alembert per generici dati iniziali si scrive può esprimersi in termini di una particolare soluzione, detta fondamentale. \ Questa soluzione corrisponde al problema di Cauchy generalizzato in cui $g eq 0$ e $h$ è un impulso unitario concentrato in un singolo punto. \ L'idea della soluzione fondamentale, più in generale, offre una strategia risolutiva per le equazioni lineari, e l'integrale generale si esprime come somma di infiniti contributi (sovrapposizione) di soluzioni particolari, dette $italic("soluzioni fondamentali (o funzioni di Green)")$.
 
-SCRIVERE CAPITOLO MA PER ORA NON SERVE 
+In particolare, come anticipato nel capitolo delle Serie di Fourier, La soluzione fondamentale, per l'equaione delle onde in dimensione $d eq 1$, soddisfa l'equazione 
+
+$ L:= par^2_t minus c^2 par^2_x eq delta(x)delta(t) $
+
+Dove $delta$ è la distribuzione di Dirac. 
+
+*DA FINIRE*
 
 == Formula di Duhamel 
 

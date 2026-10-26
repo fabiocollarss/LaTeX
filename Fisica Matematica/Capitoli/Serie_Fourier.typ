@@ -46,5 +46,25 @@ Il risultato chiave al punto (1) è il seguente
 Dove $ c_n eq 1/(2L) int_(-L)^L f(x)e^(-i n pi/L x) dif x, quad n in ZZ  $
 
 
+== Soluzione Fondamentale
+
+#def[Sia dato un operatore differenziale a coefficienti costanti $L in RR^n ("oppure in" RR^n times RR)$. La *Soluzione fondamentale per L* (anche detta nucleo elementare) è una distribuzione $Phi$ che soddisfa l'equazione 
+
+    $ L Phi eq delta $
+
+    Dove $delta$ è la distribuzione delta di Dirac centrata nell'origine.
+    ]
+
+    Sarà di primario interesse nel corso del corso (giochino di parole) determinare la soluzione fondamentale nei vari scenari, ossia nell'equazione delle onde, in quella di Laplace o Poisson, e in quella del calore. 
+
+#xpl(title : "Operatori differenziali costanti")[
+    Gli operatori differenziali costanti che incontriamo durante il corso sono 
+
+    1. $L eq par^2_t - c^2 laplace_x, quad L in RR^n times RR. quad$Per l'equazione delle onde.
+
+    2. $ L eq par_t - laplace_x, quad L in RR^n times RR. quad$ Per l'equazione del calore. 
+
+    3. $L eq laplace, quad L in RR^n. quad $ Per l'equazione di Laplace.
+    ] 
 
 

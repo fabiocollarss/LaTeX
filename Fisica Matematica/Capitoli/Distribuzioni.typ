@@ -11,7 +11,7 @@
 
 Per comprendere euristicamente il concetto di distribuzione, partiamo dal seguente esempio.
 #xpl[\
- Consideriamo la funzione di Heaviside. 
+  Consideriamo la funzione di Heaviside. 
   $ H(x) := cases(0 "se" x<0, 1 "se" x >= 0,) $
   Questa è non derivabile nell'origine, tuttavia possiamo definire il rapporto incrementale vicino all'origine, che vale: 
   $ I_epsilon (x) = (H(x+epsilon)-H(x-epsilon))/(2epsilon) = cases(1/(2epsilon) wide x in [-epsilon , epsilon], 0 wide "altrove") $
@@ -59,7 +59,7 @@ Denoto con $D^alpha := (partial^(alpha_1))/(partial x_1^(alpha_1)) dot dots dot 
   $ F(a phi.alt_1 +b phi.alt_2)=a F(phi.alt_1)+b F(phi.alt_2) wide,wide a,b in RR,quad phi.alt_2,phi.alt_1 in D(Omega) $
   \Si dice inoltre *Continuo*, se\ $ phi.alt_k --> phi.alt quad arrow.double quad F(phi.alt_k) -->F(phi.alt) $
 ]\
-*Notazione:* D'ora in poi denoto $F(phi.alt)" con " <F,phi.alt>$. Si legge "F applicato a phi" :)\
+*Notazione:* D'ora in poi denoto $F(phi.alt)" con " <F,phi.alt>$. Si legge "F contro phi" :)\
 \
 #def(title: "Distribuzione")[\
   Un funzionale lineare su $D(Omega)$ è detto *distribuzione* su $Omega$.
@@ -69,8 +69,17 @@ Denoto con $D^alpha := (partial^(alpha_1))/(partial x_1^(alpha_1)) dot dots dot 
 \
 #oss[$D'(Omega)$ è duale di $D(Omega)$, nonché anche uno spazio vettoriale.]
 #def(title: $"Convergenza in "D'(Omega)$)[\
-  Siano $F,(F_k) in D'(Omega)$, si che $F_k --> F$ se $ <F_k,phi.alt>quad-->quad<F,phi.alt> wide forall phi.alt in D(Omega) $
+  Siano $F,(F_k) in D'(Omega)$, si ha che $F_k --> F$, ossia la successione di distribuzioni converge ad $F$, se $ <F_k,phi.alt>quad-->quad<F,phi.alt> wide forall phi.alt in D(Omega) $
 ]\
+
+#pagebreak(weak : true)
+== Distribuzioni regolari
+  Ad ogni funzione $f in C^1_"loc"$ $"funzione localmente integrabile di classe" C^1,$ $"si associa la distribuzione"$ $J_f in D'(Omega)$ definita dall'integrale 
+
+  $ <J_f , psi> :eq integral_Omega f(x)psi(x) dif x, quad psi in D(Omega) $
+
+
+
 #xpl(title: "Delta di Dirac")[\
   Sia $phi.alt in D(RR^n)$, definisco  
   $ delta_y:phi.alt --> <delta_y,phi.alt>quad:=quad phi.alt(y) $
@@ -82,23 +91,23 @@ Denoto con $D^alpha := (partial^(alpha_1))/(partial x_1^(alpha_1)) dot dots dot 
   In atri termini, la delta di Dirac in $y$ si può pensare come limite di funzioni che si stringono in $y$, con la peculiarità che il loro integrale su $RR^n$ valga 1, e il cui valore in $y$ diverga a $+infinity$.\
   Questo ragionamento rende ragionevole la scrittura che si trova spesso nei testi di fisica:
   $ <delta_y , phi.alt> space = integral dif x space delta(y-x) phi.alt(x) $
-]
+  ]
 
-== Derivata di una distribuzione 
-In questo paragrafo introduciamo in concetto di derivata di una distribuzione.\
-L'euristica è quella di scaricare la derivata sulla funzione test.\
-Otteniamo quindi uno sviluppo simile all'integrazione per parti, e teniamo conto che la funzione $phi.alt in D(Omega)$ è nulla su $partial Omega$. 
+  == Derivata di una distribuzione 
+  In questo paragrafo introduciamo in concetto di derivata di una distribuzione.\
+  L'euristica è quella di scaricare la derivata sulla funzione test.\
+  Otteniamo quindi uno sviluppo simile all'integrazione per parti, e teniamo conto che la funzione $phi.alt in D(Omega)$ è nulla su $partial Omega$. 
 
 #def(title : "Derivata di una distribuzione")[\
   Sia $F in D'(Omega)$, si dice derivata (nel senso delle distribuzioni) di $F$ rispetto a $x_i$ la distribuzione $partial_(x_i)F$ data data
   $ <partial_(x_i)F, phi.alt> = - <F, partial_(x_i)phi.alt>, quad forall phi.alt in D(Omega) $
-]\
+]
 #oss[
   Dato che le funzioni test sono in $C^infinity (Omega)$ si possono continuare a reiterare le derivazioni, e quindi anche le distribuzioni sono "infinitamente derivabili" visto che 
   $ <partial^2_(x_i)F, phi.alt> eq minus <partial_(x_i) F, partial_x_i phi.alt> = <F, partial^2_x_i phi.alt> $
   Quindi risulta anche
   $ < Delta F , phi.alt > eq <F, Delta phi.alt> $ 
-]\
+]
 
 #xpl(title : "Derivata della funzione di Heaviside" )[\
   Sia $H$ la funzione di Heaviside. 

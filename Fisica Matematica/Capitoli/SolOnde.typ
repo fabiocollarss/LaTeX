@@ -66,9 +66,37 @@ $ omega_n eq sqrt(- lambda_n c^2) $
 Inoltre, per l'ortogonalità delle autofunzioni i dati iniziali di $W_n (0) "e" dot(W)_n (0)$ sono effettivamente determinati in termini di $g "e" h$. 
 
 $ W_n (0) eq (int_Omega g v_n dif x )/(int_Omega v^2_n dif x ) \ 
-dot(W)_n (0) eq (int_Omega h v_n dif x)/([delta_(n,0) + (1- delta_(n,0))omega_n]int_Omega v^2_n dif x ) $ 
+dot(W)_n (0) eq (int_Omega h v_n dif x)/([delta_(n,0) + (1- delta_(n,0))omega_n]int_Omega v^2_n dif x ) $
 
+== Soluzione fondamentale 
+  
+  In questo l'operatore differenziale è
 
+  $ L:= par^2_t - c^2 laplace_x  $
+
+  Cerco una distribuzione $Phi$ tale che $L Phi eq par^2_t Phi - c^2 laplace_x Phi eq delta$. \ Applico la traformata di Fourier rispetto alle sole coordinate spaziali $x$.
+  
+  $ par^2_t hat(Phi)(xi, t) + c^2 abs(xi)^2 hat(Phi)(xi, t) eq 0 $
+  
+  L'equazione si è quindi ridotta ad una equazione differenzialme omogenea.\ Tenendo conto della singolarità $delta (t)$, le condizione dell'ODE per $t eq 0$ sono 
+  
+  $ hat(Phi)(xi, 0) eq 0, quad par_t hat(Phi)(xi,0) eq (2pi)^(-n/2) $
+
+  Devo quindi risolvere il problema di Cauchy 
+
+  $ cases( 
+      par^2_t hat(Phi)(xi, t) + c^2 abs(xi)^2 hat(Phi)(xi, t) eq 0,
+      hat(Phi)(xi, 0) eq 0"," quad par_t hat(Phi)(xi,0) eq (2pi)^(-n/2)
+  ) $
+
+  Il quale ha soluzione 
+
+  $ hat(Phi)(xi, t) eq (2pi)^(- n/2) (sin (c abs(xi)t))/(c abs(xi)) $
+
+  A questo punto non rimane che determinare l'antitrasformata per $(sin (c abs(xi)t))/(c abs(xi))$. \ Questo calcolo varia però in base alla dimensione di $n eq 1,2,3$. \ In particolare, per $n eq 1$ l'antitraformata genera la funzione di Heaviside $scr(H)$. \
+  Per $n eq 2$ si ottiene la formula di Poisson, che vedremo più avanti. \ Per $n eq 3$ si ottiene la formula di Kirchhoff, che tratterò nella prossima sezione.
+
+#pagebreak(weak : true)
 == Formula di Kirchoff 
 
 La formula di Kirchhoff offre la soluzione esplicita del problema di Cauchy globlale omogeneo 
