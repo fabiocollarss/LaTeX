@@ -2,7 +2,7 @@
 
 #set heading(numbering: "1.1")
 // Mostra la numerazione per capitolo sulle equazioni matematiche
-#show math.equation: i-figured.show-equation//.with(only-labeled: false) 
+#show math.equation: i-figured.show-equation.with(only-labeled: true) 
 #show heading: i-figured.reset-counters
 
 #set align(left)
@@ -24,12 +24,125 @@
 #let Arrow = $arrow.double$
 
 = Esercizi  
-In questa sezione sono presenti alcuni esercizi di Fisica Matematica riguardanti i principali argomenti del corso. 
+In questa sezione sono presenti alcuni esercizi di Fisica Matematica riguardanti i principali argomenti del corso.
 
 In particolare gli esercizi sono presi dalle schede di esercizi del corso di Fisica Matematica 2025/2026 Canale I (Basile)
 
 == Corda vibrante in dimensione 1
+\
+*Foglio 3 - Esercizio 1*
+  Risolvere il seguente problema di C-N
+  
+  $ cases( 
+    put2 eq pux2 &(x,t) in (0,pi)times RR_+,
+    u(x,0) eq 1"," quad put(x,0) eq cos x qquad &forall x in [0,pi],
+    pux(0,t) eq pux(pi,t) eq 0 &forall t>=0 
+  ) $
 
+  *Svolgimento* \
+  Dal metodo di Fourier segue la determinazione di $lambda_n, w_n "e" v_n (x)$.
+
+  $ 
+    &lambda_n eq - (pi^2 n^2)/(L^2) quad eq^((L eq pi)) quad -n^2 \
+    &omega_n eq (n pi c)/L quad eq^((L eq pi, c eq 1)) quad n \  
+    &v_n (x) eq cos((n pi)/L x) eq^((L eq pi)) cos(n x) 
+  $
+
+  Ora, usando anche le condizioni su $g "e" h$ posso determinare i coefficienti
+
+  $ u(x,t) eq 1/2(A_0 + B_0 t) + sum_(n in ZZ_(>0)) [A_n cos(n t) + B_n sin(n t)]cos(n x)  $
+
+  quindi, dalle condizioni, so che $u(x,0) eq g(x) eq 1$
+
+  $ 
+  &u(x,0) eq 1/2 A_0 sum_(n in ZZ_(>0)) A_n cos(n x) eq 1 \
+  &Arrow A_0 eq 2, quad A_n eq 0 qquad forall n != 2 
+  $
+  
+  La derivata temporale di $u$ è invece 
+
+  $ put (x,t) eq 1/2 B_0 + sum_(n in ZZ_(>0)) [-n A_n sin(n t) + n B_n cos(n t)]cos(n x) $
+
+  Visto che $put(x,0) eq h(x) eq cos x$, allora 
+
+  $ 
+    &put(x,0) eq 1/2 B_0 + sum_(n in ZZ_(>0)) n B_n cos (n x) eq cos x \
+    & Arrow B_1 eq 1, quad B_n eq 0 "se" n != 1 
+  $
+    
+  E quindi si ottiene la soluzione 
+    
+  $ u(x,t) eq 1 + cos(x)sin(t) $
+
+#pagebreak(weak : true)
+
+*Foglio 3 - Esercizio 2* \
+  Determinare la soluzione e l'energia 
+  $ cases( 
+    put2 eq pux2 &(x,t) in (0,pi)times RR_+,
+    u(x,0) eq cos x"," quad put(x,0) eq sin^2 x qquad &forall x in [0,pi],
+    pux(0,t) eq pux(pi,t) eq 0 &forall t>=0 
+  ) $
+
+  *Svolgimento* \
+  1. Soluzione del problema 
+  Dal metodo di Fourier segue la determinazione di $lambda_n, w_n "e" v_n (x)$.
+
+  $
+    lambda_n eq - n^2 \
+    v_n (x) eq cos(n x) \
+    omega_n eq n 
+  $
+
+  Di nuovo come nell'esercizio precedente
+
+  $ 
+    u(x,0) &eq cos x quad Arrow quad A_1 eq 1,quad A_n eq 0 "se" n != 1 \
+    put(x,0) &eq sin^2 x eq^"formula"_"duplicazione" (1 - cos(2 x))/2 \
+    &Arrow quad B_0 eq 1, quad B_2 eq -1/4, quad B_n eq 0 "se" n != 0,2  
+  $
+
+  E quindi la soluzione è 
+
+  $ u(x,t) eq 1/2 t + cos t cos x - 1/4 sin(2t)cos(2x) $
+  
+  2. Energia 
+  Per determinare l'energia, calcolo le derivate parziali 
+
+  $ 
+    &put(x,t) eq 1/2 - sin t cos x - 2 cos(2t) cos(2x) \
+    &pux(x,t) eq -cos t sin x + 2 sin(2 t)sin(2 x)  
+  $
+
+  Dalla formula $E eq T + U$ ricavo 
+
+  $ 
+    E(t,u(x,t)) &eq int_0^pi (put)^2 + (pux)^2 dif x \ 
+    &"... calcoli ..." \
+    &eq pi/4 + pi/2 + 2pi + "termini che si annullano" \
+    &eq 11/4 pi
+  $
+
+#pagebreak(weak : true)
+
+*Foglio 3 - Esercizio 3* \
+  Determinare la soluzione del seguente problema di C-N 
+
+  $ cases( 
+    put2 eq pux2 &(x,t) in (0,pi)times RR_+,
+    u(x,0) eq 3"," quad put(x,0) eq 3 + cos^2 x qquad &forall x in [0,pi],
+    pux(0,t) eq pux(pi,t) eq 0 &forall t>=0 
+  ) $
+  
+  *Svolgimento* 
+
+  $ 
+    &lambda_k eq - k^2, quad v_k (x) eq cos(k x), quad w_k eq k \ 
+    &u(x,0) eq 3 quad Arrow quad 1/2 A_0 eq 3 quad Arrow quad A_0 eq 6 \
+    &par_t u (x,0) eq 3 + cos^2 x eq 7/2 + cos(2 x)/2  quad Arrow quad B_2 eq 1/4, quad B_0 eq 7 \
+    "Da cui la soluzione" \
+    &u(x,t) eq 1/2 (3 + 7t)+(sin(2t)cos(2t))/4
+  $
 
 #pagebreak(weak : true)
 == Corda vibrante in dimensione $d>1$
@@ -51,7 +164,7 @@ In particolare gli esercizi sono presi dalle schede di esercizi del corso di Fis
   &eq par/(par t) [1/(4pi c^2 t) int_(S_(c t)(x)) (1 + (sqrt(3) t)^3 cos phi)e^(- 3t) dif sigma ] &(dif x dif y dif z eq rho^2 sin phi dif rho dif theta dif phi) \ 
   &eq par/(par t) [1/(4pi c^2 t) int^(2pi)_0 dif theta int^pi_0 dif phi  (1 + (sqrt(3) t)^3 cos phi)e^(- 3t)]3 t^2 sin phi \
   &eq par/(par t) [ 1/(4 pi c^2 t)2pi 3 t^2 e^(-3 t) int_0^pi dif phi sin phi + int^pi_0 dif phi (sqrt(3)t)^3 cos phi sin phi] \ 
-  &eq  par/(par t) [1/(4pi c^2 t) 2 pi 3 t^2 e^(-3 t)dot 2] & (c eq sqrt(3)) \
+  &eq  par/(par t) [1/(4pi c^2 t) 2 pi 3 t^2 e^(-3 t)dot (2 + 0)] & (c eq sqrt(3)) \
   &eq par/(par t) [12 pi t^2 e^(-3 t)/(12 pi t)] \
   &eq par/(par t) [t e^(-3  t)] \
   &eq (1 - 2 t)e^(- 3t) $

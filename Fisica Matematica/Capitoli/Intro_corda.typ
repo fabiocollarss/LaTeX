@@ -16,6 +16,9 @@
 #let pux = $(partial u)/(partial x)$
 #let par = $partial$
 #let inf = $infinity$
+#let put2 = $(par^2 u)/(par t^2)$
+#let pux2 = $(par^2 u)/(par x^2)$
+
 
 = Introduzione alla corda vibrante
 In questa sezione affronto l'introduzione dell'equazione della croda vibrante, argomento centrale del corso e che ci terrà occupati per i prossimi capitoli.
