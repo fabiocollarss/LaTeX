@@ -22,6 +22,8 @@
 #let inf = $infinity$ 
 #let qquad = $quad quad quad$
 #let Arrow = $arrow.double$
+#let dx = $dif x$ 
+#let dt = $dif t$ 
 
 = Soluzione dei problemi 
 
@@ -80,23 +82,58 @@
   Applico la traformata di Fourier rispetto alle sole coordinate spaziali $x$.
   
   $ par^2_t hat(Phi)(xi, t) + c^2 abs(xi)^2 hat(Phi)(xi, t) eq delta_0 (t) $
-  
-  L'equazione si è quindi ridotta ad una equazione differenzialme omogenea.\ Tenendo conto della singolarità $delta (t)$, le condizione dell'ODE per $t eq 0$ sono 
-  
-  $ hat(Phi)(xi, 0) eq 0, quad par_t hat(Phi)(xi,0) eq (2pi)^(-n/2) $
 
-  Devo quindi risolvere il problema di Cauchy 
+#emph(text(red)[controllare se la trasformata va divisa per $1/(2pi)^(2/n)$])
+  
+  L'equazione si è quindi ridotta ad una equazione differenzialme omogenea.\ Tenendo conto della singolarità $delta (t)$ si ottiene  
+  
+  $ 
+    &int^ep_(-ep) par^2_t hat(Phi) + c^2 abs(xi)^2 hat(Phi) dt eq int^ep_(-ep) delta_0 (t) dt \
+    &Arrow lr([par/(par t) hat(Phi)(xi, t)]^ep_(-ep)) + c^2abs(xi)^2 integral^ep_(-ep) hat(Phi) dt eq 1 qquad &(hat(Phi)(t<0)eq par_t hat(Phi)(t<0) eq 0) \
+    &Arrow   par_t hat(Phi)(xi, ep) + 0 eq 1 &qquad (ep arrow 0) \ 
+    &Arrow par_t hat(Phi)(xi,0) eq 1  
+  $
+  
+  Dunque le condizioni dell'ODE per $t eq 0$ sono
+  
+  $ hat(Phi)(xi, 0) eq 0, quad par_t hat(Phi)(xi,0) eq 1 $
+
+  Devo quindi risolvere il problema di Cauchy
 
   $ cases( 
       par^2_t hat(Phi)(xi, t) + c^2 abs(xi)^2 hat(Phi)(xi, t) eq 0 qquad t > 0,
-      hat(Phi)(xi, 0) eq 0"," quad par_t hat(Phi)(xi,0) eq (2pi)^(-n/2)
+      hat(Phi)(xi, 0) eq 0"," quad par_t hat(Phi)(xi,0) eq 1, 
   ) $
+  
+  Per ottenere la soluzione, come visto nella sezione iniziale del corso, determino il comportamento degli autovettori.
+    
+  $ lambda^2 - c^2 abs(xi)^2 eq 0 quad Arrow quad lambda eq plus.minus i c abs(xi) $
+  
+  Ho quindi la soluzione
 
-  Il quale ha soluzione
+  $ hat(Phi)(xi,t) eq A(xi)cos(c abs(xi) t) + B(xi) sin(c abs(xi) t) $
 
-  $ hat(Phi)(xi, t) eq (2pi)^(- n/2) (sin (c abs(xi)t))/(c abs(xi)) $
+  Ora uso i dati iniziali del problema. In particolare 
+  
+  $ 
+    &i) quad hat(Phi)(xi,0) eq 0 quad Arrow quad A(xi) eq 0 \ 
+    &i i) quad par_t hat(Phi)(xi,t) eq c abs(xi) cos (c abs(xi) t) quad "da cui" quad par_t hat(Phi)(xi, 0) eq 1 quad Arrow quad b(xi) eq 1/(c abs(xi))
+  $ 
 
-  A questo punto non rimane che determinare l'antitrasformata per $(sin (c abs(xi)t))/(c abs(xi))$. \ Questo calcolo varia però in base alla dimensione di $n eq 1,2,3$. \ In particolare, 
+  A questo punto ottengo quindi la soluzione dell'equazione differenziale, ossia 
+
+  $ hat(Phi)(xi, t) eq (sin (c abs(xi)t))/(c abs(xi)) $
+
+  Ora, per determinare $Phi(xi,t)$ non rimane che calcolare l'antitraformata di $hat(Phi)$ usando il teorema di inversione studiato in precedenza.
+
+#emph(text(red)[Controllare i calcoli da qui in poi!])
+  
+  $ 
+    Phi(x,t) &eq 1/(2pi)^(n/2) int_(RR^3) hat(Phi)(xi,t) e^(i xi x) dif xi \
+    &eq 1/(2pi)^(n/2) int_(RR^3) (sin(c abs(xi) t))/(c abs(xi)) e^(i xi x) dif xi \
+  $
+
+  Questo calcolo varia però in base alla dimensione di $n eq 1,2,3$. \ In particolare, 
 
   - *per $n eq 1$* l'antitraformata genera la funzione di Heaviside $scr(H)$.
     
@@ -111,6 +148,7 @@
 
 
 #pagebreak(weak : true)
+
 == Formula di Kirchoff 
 
   La formula di Kirchhoff offre la soluzione esplicita del problema di Cauchy globlale omogeneo 
@@ -174,3 +212,4 @@
 == Potenziali ritardati 
 
 == Sulla velocità di propagazione 
+
