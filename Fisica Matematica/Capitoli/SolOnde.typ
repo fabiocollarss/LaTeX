@@ -83,7 +83,7 @@
   
   $ par^2_t hat(Phi)(xi, t) + c^2 abs(xi)^2 hat(Phi)(xi, t) eq delta_0 (t) $
 
-#emph(text(red)[controllare se la trasformata va divisa per $1/(2pi)^(2/n)$])
+//#emph(text(red)[controllare se la trasformata va divisa per $1/(2pi)^(2/n)$])
   
   L'equazione si è quindi ridotta ad una equazione differenzialme omogenea.\ Tenendo conto della singolarità $delta (t)$ si ottiene  
   
@@ -128,30 +128,42 @@
 
 #emph(text(red)[Controllare i calcoli da qui in poi!])
   
-  $ 
-    Phi(x,t) &eq 1/(2pi)^(n/2) int_(RR^3) hat(Phi)(xi,t) e^(i xi x) dif xi \
-    &eq 1/(2pi)^(n/2) int_(RR^3) (sin(c abs(xi) t))/(c abs(xi)) e^(i xi x) dif xi \
-  $
-
-  Questo calcolo varia però in base alla dimensione di $n eq 1,2,3$. \ In particolare, 
+  Questo calcolo varia però in base alla dimensione di $n eq 1,2,3$. \ In particolare,
 
   - *per $n eq 1$* l'antitraformata genera la funzione di Heaviside $scr(H)$.
-    
-    
-  
+     
   - *Per $n eq 2$* si ottiene la formula di Poisson, che vedremo più avanti. 
 
-
-
   - *Per $n eq 3$* si ottiene la formula di Kirchhoff, che tratterò nella prossima sezione.
+  
+  $ 
+    Phi(x,t) &eq 1/(2pi)^(3/2) int_(RR^3) hat(Phi)(xi,t) e^(i xi x) dif xi \
 
+    &eq 1/(2pi)^(3/2) int_(RR^3) (sin(c abs(xi) t))/(c abs(xi)) e^(i xi x) dif xi \
+  $
 
+  Passo a coordinate sferiche, cosicché $r eq abs(xi)$. inoltre nell'integrale la variavile $x$ non varia, quindi posso scegliere il sistema di riferimento in cui $x eq (0,0,abs(x))$. \ 
+In questo modo ottengo $xi dot x eq r abs(x) cos theta$ e l'integrale diventa 
+  
+  $  
+    &eq 1/(2pi)^(3/2) int^inf_0 int_0^pi int_(-pi/2)^(pi/2) (sin(c r t))/(c r) e^(i r abs(x)cos theta) r^2 sin theta dif phi dif theta dif r  \ 
+
+    &eq pi/(2pi)^(3/2) int_0^inf sin(c r t)/(c r) r^2 int_0^pi e^(i r abs(x) cos theta) sin theta dif theta dif r 
+  $
+
+  Il calcolo del secodo integrale è 
+  
+  $ int_0^pi e^(i r abs(x) cos theta) sin theta eq (2 sin(r abs(x)))/(r abs(x)) $
 
 #pagebreak(weak : true)
 
 == Formula di Kirchoff 
 
   La formula di Kirchhoff offre la soluzione esplicita del problema di Cauchy globlale omogeneo 
+  $ 
+    Phi(x,t) &eq 1/(2pi)^(n/2) int_(RR^3) hat(Phi)(xi,t) e^(i xi x) dif xi \
+    &eq 1/(2pi)^(n/2) int_(RR^3) (sin(c abs(xi) t))/(c abs(xi)) e^(i xi x) dif xi \
+  $
 #theo(title : "Formula di Kirchhoff")[\
   Siano $g in C^3(RR^3) "e" g in C^2(RR^3)$. Allora l'unica soluzione in $C^2(RR^3 times [0. inf))$ del problema di Cauchy globale omogeneo 
 
