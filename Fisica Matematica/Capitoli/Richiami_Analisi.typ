@@ -197,16 +197,50 @@ Siano $n(x) "e" sigma(x)$ le funzioni che descrivono rispettivamente la normale 
 #pagebreak(weak: true)
 
 == Soluzioni di alcune Equazioni Differenziali Ordinarie
-== $y' + a(x)y eq f(x)$
-In questo caso $a "e" f in C(I)," dove" I subset.eq RR "è un intervallo." $\
-In primo luogo trovo la soluzione dell'equazione differenziale omogenea associata.
-#prop[\
+
+- *$y' + a(x)y eq f(x)$*
+  
+  In questo caso $a "e" f in C(I)," dove" I subset.eq RR "è un intervallo." $\
+  In primo luogo trovo la soluzione dell'equazione differenziale omogenea associata.
+  #prop[\
   L'integrale generale dell'equazione differenziale omogenea *$y'+a(x)y eq 0$* è
   $ y(x) eq C e^(minus integral^x_(x_0) a(t) dif t) $
   Dove $C in RR " e " x_0 in I$  
-]
-#proof[\
+  ]
+  #proof[\
+    La farò quando avrò tempo, magari integrando con gli appunti di Elementi di Analisi Reale ed Equazioni Differenziale. 
+  ]
   
-]
-== $y'' + p y' + q y = 0$
-== $y'' + q y = f(x)$
+- *$y'' + p y' + q y = 0$*
+
+  Risolvo ora l'equazione differenziale nella forma $y'' + p y' + q y eq 0$.
+
+  Il comportamento è determinato dal discriminante $Delta eq p^2 + q eq 0$
+
+  + $Delta > 0$
+  
+    Ho due radici reali distinte $lambda_1,lambda_2 eq (- p plus.minus sqrt(Delta))/2$ e ho soluzione generale 
+
+    $ y(x) eq C_1 e^(lambda_1 x)+C_2 e^(lambda_2 x) $
+    
+  + $Delta eq 0$
+
+    Ho una doppia radice reale $lambda eq - p/2$, la cui soluzione generale associata è
+    
+    $ y(x) eq (C_1 + C_2 x)e^(lambda x) $
+
+  + $Delta < 0$
+
+    Ho una due radici complesse $lambda eq alpha plus.minus i beta$ dove $alpha eq -p/2, quad beta eq sqrt(-Delta)/2.$ \ La soluione generale è data da  
+
+    $ y(x) eq e^(alpha x)(C_1 cos (beta x) + C_2 sin(beta x)) $
+  
+- *$y'' + q y = f(x)$*
+
+  La soluzione generale di questa equazione differenziale si esprime come somma di due soluzione 
+
+  $ y(x) eq y_0(x) + y_p(x) $
+
+  Dove $y_0(x)$ è la soluzione dell'equazione omogenea associata, mentre $y_p (x)$ è la soluzione particolare.
+
+  (Quando avro tempo continuerò questa parte)
