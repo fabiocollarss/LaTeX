@@ -22,6 +22,7 @@
 #let inf = $infinity$ 
 #let qquad = $quad quad quad$
 #let Arrow = $arrow.double$
+#let ps(u,v) = $lr(chevron.l #u , #v chevron.r)$
 
 = Equazione del calore
 
@@ -78,6 +79,106 @@
 
 #pagebreak(weak : true)
 
+== Passeggiata aleatoria  
+I teoremi del limite centrale sono una famiglia di teoremi della Teoria della probabilità. \ In questo contesto, con teorema del limite centrale, ci riferiamo al risultato di Lindeberg-Lévy. 
+
+#theo(title : "Teorema del limite centrale (o Lindeberg-Lévy)")[\
+  Sia data una famiglia di variabili indipendenti tra loro ${x_j}_(j eq 1)^n$ e identicamente distribuite. \ Si definisce la variabile casuale complessiva
+
+  $ x^* eq 1/sqrt(n) sum_(j eq 1)^n x_j$
+
+  Allora la variabile complessiva $x^*$ converge in distribuzione alla gaussiana con valore atteso 0 e varianza 1, ossia 
+
+  $ lim_(n arrow inf) x^* eq (e^(-1/2 x^2))/(sqrt(2pi)) $
+]
+#proof[
+  La seguente dimotrazione fa uso della funzione caratteristica della $x^*$, definibile in modo equivalente come una funzione $italic("valore atteso")$ o come la $italic("trasformata di Fourier")$ di una funzione di densità $f_(x^*)$. 
+
+  $ phi_(x^*) (t) eq 1/sqrt(2pi) int_RR e^(-i t x^*) f_(x^*)(x^*) dif x^* $
+
+  Per ora mi dimentico del fattore moltiplicativo $1/sqrt(2pi)$ e lo agguingo alla fine
+
+  Sviluppo secondo McLaurin il termine esponenziale e ottengo
+
+  $ e^(-i t x) eq 1 - i t x - (t^2 x^2)/2 +o(t^2 x^2) $
+
+  Sostituisco questo sviluppo nell'integrale e ottengo 
+
+  $ phi_(x) (t) eq int_(-inf)^(+inf) f_(x) (x) dif x + i t int_(-inf)^(+inf) x f_(x) (x) dif x -t^2/2 int_(-inf)^(+inf) x^2 f_(x) (x) dif x +o(t^2) qquad $
+
+  (*N.B:* si sta sviluppando solo secondo una qualsiasi $x_i "e non secodno" x^*$)
+
+  Per la regola del calcolo del valore si ha, si ha che ognuno dei rispettivi integrali vale 
+  
+  - $EE[1] eq 1$
+
+  - $EE[x_i] eq 0$
+
+  - $EE[x_i^2] eq 1$
+
+  Quindi ottengo 
+
+  $ phi_(x^*)(t) eq 1 + t^2/2 + o(t^2) $
+
+  Dal teorema di convoluzione, si ha che la densità di una somma di variabili indipendenti corrisponde al prodotto delle loro traformate.
+  
+  Definisco quindi $S_n eq sum_(i eq 1)^n x_i$. La trasformata richiede n-1 convoluzioni, quindi ottengo 
+
+  $ phi_(S_n)(t) eq sqrt(2pi)^(n-1) product_(i eq 1)^n phi_(x_i)(t) $
+
+  Ora introduco $x^*$, reintroduco il fattore moltiplicativo che avevo lasciato prima, e ottengo 
+
+  $ phi_(x^*) (t) &eq sqrt(2pi)^(n-1) lr([ 1/sqrt(2pi) phi_(x_i) (t)]^n) \ &eq 1/sqrt(2pi) lr([1 - t^2/(2n)]^n) quad arrow_(n arrow inf) quad 1/sqrt(2pi) e^(-t^2/2) $
+
+  /*L'enunciato del teorema, ossia 
+
+  $ lim_(n arrow inf) f(x_n^*) eq (e^(-1/2 x^*^2))/sqrt(2pi) $
+
+  E' equivalente a richiedere 
+
+  $ lim_(n arrow inf) phi_(x^*) (t) eq e^(-t^2/2) quad forall f(x^*)$
+
+  Noto che il secondo membro, una gaussiana, è proprio la funzione caratteristica della distribuzione normale. \ Nel caso presente si ha: 
+
+  $ 
+    phi_(x^*) (t) &eq  int_RR e^(-i t x^*) f(x^*) dif x^* \ 
+    &eq int_RR e^(-i t/sqrt(n) sum_(j eq 1)^n y_j) dif x^* \
+    &eq product_(j eq 1)^n int_RR e^(- (i t)/sqrt(n) y_j) dif x^*
+  $
+
+  Sviluppando ogni termine della produttoria con McLaurin si ha
+
+  $ int_RR e^(- i t/sqrt(n) y_j)dif x^* &eq int_RR 1 - i/sqrt(n) t y_j - 1/n t^2/2 y^2_j + o(t^2y^2_j) dif x^* \ &eq 1 -1/n t^2/2  $*/ 
+] 
+
+Questo risultato, apparentemente lontano dalla fisica matematica, è in realtà profondamente legato all'equazione del calore. \ Metre quest'ultima descrive macroscopicamente il comportamento del calore, il teorema del limite centrale lo descrive come somma di infiniti urti casuali. Questo metodo di ricavazione dell'equazione del calore è anche detto *passeggiata aleatoria*. 
+
+Immagino una particella in movimento confinata a muoversi su di una retta. \ Ad ogni intervallo di tempo $Delta t$ la particella si potrà spostare di una distanza $Delta x$ a sinistra o a destra della posizione di partenza, in entrambi i casi con probabilità $1/2$. \ Sia $u(x,t)$ la densità di probabilità di trovare la particella nella posizione $x "al tempo" t$.
+
+A questo punto osservo che la probabilità della particella di trovarsi in $x$ al tempo $t + Delta t$ dipende unicamente da dove si trovava al tempo precedente $t$, ossia 
+
+$ u(x,t + Delta t) eq 1/2 u(x- Delta x,t) + 1/2 u(x + Delta x, t) $
+
+Ora sviluppo il termine di sinistra rispetto al tempo, ottenendo 
+
+$ u(x, t + Delta t) eq u(x,t) + put Delta t + O(Delta t ^2)  $
+
+Invece i termini di destra li sviluppo rispetto allo spazio 
+
+$
+  &u(x + Delta x,t) eq u(x,t) + pux Delta x + 1/2 pux2 Delta x^2 + O(Delta x^3)   \
+
+  &u(x - Delta x,t) eq u(x,t) - pux Delta x + 1/2 pux2 Delta x^2 - O(Delta x^3)
+$
+
+Ottengo quindi 
+
+$ &u(x,t) + put Delta t tilde.eq 1/2 [2 u(x,t) + pux2 Delta x^2]  \ 
+&Arrow put (x,t) Delta t tilde.eq 1/2 pux2 Delta x^2 \ 
+&Arrow put tilde.eq pux2 dot (Delta x^2)/(2 Delta t) qquad (D :eq (Delta x^2)/(2 Delta t) )\ 
+&Arrow put tilde.eq D pux2   $ 
+
+#pagebreak(weak : true)
 == Problema ben posti 
 
   Nel caso dell'equazione del calore, in quanto del primo ordine rispetto alla variabile del tempo $t$, basta assegnare il valore della funzione $u "per" t eq 0$. \ Le condizioni al bordo, per un dominio limitato $Omega$, di Dirichlet e Neumann, si traducono euristicamente nell'assegnare la temperatura sul bordo $par Omega$, ovvero il flusso di calore attraverso il bordo. \ Nel seguito indichiamo con $Q_T$ il prodotto cartesiano $Omega times (0,T)$ . \ Sono quindi ben posti i problemi \  
@@ -111,7 +212,7 @@
 
 #pagebreak(weak : true)
 
-== Principio del massimo parabolico
+== Unicità problema di Cauchy-Dirichlet 
 
   I teoremi di unicità per l'equazione del calore sono basati su una proprietà fondamentale delle soluzioni, detta *Principio del massimo parabolico*, che è conseguenza delle leggi di Fourier/Fick. \ Questa legge, euristicamente, dice che il calore si trasmette verso regioni a temperatura più bassa. Analogamente un fluido viaggia verso una regione ad altitudine minore. 
 
@@ -136,9 +237,26 @@
 
   $ max_(dash(Q_T)) w eq max_(par_p Q_t) w $
   ]
-#proof[
+#proof[ Per continuità, batsa dimostrare che il massimo è sul bordo parabolico per ogni $T' in (0, T)$. \ Sia quindi, per assurdo, $M :eq max_(dash(Q)_T') w > max_(par_p Q_t) w =: m$. \ Fisso $ep in (0, (M-m)/T')$. \ Definisco 
 
-  ]
+  $ u(x,t) eq w(x,t) + ep (T' - t)$
+
+  Quindi $ u(x,t) >= w(x,t) Arrow M_u >= M$, Dove $M_u$ è il massimo di $u$. 
+  
+  Visto che $M_u$ è interno al dominio, esiste $(x_0, t_0)$ tale che $u(x_0,t_0) = M_u$. 
+
+  In quanto punto di massimo, ciò significa che 
+
+  - La derivata temporale $put(x_0, t_0)$ è nulla se $t_0 in (0,T')$ e non negativa solo per $t eq T'$. 
+
+  - Il laplaciano rispetto allo spazio è non positivo, ossia $laplace u (x_0, t_0) >= 0$. 
+
+  Questo significa che $put(x_0,t_0) - D laplace u (x_0,t_0) >=0 $
+
+  A questo punto esprimo $w$ come $u - ep(T'-t)$ e ottengo $ par_t w (x_0,t_0) - D laplace w (x_0,t_0) >= ep $
+
+  Che è un assurdo con l'ipotesi di partenza dell'enunciato.
+]
 
 #theo(title : "Corollario del principio del massimo parabolico")[\
   sia $w in C^(2,1)(Q_T) inter C(dash(Q_T))$ tale che 
@@ -152,5 +270,251 @@
 #proof[
   Stessa dimostrazione del teorema precedente con la funzione $-w$.
   ]
+
+#prop[
+  sia $w in C^(2,1)(Q_T) inter C(dash(Q_T))$ soluzione dell'equazione del calore omogenea. Allora 
+
+  $ min_(par_p Q_T) w <= w(x,t) <= max_(par p Q_T) w qquad forall (x,t) in dash(Q_T) $
+]
+#proof[Banale conseguenza del teorema e corollario precedente.]
+
+#theo()[\ 
+  Siano $u_1, u_2 in C^(2,1)(Q_T) inter C(dash(Q_T))$ soluzioni dell'equazione del calore con stesso coefficiente di diffusione del calore $D$, ma forzanti diverse $f_1, f_2 in C(dash(Q_T))$. \ Allora vale la stima 
+
+  $ max_(dash(Q_T)) abs(u_1 - u_2) <= max_(par_p Q_T) abs(u_1-u_2) + T max_dash(Q_T) abs(f_1 - f_2) $
+]
+#proof[
+  Siano $ M :eq lr( max_(dash(Q_T)) abs(f_1 - f_2)) $  $ u_(plus.minus)(x,t) :eq u_1 - u_2 plus.minus M t $
+  Cosicché 
+  $ par_t u_(plus.minus) (x,t) - laplace u_(plus.minus) (x,t) eq f_1 - f_2 plus.minus M $
+  Dalla definizione di $M$ si ottiene 
+
+  $ par_t u_- - D laplace u_- <= 0, qquad par_t u_+ - D laplace u_+ >=0, qquad "in" Q_T $
+
+  Per i teoremi del massimo e del minimo parabolico si ha 
+
+  $ &max_dash(Q_T) (u_1 - u_2 - M t) eq max_(par_p Q_T)(u_1 - u_2 - M t) \ &min_dash(Q_T) (u_1 - u_2 + M t) eq min_(par_p Q_T)(u_1 - u_2 + M t) $
+
+  Da cui 
+
+  $ abs(u_1 - u_2) <= max_(par_p Q_T)abs(u_1 - u_2 ) + M t $
+]
+#theo(title : "Unicità del problema di Cauchy-Dirichlet")[\
+  Il problema di Cauchy-Dirichlet ammette al più una soluzione $u  in C^(2,1)(Q_T) inter C(dash(Q_T))$
+]
+#proof[Banale conseguenza della stima del teorema precedente]
+
+#pagebreak(weak : true)
+
+== Unicità problema Cauchy globale 
+
+Per dimostrare l'unicità del problema di Cauchy globale, facciamo uso del seguente teorema, di cui mostro solo l'enunciato. 
+
+#theo(title : "Principio del massimo globale")[\ 
+  sia $w in C^(2,1)(RR^d times (0,T) inter C(RR^d times [0,T])$ tale che 
+  $ par_t w - D laplace w <= 0 qquad "in" RR^d times (0,T) "e con" D>0 $
+  Supongo inoltre che 
+  $ exists C > 0 quad "tale che" w <= C qquad "in" RR^d times [0,T] $
+  Allora
+  $ sup_(RR^d times [0,T]) w eq sup_(RR^d) w(x,0) $
+]
+#oss[
+  Come conseguenza del teorema, vale anche 
+
+  $ "inf"_(RR^d times [0,T]) w eq "inf"_(RR^d) w(x,0) $
+]
+
+#theo(title : "Unicità della soluzione del problema di Cauchy globale")[\
+  Sia dato il problema di Cauchy globale. \ Allora esiste al più una soluzione $u in C^(2,1)(RR^d times (0,T) inter C(RR^d times [0,T])$
+]
+#proof[Basta considerare $w eq u_1 - u_2$ soluzione del problema di Cauchy omogeneo di dati iniziali $w(x,0) eq 0$. \ Per le stime dei teoremi precedenti si ottiene $w(x,t) equiv 0 "in" RR^d times [0,t] $ 
+]
+
+#pagebreak(weak : true)
+
+== Soluzione fondamentale del problema di Cauchy globale 
+
+Considero inizialmente il problema di Cauchy globale omogeneo in dimensione $d eq 1$. 
+
+$ cases(
+  put eq D pux "," qquad &(x,t) in RR times RR_+,
+  u(x,0) eq g(x)"," &x in RR 
+)
+$<Pbm-C-G-O>
+
+In analogia con il caso dell'equazione delle onde, voglio scrivere la soluzione nella forma 
+
+$ u(x,t) eq int Gamma_1(x,y,t)g(y) dif y $
+
+Dove l'1 a pedice indica la dimensione del problema. \ $Gamma_1(x,y,t)g(y) dif y$, inteso come nucleo, rappresenta la concentrazione di fluido in $x$ al tempo $t$ dovuta alla diffusione di massa infinitesima $g(y) dif y$ posta, nel tempo $t eq 0$, nell'intervallo $(y, y + dif y)$. \ Per il principio di sovrapposizione, integrando nella variabile $y$, trovo la concentrazione dovuta alla massa ottale distribuita al tempo iniziale secondo la densità $g$.
+
+Visto che $u$ risolve il problema di Cauchy globale, deve verificare i due risultati 
+1. $ 0 &eq put (x,t) - D pux2 (x,t) \ &eq lr( int par_t [Gamma_1 (x,y,t) - D par^2_x Gamma_1(x,y,t)]g(y) dif y) $
+2. $ lim_(t arrow 0^+) int dif y Gamma_1(x,y,t) g(y) eq g(x)  $
+
+Per l'arbitrarietà su $g$, il nucleo $Gamma_1(x,y,t)$ deve soddisfare il problema 
+
+$ cases(
+  par_t Gamma_1 (x,y,t) - D par^2_x Gamma_1 (x,y,t) eq 0 qquad &"per" (x,y,t) in RR times RR times RR_+,
+  Gamma_1 (x,y,0) eq delta_y (x) &"per" (x,y) in RR times RR 
+)
+$
+
+Quindi in sostanza ho che 
+
+$ Gamma_1 (x,y,t) eq Gamma_1(x - y,t) $
+
+Dove $Gamma_1(x,t)$ risolve il problema 
+
+$ cases(
+  par_t Gamma_1 (x,t) - D par^2_x Gamma_1 (x,t) eq 0 "," qquad &"per" (x,t) in RR times RR_+,
+  Gamma_1 (x,0) eq delta(x) &"per" x in RR
+)
+$
+
+#rmk(title : "Proprietà di invarianza sotto silatazioni paraboliche")[\
+  Sia $alpha > 0$, se $u(x,t)$ è soluzione del @eqt:Pbm-C-G-O[problema], allora 
+
+  $ u^alpha := u(alpha x, alpha^2 t) $
+
+  è soluzione del problema di Cauchy globale con dato iniziale $g^alpha (x) eq g(alpha x)$.
+]
+
+Poiché la soluzione al @eqt:Pbm-C-G-O[problema] si scrive 
+
+$ u(x,t) eq int Gamma_1 (x-y,t)g(y) dif y $
+
+Allora deve aversi, per la proprietà di invarianza sotto dilatazioni paraboliche, che 
+
+$ int Gamma_1 (alpha x - y, alpha^2 t)g(y) dif y eq int Gamma_1(x-y, t)g(alpha y) dif y $
+
+Per arbitrarietà della scelta di $g$ si dovrà avere 
+
+$ alpha Gamma_1 (alpha x, alpha^2 t) eq Gamma_1(x,t) $
+
+In particolare, per $alpha eq 1/sqrt(t)$ si ha che 
+
+$ Gamma_1 (x,t) eq 1/sqrt(t) Gamma_1(x/sqrt(t), 1) $
+
+Ossia il suo profilo spaziale rimane simile nel tempo. 
+
+Visto che inoltre l'equazione conserva la massa totale, deve verificare 
+
+$ int dif x int dif y Gamma_1(x-y,t)g(y) eq int dif y g(y) $
+
+Per il teorema di Fubini-Tonelli posso riscrivere 
+
+$ int dif x int dif y Gamma_1(x-y,t) g(y) & eq int dif y g(y) int dif x Gamma_1(x-y,t) \ &eq int dif y g(y) int dif z Gamma_1(z,t) $ 
+
+Per l'arbitrarietà di $g$ deve aversi 
+
+$ int dif x Gamma_1 (x,t) eq 1 $
+
+Infine, per soddisfare il principio del massimo, richiedo $Gamma_1 (x-y,t) >= 0$. \ Sotto queste ipotesi scritte sino ad ora, la soluzione è univocamente determinata. 
+
+Definsico $Phi(xi) :eq Gamma_1 (xi,1)$. Allora $Gamma_1 (x,t) eq 1/sqrt(t)Phi(x/sqrt(t))$
+
+L'equazione del calore per $Gamma_1 (x,t)$ si scrive 
+
+$ 0 &eq par_t Gamma_1 (x,t) - D par^2_t Gamma_1 (x,t) \ &eq -1/(2t sqrt(t)) Phi(x/sqrt(t)) - 1/(2 t sqrt(t))x/sqrt(t) Phi'(x/sqrt(t)) - D/(t sqrt(t)) Phi''(x/sqrt(t)) \ &eq lr(1/(t sqrt(t))[1/2 Phi(x/sqrt(t)) + 1/2 x/sqrt(t) Phi'(x/sqrt(t)) - D Phi''(x/sqrt(t))]) $
+
+Per l'arbitrarietà del parametro $xi eq x/sqrt(t)$, allora $Phi(xi)$ deve risolvere 
+
+$ &D Phi''(xi) + 1/2 Phi'(xi) + 1/2 Phi(xi) eq 0 qquad (Phi(xi) + xi Phi'(xi) eq dif/(dif xi) xi Phi(xi)) \ &Arrow D Phi'(xi) +1/2 xi Phi(xi) eq C_1 $
+
+Con il metodo della variazione delle costanti si ottiene 
+
+$ Phi(xi) eq C_0 e^(- xi^2 / (4D)) + C_1 e^(- xi^2/(4D))int_0^xi dif eta space e^(eta^2 / (4D)) $
+
+Le condizioni sono in questo caso $ Phi(xi) >=0, qquad int dif xi Phi(xi) eq int dif xi Gamma(xi,1) eq 1 $
+
+La positività implica $C_1 eq 0$
+
+La seconda condizione invece determina $C_0$ che vale 
+
+$ C_0 &eq lr(( int dif xi e ^(-xi^2 /(4 D)))^(-1) \ &eq 1/(2 sqrt(D)int dif z e^(-z^2)) ) \ &eq 1/sqrt(4pi D) $
+
+Ottengo quindi in definitiva 
+
+$ Gamma_1 (x,t) eq 1/sqrt(4pi D) e^(-x^2/(4 D t)) $
+
+Che è una gaussiana centralizzata nell'origine e normalizzata per avere integrali pari ad 1. 
+
+- * Soluzione per dimensione $d >1$ *
+
+Nel caso di dimensione maggiore, basta ragionare per separazione delle variabili, così da ottenendo
+
+$ Gamma_d (x,t) :eq product_(i=1)^d Gamma_1(x_i,t) eq 1/(4 pi D t)^(d/2) e^(- abs(x)^2 / (4 D t)), qquad x eq (x_1,dots,x_d) $
+
+#lemma[
+  La funzione $ Gamma_d (x,y,t) eq Gamma_d(x-y,t) eq 1/(4D pi t)^(d/2) e^(- abs(x-y)^2 / (4D t))  $
+  gode delle seguenti proprietà 
+
+  1. $Gamma_d (x,y,t) > 0 qquad forall (x,y,t) in RR^d times RR^d times RR_+ $
+
+  2. $Gamma_d (x,y,t) eq Gamma_d (y,x,t)$ 
+
+  3. $Gamma_d in C^inf$
+
+  4. $(x,t) arrow Gamma_d (x,y,t)$ è sol classica dell'equazione del calore 
+
+  5. Sia $g in C(RR^d)$ limitata, allora valgono i limiti  
+
+    - $ lim_(t arrow o^+) int dif  y Gamma_d (x,y,t)g(y) eq g(x) $ 
+
+    - $ lim_(t arrow o^+) int dif  x Gamma_d (x,y,t)g(x) eq g(y) $ 
+]
+#proof[
+  I punti 1,2,3,4 seguono dalla forma esplicita di $Gamma_d (x,y,t)$. \ Vista la simmetria, inoltre, basta dimostrare solo il primo dei due integrali. Con il cambiamento di varabile $z eq (y-x)/sqrt(4 D t)$ ottengo 
+
+  $ int dif y Gamma_d (x,y,t) g(y) eq 1/pi^(d/2) int dif z e ^(- abs(z)^2) g(x + z sqrt(4 D t)) $
+  Per convergenza dominata si ottiene la tesi.
+]
+
+#oss[
+  $Gamma_d (x,t) $ è detta *soluzione fondamentale* e risolve il problema di Cauchy omogeneo 
+
+  $ cases(
+    par_t Gamma_d (x,t) eq D laplace Gamma_d (x,t) qquad &"per" (x,t) in RR^d times RR_+, 
+    Gamma_d (x,0) eq delta(x) &"per" x in RR^d 
+  )
+  $
+]
+
+#theo[
+  Assegnata la $g in C(RR^d)$ limitata, il problema di Cauchy globale omogeneo con dato iniziale $g(x)$ ha un'unica soluzione dello spazio delle funzioni 
+
+  $ lr({ w in C^(2,1)(RR^d times R_+) inter C(RR^d times [0, inf)space) quad | quad sup_(RR^d times [0,T])abs(w(x,t)) < inf quad forall T>0 }) $
+
+  Tale soluzione è inoltre data dalla seguente formula integrale 
+
+  $ (x,t) eq int Gamma_d (x-y,t)g(y) dif y  $
+]
+
+#pagebreak(weak : true) 
+
+== Metodo di Fourier
+Anche in questo caso si ricerca la soluzione nella forma 
+
+$ u(x,t) eq sum_n W_n (t) v_n (x) $
+
+Come al solito il nostro caro ${v_n (x), lambda_n}$ è l'incommensurabile sistem completo nonché spazio delle funzioni.
+
+In questo caso $W_n (x)$ è soluzione del problema 
+
+$ dot(W)_n (t) eq lambda_n D W_n (t)  $
+
+Ossia 
+
+$ W_n (t) eq W_n (0) e^(lambda_n D t) $
+
+Le condizioni su $W_n (0)$ sono determinate dal dato iniziale 
+
+$ g(x) eq u(x,0) eq sum_n W_k (0) v_n (x) $
+
+E quindi, per l'ortogonalità delle funzioni, ho 
+
+$ W_n (0) eq (int_Omega dif x g v_n)/(int_Omega dif x v^2_n) $
+
 
 

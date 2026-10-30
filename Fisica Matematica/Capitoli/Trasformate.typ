@@ -234,7 +234,8 @@ Per questo motivo allargo lo spazio delle funzioni test a $S(RR^n)$, in modo da 
   $ <hat(F), phi> space eq space <F,hat(phi)> quad quad quad forall phi in S(RR^n) $
 ]\
 #pagebreak(weak : false)
-== Esercizi
+
+/*== Esercizi
 #xpl(title : "Esercizio 2")[\ Si considera la funzione
   $ f(x) = cases(1 quad quad & x >=0, 0 & x<=0 ) $
   Verificare che la sua trasformata di Fourier è la distribuzione definita da: 
@@ -246,7 +247,7 @@ Per questo motivo allargo lo spazio delle funzioni test a $S(RR^n)$, in modo da 
   $ <cal(F)f,phi> space  &eq integral dif lambda space phi(lambda) 1/sqrt(2pi) integral dif x space e^(-i lambda x)f(x) \ 
   &eq 1/sqrt(2pi) integral dif lambda space phi(lambda)  integral_(x >=0) dif x space e^(-i lambda x) \
   &eq 1/sqrt(2pi) integral dif lambda space phi(lambda) $
-]
+]*/
 
 
 

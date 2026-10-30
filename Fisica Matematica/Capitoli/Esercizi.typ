@@ -223,4 +223,4 @@ In particolare gli esercizi sono presi dalle schede di esercizi del corso di Fis
   $ B_0 eq 1/2, B_1 eq 1/2, B_k eq 0 quad forall k >= 1 $
 
 #pagebreak(weak : true)
-== Laplace e Poisson
+//== Laplace e Poisson

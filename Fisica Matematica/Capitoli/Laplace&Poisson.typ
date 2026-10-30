@@ -114,7 +114,7 @@ $ G(x,y) eq cases(
 
 == Funzione di Green come soluzione di un'equazione di Poisson 
 
-Voglio mostrare che nel caso in cui la forzante $f$ sia la delta di Dirac centrata in $y,space delta_y,space$ allora LA funzione di Green può essere essa stessa una soluzione del problema di Poisson. 
+Voglio mostrare che nel caso in cui la forzante $f$ sia la delta di Dirac centrata in $y,space delta_y,space$ allora la funzione di Green può essere essa stessa una soluzione del problema di Poisson. 
 
 Infatti, per le condizioni appena descritte, si ha che 
 
@@ -147,5 +147,15 @@ Infatti, per le condizioni appena descritte, si ha che
 #proof[
   
 ]
+
+== Soluzione fondamentale dell'operatore di Laplace 
+
+== Teoremi della media & principio del massimo  
+
+== Unicità problema di Laplace-Dirichlet 
+
+== Problema di Laplace-Dirichlet sul disco 
+
+== Problema di Poisson-Dirichlet
 
 
