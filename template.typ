@@ -1,72 +1,131 @@
+//PACCHETTI
+
+#import "@preview/i-figured:0.2.4"
 #import "@preview/great-theorems:0.1.2": *
 #import "@preview/rich-counters:0.2.1": *
 #import "@preview/physica:0.9.8": *
 
-#set heading(numbering: "1.1")
+//SET
+#set page(paper: "a4")
+
+#set heading(numbering: "1.1.1")
+
 #set align(left)
-#show: great-theorems-init
+
+//SHOW
 #show link: text.with(fill: blue)
+#show ref: text.with(fill: blue.darken(50%))
 
-// Configurazione del contatore avanzato
+#show math.equation: i-figured.show-equation.with(only-labeled: true)
+#show heading: i-figured.reset-counters
+
+#show: great-theorems-init 
+
+//LET
 #let mathcounter = rich-counter(
-  identifier: "mathblocks",
-  inherited_levels: 1
-)
+  identifier: "mathblocks", 
+  inherited_levels: 1,
+) 
 
-// NOTA: In tutti i mathblock con 'counter' è necessario specificare 'numbering'
-#let theo = mathblock(
-  blocktitle: "Theorem",
-  counter: mathcounter,
-  numbering: "1.1",
-  inset: 10 pt,
-  stroke: 1 pt,
-  radius: 10 pt,
-)
-
-#let lemma = mathblock(
-  blocktitle: "Lemma",
-  counter: mathcounter,
-  numbering: "1.1",
-)
-
-#let rmk = mathblock(
-  blocktitle: "Remark",
-  counter: mathcounter,
-  numbering: "1.1",
-
-  inset: 5pt,
-  fill: lime.lighten(80%),
-  radius: 5pt,
-)
-
-// RISOLTO: Cambiato 'def' (riservato) in 'defn'
 #let def = mathblock(
   blocktitle: "Definition",
-  counter: mathcounter, 
-  numbering: "1.1",
-
+  titlix: title => [*$(italic(title))$* \ ],
+  counter : mathcounter, 
   inset: 10pt,
-  stroke: 1pt,
-  radius: 10pt,
+  stroke: (left: 1pt + maroon),
+  radius: 0pt,
 )
 
-#let xpl = mathblock(
-  blocktitle: "Example",
-)
-
-#let oss = mathblock(
-  blocktitle: "Oss",
+#let theo = mathblock(
+  blocktitle: "Theorem",
+  titlix: title => [*$(italic(title))$* \ ],
+  counter : mathcounter, 
+  inset: 10pt,
+  stroke: (left: 1pt + red),
+  radius: 0pt,
 )
 
 #let prop = mathblock(
   blocktitle: "Proposition",
-  counter: mathcounter,
-  numbering: "1.1",
-  inset: 10 pt,
-  stroke: 1 pt,
-  radius: 10 pt,
+  titlix: title => [*$(italic(title))$* \ ],
+  counter : mathcounter, 
+  inset: 10pt,
+  stroke: (left: 1pt + orange),
+  radius: 0pt,
 )
 
-#let proof = proofblock()
+#let lemma = mathblock(
+  blocktitle: "Lemma",
+  titlix: title => [*$(italic(title))$* \ ],
+  counter : mathcounter, 
+  inset: 10pt,
+  stroke: (left: 1pt + red),
+  radius: 0pt,
+)
+
+#let cor = mathblock(
+  blocktitle: "Corollary",
+  titlix: title => [*$(italic(title))$* \ ],
+  counter : mathcounter, 
+  inset: 10pt,
+  stroke: (left: 1pt + red),
+  radius: 0pt,
+)
+
+#let oss = mathblock(
+  blocktitle: "Observation",
+  titlix: title => [*$(italic(title))$* \ ],
+  counter : mathcounter, 
+  inset: 10pt,
+  stroke: (left: 1pt + navy),
+  radius: 0pt,
+)
+
+#let xpl = mathblock(
+  blocktitle: "Example",
+  titlix: title => [*$(italic(title))$* \ ],
+  counter : mathcounter, 
+  inset: 10pt,
+  stroke: (left: 1pt + olive),
+  radius: 0pt,
+)
+
+#let ex = mathblock(
+  blocktitle: "Exerise",
+  titlix: title => [*$(italic(title))$* \ ],
+  counter : mathcounter, 
+  inset: 10pt,
+  stroke: (left: 1pt + olive),
+  radius: 0pt,
+)
+
+#let rmk = mathblock(
+  blocktitle: "Remark",
+  titlix: title => [*$(italic(title))$* \ ],
+  counter : mathcounter, 
+  inset: 10pt,
+  stroke: 0.5pt + fuchsia,
+  radius: 10pt,
+)
+
+#let rmb = mathblock(
+  blocktitle: "Remember",
+  titlix: title => [*$(italic(title))$* \ ],
+  counter : mathcounter, 
+  inset: 10pt,
+  stroke: 0.5pt + lime,
+  radius: 10pt,
+)
+
+#let proof = proofblock( 
+  inset: 15pt,  
+  stroke: (bottom: 0.5pt + gray),
+)
+
+#let sol = mathblock(
+  inset: 10pt, 
+  stroke: (bottom: 0.5pt + gray),
+  blocktitle: "Solution",
+)
 
 
