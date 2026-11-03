@@ -108,6 +108,10 @@ Elemento di volume $dd tau eq rho sin^2 phi.alt dd rho dd theta dd phi$
 
 == Teorema di Gauss e applicazioni 
 
+== Potenziale elettrico 
+
+== Energia 
+
 == Sviluppo in serie di multipoli 
 
 Si consideri una distribuzione di carica finita $rho (arrow(r)$ tale che la carica totale sia neutra. \ Se su $rho(arrow(r))$ non ci sono ipotesi di simmetria, come ad esempio quella sferica, non possiamo concludere nulla sul comportamento del campo "vicno" alla distribuzione. \ Nonostante ciò possiamo valutare il comportamento del campo "lontano" da tale distribuzione. 
@@ -305,8 +309,6 @@ Dove $N$ è il \# di particelle per unità di volume.
 Inoltre vale la relazione $ep_r eq chi +1 $
 
 == Descrizione mascroscopica della polarizzazione 
-
-
 
 In un mezzo isotropo e lineare si ha: $arrow(P) eq ep_0 chi arrow(E) eq ep_0(ep_r -1)arrow(E)$
 
@@ -779,6 +781,7 @@ Qui sono raccolte alcune tra le domande più classiche e più frequenti.
 - Equazione di continuità 
 
 === magnetismo
+- Derivare il campo magnetico generato da un filo indefinito, e cosa cambia rispetto all'espressione del solenoide
 - Definizione ed espressione del potenziale vettore 
 - Equazioni di Maxwell nel caso non stazionario 
 
