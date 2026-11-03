@@ -223,4 +223,17 @@ In particolare gli esercizi sono presi dalle schede di esercizi del corso di Fis
   $ B_0 eq 1/2, B_1 eq 1/2, B_k eq 0 quad forall k >= 1 $
 
 #pagebreak(weak : true)
-//== Laplace e Poisson
+== Laplace e Poisson
+
+*Foglio 8 - Esercizio 2* \ 
+
+Sia $C_2$ la corona circolare $C_2 eq { x in RR^2 | 1<\bs(x)<2 }$. Determinare la soluzione dell'equazione di Laplace con condizioni al bordo
+
+(a) $u eq 1 "per" abs (x) eq 1, quad u eq 2 "per" abs(x) eq 2$
+
+(b) $u eq x_2 "per" abs(x) eq 1, quad u eq 1 "per" abs(x) eq 2$
+
+*Svolgimento*
+
+(a) Per trovare la soluzione dell'equazione di Laplace $laplace u eq 0$ con le condizioni al bordo come definite nella traccia, ragiono come segue.
+

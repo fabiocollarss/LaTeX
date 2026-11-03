@@ -64,7 +64,7 @@ Ogni riferimento a similitudini di prosa e frasi utilizzate è puramente casuale
 
 #include "Capitoli/Richiami_Analisi.typ"
 #pagebreak(weak : true)
-#include "/Capitoli/EDP.typ"
+#include "Capitoli/EDP.typ"
 #pagebreak(weak : true)
 #include "Capitoli/Distribuzioni.typ"
 #pagebreak(weak : true)
@@ -83,12 +83,12 @@ Ogni riferimento a similitudini di prosa e frasi utilizzate è puramente casuale
 #include "Capitoli/OndeInPiuDim.typ"
 #pagebreak(weak : true)
 #include "Capitoli/SolOnde.typ"
-//#pagebreak(weak : true)
-//#include "Capitoli/Laplace&Poisson.typ"
+#pagebreak(weak : true)
+#include "Capitoli/Laplace&Poisson.typ"
 #pagebreak(weak : true)
 #include "Capitoli/Calore.typ"
-//#pagebreak(weak : true)
-//#include "Capitoli/Esercizi.typ"
+#pagebreak(weak : true)
+#include "Capitoli/Esercizi.typ"
 #pagebreak(weak : true)
 #include "Capitoli/Bibliografia.typ"
 
