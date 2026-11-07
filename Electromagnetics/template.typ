@@ -32,8 +32,8 @@
   titlix: title => [*$(italic(title))$* \ ],
   counter : mathcounter, 
   inset: 10pt,
-  stroke: (left: 1pt + maroon),
-  radius: 0pt,
+  stroke: 1pt + maroon,
+  radius: 10pt,
 )
 
 #let theo = mathblock(
@@ -41,7 +41,7 @@
   titlix: title => [*$(italic(title))$* \ ],
   counter : mathcounter, 
   inset: 10pt,
-  stroke: (left: 1pt + red),
+  stroke: (left: 2.5pt + red),
   radius: 0pt,
 )
 
@@ -50,7 +50,7 @@
   titlix: title => [*$(italic(title))$* \ ],
   counter : mathcounter, 
   inset: 10pt,
-  stroke: (left: 1pt + orange),
+  stroke: (left: 2.5pt + orange),
   radius: 0pt,
 )
 
@@ -59,7 +59,7 @@
   titlix: title => [*$(italic(title))$* \ ],
   counter : mathcounter, 
   inset: 10pt,
-  stroke: (left: 1pt + red),
+  stroke: (left: 2.5pt + red),
   radius: 0pt,
 )
 
@@ -68,7 +68,7 @@
   titlix: title => [*$(italic(title))$* \ ],
   counter : mathcounter, 
   inset: 10pt,
-  stroke: (left: 1pt + red),
+  stroke: (left: 2.5pt + red),
   radius: 0pt,
 )
 
@@ -77,8 +77,8 @@
   titlix: title => [*$(italic(title))$* \ ],
   counter : mathcounter, 
   inset: 10pt,
-  stroke: (left: 1pt + navy),
-  radius: 0pt,
+  stroke: 0.5pt + navy,
+  radius: 10pt,
 )
 
 #let xpl = mathblock(
@@ -118,7 +118,7 @@
 )
 
 #let proof = proofblock( 
-  inset: 15pt,  
+  inset: 10pt,  
   stroke: (bottom: 0.5pt + gray),
 )
 
@@ -127,5 +127,3 @@
   stroke: (bottom: 0.5pt + gray),
   blocktitle: "Solution",  
 )
-
-

@@ -34,6 +34,7 @@
   #v(4cm)
   #text[]
 ]
+
 #align(bottom + center)[
   #block(
   fill: luma(240),
@@ -67,13 +68,17 @@ ciao :)
 
 #set page(numbering: "1")
 #counter(page).update(1)
+#set text(size: 11pt)
 
 //TESTO
 
 = Introduzione 
 
-== Costanti di uso frequente 
-Lista delle costanti di uso frequente durante il corso
+== Storia 
+
+#text(fill : red, [Aggiungere un'introduzione storica])
+
+== Costanti di uso frequente
 
 - Costante dielettrica del vuoto: $quad ep_0 eq 8,85 dot 10^(-12) [F/m]$
 
@@ -81,9 +86,18 @@ Lista delle costanti di uso frequente durante il corso
 
 == Operatori vettoriale e cambiamenti di variabili 
 
+#text(fill: red, [scrivere gradiente, divergenza, etc.])
+
 - *Coordinate cartesiane*
 
 Elemento di volume: $quad dd tau eq dd x dd y dd z$
+
+- *Coordinate polari*
+
+Trasformazione $(x,y) aa (rho, theta)$
+
+Elemento di superficie $dd tau eq rho dd rho dd theta$
+
 
 - *Coordinate cilindriche* 
 
@@ -104,13 +118,368 @@ Elemento di volume $dd tau eq rho sin^2 phi.alt dd rho dd theta dd phi$
 
 = Campo elettrostatico 
 
-== Introduzione
+== Forza elettrostatica 
 
-== Teorema di Gauss e applicazioni 
+Cos'è una carica elettrica? La carica elettrica è una proprietà di praticamente ogni corpo. \ Sappiamo che il mondo macroscopico è composto di atomi. Tali atomi sono fatti a loro volta da elettroni, protoni e neutroni. \ Immaginiamo che i protoni abbiamo una carica positiva $Q_+$, e gli elettroni una carica negativa $q_-$.\ I neutroni invece, come derivabile dal nome, hanno carica "nulla". \ *L'universo ha deciso che due cariche di segno opposto si attraggono, e due cariche di segno uguale si respingono.*  
+
+L'unità di misura delle cariche è il *Coulomb* $[C]$. 
+
+Uno dei primi risultati ottenuti sperimentalmente è la forza che attrae o respinge tra loro due oggetti carichi.
+
+*P.S.*: In questa prima istanza consideriamo solo le forze in gioco di tipo elettrostatico, quindi ignoriamo completamente qualsiasi tipo di interazione gravitazionale, di attrito etc. 
+
+#def(title: "Forza elettrostatica")[
+  Siano date due cariche puntiformi di cariche rispettivamente $q_1,q_2 in RR$. Siano le cariche poste a distanza $r$.\ Sia $arrow(r)_(1,2)$ il vettore di $RR^3$ che parte da $q_1$ e arriva a $q_2$. Allora la forza elettrostatica che la carica $q_1$ imprime sulla carica $q_2$ è data dalla legge $ arrow(F)_(1,2) eq (q_1 q_2)/(4 pi ep_0 r^2)hat(r)_(1,2) $ 
+]
+
+#oss[Segue da questa definizio che $arrow(F)_(1,2) eq - arrow(F)_(2,1)$]
+
+*N.B:* In queste note $arrow(r) = $vettore, $r = $ modulo di $arrow(r)$, $hat(r) = $ versore di $arrow(r)$. \ Inoltre non mi farò alcun tipo di problema a non specificare mai la differenza tra punti di $EE^3$ e vettori di $RR^3$.
+
+#pagebreak(weak : true)
+
+== Derivazione del campo 
+
+Il concetto di campo elettrostatico deriva direttamente da quello della forza. L'obiettivo con cui è nato questo concetto è quello di voler trovare un modo per misurare "l'influenza" di un dato corpo nello spazio circostante. 
+
+*Idea Euristica*\ Consideriamo una particella di carica $Q$. A questo punto prendo un'altra carica puntiforme $q$ dove $q << Q$ e la posiziono a distanza $arrow(r)$ da $Q$.\ Il campo di $Q$, che indichiamo con la lettera $arrow(EE)$, nel punto $arrow(r)$, vale $ arrow(E)(arrow(r)) eq lim_(q aa 0) arrow(F_arrow(r))/q eq lim_(q aa 0) 1/q dot (Q q)/(4 pi ep_0 r^2)hat(r) eq Q/(4 pi ep_0 r^2)hat(r) $
+
+Da questo idea nasce la seguente definizione. 
+
+#def(title : [Campo elettrostatico])[
+  Il campo elettrostatico generatico da una carica puntiforme $Q$ vale 
+  
+  $ arrow(E)(arrow(r)) eq Q/(4 pi ep_0 r^2)hat(r) $
+
+  L'unità di misura del campo elettrico è $[N/C] "oppure" [V/m]$
+]
+
+#oss[
+  Vale il pricipio di sovrapposizione. Quindi dato un sistema materiale composto da $N$ cariche puntiformi, si ha che $ arrow(E)(arrow(r)) eq sum_(k=1)^N arrow(E)_i (arrow(r) - arrow(r)_i) $
+  Dove $arrow(r)$ è il punto su cui vogliamo valutare il campo e $arrow(r)_i$ è il punto dove è disposta la carica $Q_i$.
+]
+
+Mettiamo subito all'opera tali informazioni viste fino ad ora con un esempio. 
+
+#pagebreak(weak : true)
+
+#xpl(title : [campo elettrico di un dipolo])[
+  Siano date due cariche $q_1$ e $q_2$ posizionate sull'asse delle ordinate (asse y) a distanza rispettivamente $d/2 "e" -d/2$ dall'origne.\ Le cariche valgono $q_1 eq q, q_2 eq -q, "con" q in RR_+ $.\ Consideriamo il punto $p eq (d,0)$ sull'asse delle ascisse.
+
+- Calcolare il campo elettrico del dipolo nel punto $p$. 
+]
+#sol[\
+  In questo caso la strategia si basa sul valutare singolarmente i due campi elettrici, e poi utiizzare il principio di sovrapposizione.
+
+  Ragiono sulla carica $q_1$ posta in $q_1 eq (0, d/2)$, mentre $p eq (d,0)$.\ Allora $ &arrow(r) eq p - q_1 eq vec(d, -d/2) \ &r eq abs(r) eq sqrt(arrow(r)^2) eq d/2 sqrt(5) \ &hat(r) eq arrow(r)/r eq vec(2/sqrt(5),-1/sqrt(5)) $
+
+  Da ciò si ottiene il campo generato da $q_1$ $ arrow(E)_(q_1) (arrow(r)) eq q/(4 pi ep_0 (d/2 sqrt(5))^2) hat(r) eq q/(5 pi ep_0 d^2) vec(2/sqrt(5),-1/sqrt(5)) $
+
+  Con lo stesso ragionamento si ottiene $ arrow(E)_q_2 (arrow(r)) eq q/(5 pi ep_0 d^2)vec(-2/sqrt(5),-1/sqrt(5)) $
+
+  Quindi il campo totale del dielettrico valutato in $arrow(r)$ vale $ arrow(E)(arrow(r)) eq 1/(5 pi ep_0 d^2)(-2)/(sqrt(5))hat(j) $
+]
+
+#ex[
+  Determinare il campo totale, in analogia con la configurazione dell'esempio precedente, ma con entrambe le cariche di carica positiva. 
+]
+
+#pagebreak(weak : true)
+
+== Campo elettrico di un corpo 
+
+A questo punto ha senso introdurre il metodo per scrivere il campo generato da una distribuzione continua di cariche, sia questa un filo, una superficie o un volume.\ Sia dato un cerco corpo, la sua carica sarà data dall'integrale su di esso della sua densità. 
+
+*Filo* $aa Q eq int_gamma lambda(t) dd t $
+
+*Superficie* $aa Q eq int_Sigma sigma(x_1,x_2) dd S $
+
+*Volumi* $aa Q eq int_Omega rho(x_1,x_2,x_3) dd tau $
+
+Da cui il campo magnetico generato da una superficie segue la legge 
+
+$ arrow(E)_"corpo" (arrow(r)) eq int arrow(E)_(arrow(r)_i)(arrow(r) - arrow(r)_i) $
+
+Dove $arrow(E)_arrow(r)_i (arrow(r) - arrow(r)_i)$ è il campo generato dall'elemento di carica infinitesimo del corpo.
+
+#pagebreak(weak : true)
+
+#xpl(title : [Campo elettrico gerato da un filo indefinito])[
+  Pongo un filo indefinito con densità di carica costante $lambda$ sull'asse z. Determinare l'espressione del suo campo elettrico.   
+]<xplFilo>
+#sol[\
+  Per risolvere questo problema, inziamo osservando che il sistema ha un simmetria rotazionale. Ossia che $abs(E(arrow(r))) = E(arrow(r))$ è costante per ogni raggio $rho$ fissato. \ ne deduco che in questo caso vale $ arrow(E) (arrow(r)) = E(arrow(r)) hat(r) eq E(rho)hat(r) $
+  Cerco quindi di determinare $E(rho)$. \ Per farlo considero l'elemento di campo elettrico generato da un elemento di filo $dd z$. 
+
+  $ dd E_(dd z)(rho) &eq (lambda dd z)/(4 pi ep_0 abs(rho^2 + z^2))rho/(sqrt(rho^2 + z^2)) \ &eq (lambda rho dd z)/(4 pi ep_0 (rho^2 + z^2)^(3/2)) $
+
+  Ora integro sulla lughezza del filo e ottengo 
+  
+  $ E(z) eq int_(-infi)^(+infi) d E_(dd z) eq (lambda rho)/(4 pi ep_0) int_(-infi)^(+ infi) 1/(rho^2 + z^2)^(3/2) dd z  $
+
+  #rmk[che risolvo per sostituzione sfruttando la seguente identità 
+
+  $ int (dd z)/(rho^2 + z^2)^(3/2) dd z eq int (dd z)/(z^3 (rho^2/z^2 + 1)^(3/2)) eq^(u eq 1 + d^2/z^2) -1/(2d^2) int u^(-3/2)dd z eq z/(d^2 sqrt(z^2 + d^2)) +C $
+  ]
+  Quindi 
+
+  $ arrow(E)(arrow(r)) eq (lambda rho)/(4pi ep_0)[z/(d^2sqrt(d^2 + z^2))]_(-infi)^(+infi)hat(rho) eq lambda/(2 pi ep_0 rho)hat(rho) $
+]
+
+#oss[Il metodo usato in precedenza non vale per un filo filito. Infatti nello svolgimento abbiamo assunto che il campo dipendesse solo dal raggio, mentre per un filo finito questa cosa è falsa, infatti il campo dipende sia dal raggio che dal valore di $z$ del punto su cui vogliamo calcolare il campo]
+
+#pagebreak(weak : true)
+
+== Teorema di Gauss 
+#def(title: [Flusso del campo elettrico])[Il flusso del campo elettrico lungo una *superficie chiusa* $Sigma$ è dato dall'integrale del campo sulla normale dell'elemento di superficie, ossia 
+  $ Phi_arrow(E) (Sigma) eq integral.cont_Sigma arrow(E) dd arrow(S) $
+]
+
+Esiste un importante risultato, le cui applicazioni permettono di trovare il campo elettrico di alcuni sistemi dotati di simpatiche simmetrie. 
+
+#theo(title : "Teorema di Gauss")[
+  Il flusso di $arrow(E)$ nella superficie chiusa è pari al raporto tra la carica interna totale e $ep_0$.
+
+  $ Phi_Sigma (arrow(E)) eq Q^"int"_"tot"/ep_0 $
+]<gauss>
+#proof[\
+  Osserviamo l'elemento di flusso di una carica $Q$ interna a $Sigma$ $ dd Phi eq arrow(E) dd arrow(S) eq arrow(E)hat(n) dd S eq E cos theta dd S eq E dd S_n eq Q/(4 pi ep_0 r^2) r^2 sin theta dd phi dd theta  $
+
+  Dunque $ Phi(arrow(E)) &eq integral.cont_Sigma dd Phi eq Q/(4 pi ep_0)int_0^pi int_0^(2pi) sin theta dd theta dd phi eq Q/ep_0  $
+
+  Sommando su tutte le cariche presenti nel corpo si ottiene $ Phi(arrow(E)) eq Q^"int"_"tot"/ep_0  $
+
+  Il flusso su una superficie chiusa di una carica esterna è nullo, in quanto tutte le linee di flusso entranti sono anche uscenti.\ *N.B:* come abbiamo visto prima, il flusso non dipende dalla distanza, ma dalla superficie, una carica esterna avrà due contributi al flusso uguali e di segno contrario perché la normale una volta è nello stesso verso del campo e una volta in segno opposto.  
+]
+
+#cor(title : "Prima equazione di Maxwell")[
+  Dal @gauss[Teorema di Gauss] segue immediatamente il seguente risultato 
+  $ div arrow(E) eq rho/ep_0 $
+]<1aMax>
+#proof[\
+  Basta appplicare il teorema della divergenza
+]
+
+#pagebreak(weak : true)
+
+#xpl(title : [Campo di una sfera])[
+  Sia data una sfera di raggio $R$ e carica totale $Q$, densità di carica $rho$ è costante.\ Determinare l'espressione del campo generato dalla sfera in tutto lo spazio. 
+]
+#sol[
+  Osservo che nel caso della sfera ho una simmetria radiale, quindi anche in questo caso $arrow(E)(arrow(r)) eq E(r)hat(r) $.\ Per il @gauss[Teorema di Gauss] ottengo che il flusso calcolato sulla superficie sferica di raggio $r in RR_+$ vale 
+
+  $ Phi_S_r (arrow(E)) eq Phi_S_r (E(R)) eq Q(r)/(ep_0) eq cases(Q/ep_0 wide &"se" r >= R, Q/ep_0 (r/R)^3 quad &"se" r<= R) $
+
+  Da cui si ottiene la seguente relazione 
+
+  $ E(r) eq Q(r)/(4 pi ep_0 r^2) eq cases(
+    Q/(4pi ep_0 r^2) wide &"se" r >= R,
+    Q/(4 pi ep_0) r/R &"se" r<= R, 
+  ) $
+
+  Esprimendo $arrow(E)(arrow(r)) "come" E(r)hat(r)$ si ha il risultato. 
+]
+
+#oss[E' interessante osservare che nel caso della sfera uniformemente carica, il campo ha un andamento lineare per $r in (0,R]$ e poi invece si comporta come una carica puntiforme nel resto dello spazio.]
+
+#xpl(title : [Piano indefinito])[
+  Sia dato un piano indefinito di densità di carica costante $sigma$. Il piano è posizionato in corrispondenza del piano (x,y). Trovare l'espressione del campo elettrico nello spazio. 
+]
+#sol[\
+  L'idea è quella di determinare il valore del flusso in un volume rettangolare.\ Considero quindi un rettangolo di altezza $h$ e supericie di base $a dot b$, e lo pongo a metà della sua altezza sul piano.\ In questo caso la simmetria è sulle traslazioni parallele all'asse (x,y), ossia $arrow(E)(arrow(r)) eq E(z)hat(z)$.\ Prima di calcolare il flusso, osserviamo che le linee di campo sono verticali, quindi il contributo nel flusso delle superfici laterali del rettangolo è nullo. Per il @gauss[Teorema di Gauss] si ha 
+
+  $ Phi_R (arrow(E)) eq a b sigma/ep_0  $
+
+  Ma allo stesso tempo si ha anche che vale 
+
+  $ Phi_R (arrow(E)) eq^"def" eq int_R arrow(E)dd arrow(S) eq int_R E(z)hat(z)dd arrow(S) eq 2 int_0^a dd x int_0^b dd y E(z) eq 2 a b E(z)$
+
+  Uguagliando queste due identità trovo 
+
+  $ E(z) eq cases(sigma/(2ep_0) &"se" z>0, - sigma/(2 ep_0) quad &"se" z<0) $
+]
+
+#xpl(title : "due piani indefiniti di carica opposta")[
+  In questo caso esprimiamo il campo elettrico in tutto lo spazio dato dal sistema composto da due piani paralleli $S_1 "e" S_2$ posti a quota $z "pari a" d/2 "e" -d/2$. sia $sigma >0$ la densità di carica superficiale, allora $sigma_1 eq sigma, sigma_2 eq - sigma$.  
+]<xplPiani>
+#sol[
+  Il piano superiore ha densità di carica positiva, quindi linee di campo uscenti. Quello inferiore ha densità di carica negtiva, quindi linee di campo entranti. 
+
+  Dall'esempio precedente otteniamo che $ &E_S_1 (z) eq sigma/(2 ep_0)hat(z) eq cases(
+    sigma/(2 ep_0) &"se" z > d/2,
+    -sigma/(2 ep_0) quad &"se" z<d/2 
+  ) \ 
+  &E_S_2 (z) eq - sigma/(2 ep_0) hat(z) eq cases(
+    -sigma/(2 ep_0) quad &"se" z > -d/2, 
+    sigma/(2 ep_0) &"se" z < d/2
+  )
+  $
+
+  Da questa espressioni, per il principio di sovrapposizione, si ottiene 
+
+  $ E eq cases( 
+    -sigma/ep_0 quad &"se" z in (- d/2 , d/2),
+    0 &"altrove"
+  ) $
+]
+
+#ex[Calcola il campo in tutto lo spazio dato da due piani indefiniti con densità di carica uguale pari a $sigma$.]
+
+#pagebreak(weak : true)
 
 == Potenziale elettrico 
 
-== Energia 
+Il campo elettrostatico $arrow(E)(arrow(r))$ è conservativo. Quindi ha senso cercare l'espressione del potenziale elettrico, che indichiamo con la lettera $V(arrow(r))$. La sua unità di misura è il Volt [V].
+
+Come è noto dal corso di Fisica I, vogliamo che il potenziale sia tale che $arrow(E)(arrow(r)) eq - grad V(arrow(r))$
+
+Immaginiamo un sistema composto da una carica puntiforme Q centrata nell'origine.\ La differenza di potenziale tra due punti in questa configurazione è per definizione 
+
+$ V(P_1)-V(P_2) eq int_(P_1)^(P_2) arrow(E)(arrow(r)) dd arrow(l) eq int_(r_1)^(r_2) eq Q/(4 pi ep_0 r) dd r eq Q/(4pi ep_0)(1/r_1 - 1/r_2)  $
+
+Ossia 
+
+$ V(r) eq Q/(4pi ep_0 r ) + C $
+
+Nel caso di domini limitati, ponendo $V(infi) eq 0$, si ha $C eq 0$.\ Invece se il sistema di cariche è non limitato, si sceglie un punto $arrow(r)_0$ e si pone $V(arrow(r)_0) = 0$. 
+
+Sempre per il principio di sovrapposizione, possiamo trovare l'espressione del potenziale anche nel caso di distribuzioni di cariche discrete e continue.
+
+- *Distribuzioni discrete*
+Siano $arrow(r)_i$ le coordinate dei punti del sistema discreto di cariche puntiformi. Allora il potenziale calcolato nel punto $P eq arrow(r)$ vale 
+
+$ V(arrow(r)) eq 1/(4 pi ep_0) sum_i Q_i/(abs(arrow(r) - arrow(r)_i)) $
+
+- *Distribuzioni continue*
+Siano $arrow(r)'$ i vettori in $Omega$ Distribuzione di carica, sia $rho(arrow(r)')$ la densità di carica della distribuzione, allora 
+
+$ V(arrow(r)) eq 1/(4pi ep_0) int_Omega rho(arrow(r)')/abs(arrow(r) - arrow(r)') dd Omega $ 
+
+Dove $dd Omega "sta per" dd l, dd sigma o dd tau$ in base alla dimensione della distriubzione. 
+
+#line(length: 100%, stroke :  0.5pt + gray)
+
+#oss(title : "Terza equazione di Maxwell")[
+  Il fatto che il campo elettrico $arrow(E)$ sia un campo conservativo, quindi in particolare è gradiente di un campo scalare, significa che il suo rotore è nullo, infatti $curl (grad V) eq 0$.\ L'dentità $ curl arrow(E) eq 0 $ è detta *Terza equazione di Maxwell*.
+]
+
+#oss(title: "Equazione di Poisson")[
+  Dalla relazione tra $arrow(E) "e" V$ e dalla @1aMax[Prima equazione di Maxwell] segue che $ laplace V eq -rho/ep_0 $
+]
+
+#xpl(title : "Potenziale filo indefinito")[
+  Calcolare il potenziale a distanza $r$ dal filo indefinito dell'esempio del @xplFilo[filo indefinito]. 
+]
+#sol[
+  In questo caso il filo è infinito quindi non si può porre $C=0$.\ E' necessario quindi scegliere un punto privilegiato $arrow(r)_0$ e calcolare la differenza di potenziale a partire da esso.\ Il campo abbiamo visto che vale $arrow(E)(rho) eq (lambda)/(2pi ep_0 rho)hat(rho) $
+  Quindi si ha 
+
+  $ V(rho)-V(arrow(r)_0) eq int_(rho)^rho_0 (lambda)/(2pi ep_0 r) dd r eq lambda/(2 pi ep_0)ln(rho/rho_0) $
+]
+#xpl(title : "Potenziale di un piano indefinito")[
+  Per il piano indefinito, allo stesso modo, scegliamo un punto a cui assegniamo arbitrariamente il valore $V(arrow(r)_0) eq 0.$\ Procediamo al calcolo esplicito ricordando che la formula del campo del piano è $E(r) eq sigma/(2 ep_0)$.
+]
+#sol[
+  $ V(arrow(r))-V(arrow(r)_0) eq V(r)-V(r_0) eq int_r^r_0 E dd r eq -sigma/(2 ep_0) d $
+  Dove $d eq abs(r_0 - r) "e" r_0 eq 0$
+]
+
+#xpl(title : "Potenziale di due piani paralleli di carica opposta")[
+  Calcolare il potenziale nello spazio di due piani paralleli di densità di carica uguale in modulo e opposta di segno. La configurazione è la stessa dell'esempio sui @xplPiani[Piani paralleli] 
+]
+#sol[
+  In analogia con il metodo precedente. Fissiamo un punto $P_0$ privilegiato in cui poniamo il potenziale arbitrariamente pari a $0$. Fatto ciò non ci resta che esplicitare il calcolo con la definizione di potenziale.
+
+  All'esterno delle armature il campo è nullo, quindi il potenziale sarà costante,.\ Ossia si ha $V(z) eq C "se" abs(z)>d/2 $. Ponendo ad esempio $V(P_0) eq 0$ si ha potenziale nullo .
+
+  All'interno delle armature invece si ha
+
+  $ V(arrow(r)) - V(P_0) eq int_(z)^(z_0) -sigma/(ep_0) dd z eq -sigma/(ep_0)(z_0 -z) eq^(z_0 eq 0) sigma/(ep_0)z   $
+]
+#pagebreak(weak : true)
+
+#xpl(title : "Potenziale di un filo di lunghezza finita")[
+  Calcolare il potenziale $V(arrow(r))$ per un sistema che comprende un filo di lunghezza finita $L$ lungo l'asse $z$ e centrato nell'origine. 
+]
+#sol[
+  #text(fill : red,[da fare!])
+]
+
+#xpl(title: "Potenziale di un anello")[
+  Calcolare il potenziale di un anello sottile di raggio $R$ con asse $z$ e anello disposto sul piano $(x,y)$.
+]
+#sol[
+  #text(fill : red,[da fare!])
+]
+
+#pagebreak(weak : true)
+
+== Energia di una carica
+
+Supponiamo di avere una configurazione stazionaria di $N$ cariche puntiformi disposte nello spazio. Vogliamo muovere una carica di prova $q_0$ da un punto $A$ ad un punto $B$. Quale sarà il lavoro che è necessario compiere?\
+
+La carica di prova è soggetta alla forza $arrow(F)_E$ generata dal campo elettrico $arrow(E)$ della configurazione di cariche. Dunque il lavoro è pari all'opposto della forza lungo il tragitto.\ Definendo quindi $arrow(F)_L eq - arrow(F)_E$ si ha  
+
+$ L_(A,B) eq int_gamma_(A,B) arrow(F)_L (q_0) dd arrow(l) eq -q_0 int_gamma_(A,B) arrow(E)(arrow(r)) dd arrow(l) eq q_0 (V(B)-V(A)) eq q_0 Delta V $
+
+E' quindi possibile definire l'*energia potenziale* nel punto $arrow(r)$ come $U(arrow(r)) eq q V(arrow(r)) $ \ (avendo posto $V(infi) eq 0$). 
+
+Sia la particella di massa $m$ e velocità $v$, otteniamo allora $ T eq 1/2 m v^2 $
+
+Da cui si ha l'*energia elettrostatica* della particella $ E eq T + U eq 1/2 m v^2 + q V(arrow(r)) $
+
+== Energia di un sistema di cariche 
+
+Per un sistema discreto di cariche si ha $ U eq 1/2 sum_((i,j) \ (i != j)) (q_i q_j)/(4 pi e_o r_(i,j)) eq 1/2 sum_(i =1)^N q_i V(arrow(r)_i) $
+
+Dove $V(arrow(r_i))$ è il potenziale di tutte le cariche tranne $q_i$
+
+Portandolo al continuo si ottiene 
+
+$ U eq 1/2 int_Omega rho(arrow(r)) V(arrow(r)) dd tau  $
+
+Dove $V(arrow(r))$ è il potenziale dovuto a tutte le cariche 
+
+#pagebreak(weak : true)
+
+== Densità di energia elettrostatica 
+
+In questa sezione sfruttiamo la seguente identità. 
+#rmb[Dato un campo scalare $u : RR^n aa RR $ ed un campo vettoriale conservativo \ $arrow(v) : RR^3 aa RR^3 $ vale 
+  $ div (u arrow(v)) eq grad u dot arrow(v) + u div arrow(v) $
+]
+
+Usando il fatto che $arrow(E) eq - grad V$, e sostituendo nella @1aMax[Equazione di Maxwell] si ha 
+
+$ div (V arrow(E)) eq - arrow(E) dot arrow(E) + V div arrow(E) eq - E^2 + V rho/ep_0  $
+
+Da cui 
+
+$ V eq ep_0/rho [div (V arrow(E)) + E^2] $
+
+Sostituendo nella formula dell'energia potenziale si ha 
+
+$ U &eq 1/2 int_Omega rho V dd tau \ &eq 1/2 int_Omega ep_0 [div (V arrow(E)) + E^2]dd tau \ 
+("Teo Div")&eq 1/2 int_(par Omega) ep_0 V arrow(E) dd arrow(sigma) + 1/2 int_Omega ep_0 E^2 dd tau $
+
+Osservando che per $Omega aa RR^3$ l'integrale di superficie tende a zero. Quindi 
+
+$ U eq (ep_0)/2 int_(RR^3) E^2 dd tau $
+
+#def[La *Densità di energia potenziale* è definita come $ u eq ep_0/2 E^2 $]
+
+Allora $ U eq int_(RR^3) u dd tau $
+
+#pagebreak(weak : true)
+
+#xpl(title : "Energia elettrostatica di una sfera")[
+
+]
+#sol[
+  #text(fill : red, [Da fare!])
+]
+
+#pagebreak(weak : true)
 
 == Sviluppo in serie di multipoli 
 
@@ -133,6 +502,8 @@ $ V(arrow(r)) eq Q/(4 pi ep_0 r) + (arrow(r)dot arrow(p))/(4 pi ep_0 r^3) $<Svil
 #oss[
   Questo svluppo verifica il fatto che, se la carica totale di un materiale è nulla, ma la sua distribuzione di carica è disomogenea, allora il potenziale è non nullo.\ Infatti anche per $Q eq 0$ il secondo membro è comunque non nullo se il momento il dipolo è diverso da zero 
 ]
+
+#pagebreak(weak : true)
 
 == Dipolo elettrico 
 
@@ -583,8 +954,6 @@ Questa arbitrarietà permettere di scegliere $arrow(A)$ tale che $div arrow(A) e
 
 == Quarta equazione di Maxwell e teorema della circuitazione
 
-
-
 - Equazione del poteniale: $grad^2 arrow(A) eq - mu_0 arrow(J)$
 - $curl arrow(B) eq mu_0 arrow(J)$
 - $integral.cont arrow(B) times arrow(dd l) eq mu_0 sum I_"conc"$
@@ -783,5 +1152,3 @@ Qui sono raccolte alcune tra le domande più classiche e più frequenti.
 === magnetismo
 - Derivare il campo magnetico generato da un filo indefinito, e cosa cambia rispetto all'espressione del solenoide
 - Definizione ed espressione del potenziale vettore 
-- Equazioni di Maxwell nel caso non stazionario 
-

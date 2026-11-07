@@ -1,5 +1,6 @@
 #let ep = $epsilon$
 #let infi = $infinity$
+#let io = $infinity$
 #let dd = $dif$ 
 #let par = $partial$
 #let int = $integral$
