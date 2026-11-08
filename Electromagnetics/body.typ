@@ -595,7 +595,7 @@ Questo è uno di quei concetti che è reso charo da un esempio.
 
 #pagebreak(weak: true)
 
-= Capacità 
+== Capacità 
 Dal calcolo del valore del potenziale, già visto in precedenza, si ha che, per $V(infinity) eq 0$. Si ottiene che $Q "e" V$ sono tra loro proporzionali. Infatti $ &V - V(infi) eq int_"conduttore"^infi arrow(E) arrow(dd l) \ &Q eq int_Omega rho(r') dd tau' $
 
 Ma $arrow(E) $ è direttamente proporzionale alla densità del conduttore, quindi essendo la carica $Q$ l'integrale della densità, e $V$ l'integrale del campo, segue che anche queste due grandezze sono tra loro proporzionali. 
@@ -621,7 +621,7 @@ Da questa definzione, e procedendo a dei calcoli formali che ora non farò si ot
 La forza che $S - dd S$ esercita su $dd S$, per la legge di Coulomb, vale $ arrow(F)^(dd S) eq arrow(E)^(S - dd S) sigma dd S eq sigma^2/(2 ep_0)hat(n) dd S $
 
 La pressione elettrostatica vale dunque $ P eq (dd arrow(F)^(dd S) dot hat(n))/(dd S) eq sigma^2/(2 ep_0) eq 1/2 ep_0 E^2  $
-
+#pagebreak(weak : true)
 == Problema dell'energia elettrostatica 
 
 Per via dell'induzione, segue che entrambe le grandezze $V_i$ e $sigma_i$ dipendono dagli altri conduttori nel sistema. Per determinare tali quantità, ci sono due metodi risolutivi in base alla richiesta del problema. 
@@ -629,24 +629,127 @@ Per via dell'induzione, segue che entrambe le grandezze $V_i$ e $sigma_i$ dipend
 1. *Problema di Dirichlet* \
 Sono noti i potenziali $V_i$ dei conduttori e si vogliono determinare le cariche $Q_i$
 
+Per la prima equazione di Maxwell si ha che $laplace V eq - rho/ep_0$
+
+Per il problema di Dirichlet, se non sono presenti cariche localizzate, bisogna risolvere l'equazione di Laplace 
+
+$ 
+  cases(laplace V eq 0, 
+    V eq V_i wide  &"su ciascuin conduttore",
+    V(infi) eq 0
+) $
+
+Determinato $V(arrow(r))$ non mi resta che calcolare le cariche $Q_i$ attraverso i passaggi 
+
+$ Q_i &eq integral.cont sigma_i dd S_i \ &eq ep_0 integral.cont arrow(E) dd arrow(S_i) \ &eq - ep_0 integral.cont - div V dd arrow(S)_i \ &eq - ep_0 integral.cont (par V)/(par n) dd S_i  $
+
+
+
 2. *Problema di Neumann* \ 
 Sono note le cariche $Q_i$ e si vogliono determinare i potenziali $V_i$
 
+In assenza di Cariche localizzate, questo è l'inverso del problema precedente. \ In generale vi è una relazione del tipo $ V_i eq sum_j p_(i j) Q_j  $
+
+Dove $p_(i j)$ sono detti *coefficienti di poteziale*, e $P : eq (p_(i j))$
+
+Affinché tale equazione sia risolvibile, si deve avere 
+
++ $det P != 0 $
++ $p_(i j) eq p_(j i )$
++ $p_(i j ) > 0$
++ $p_( i i) > p_(i j)$
 
 
-- Capacità condensatore piano: $C eq ep S/d $
 
-- Capacità condensatore cilindrico: $C eq 2pi ep L/(log(r_"ext"/r_"int")) $
+#pagebreak(weak : true)
 
-- Capacità condensatore sferico: $4pi ep (r_"int" r_"ext")/(r_"ext" - r_"int") $  
+#xpl(title : "Coefficienti di potenziale per due gusci concentrici")[
+  Siano dati due gusci concentrici di raggi $R_1 < R_2$. . Esprimere la matrice dei coefficienti di potenziale del sistema. 
+]
+#sol[\
 
-- Capacità condensatori in parallelo: $C_"eq" eq C_1 + C_2 + dots + C_n $
 
-- Capacità condensatori in serie: $C_"eq" eq 1/(C_1 + C_2 + dots + C_n) $
+  Siamo nel vuoto e assumiamo inizialmente $Q_1 != 0 "e" Q_2 eq 0$.\ Come sappiamo $V(r > R_1) eq Q_1/(4 pi ep_0 r)$ e $V_2 eq Q_1 /(4 pi ep_0 R_2)$\ Nell'intercapedine tra i due gusci il campo ha espressione $arrow(E)(arrow(r)) eq Q_1/(4 pi ep_0 r^2)hat(r)$ \ La differenza di potenziale vale $ V_1 - V_2 eq int_(R_1)^(R_2) arrow(E) dd arrow(l) eq Q_1/(4 pi ep_0)(1/R_1 - 1/R_2) $ \ Da cui $V_1 eq V_2 + Q_1/(4 pi ep_0)(1/R_1 - 1/R_2) eq Q_1/(4 pi ep_0 R_1) $
 
-L'energia di un condensatore è data dalla formula $U eq 1/2 Q Delta V eq 1/2 C Delta V^2 eq 1/2 Q^2/C$
+  Se invece assumo $Q_1 eq 0 "e" Q_2 !=0$ ottengo $V_2 eq Q_2/(4 pi ep_0 R_2)$
 
-La forza tra le armature di un condensatore piano ha invece formula $F eq Q^2 / (2ep S) $
+  Dunque ottengo $P eq 1/(4 pi ep_0 R_1 R_2)mat(R_2, R_1; R_1, R_1 )$
+]
+
+#xpl(title : "Capacità condensatore piano")[
+  Determinare la capacità di un condensatore piano di carica $Q$
+]
+#sol[\
+  La capacità è data dalla formula $C eq Q/(Delta V)$
+
+  In questo caso la carica è data dalla formula $Q eq sigma S$, dove $S$ è la superficie dela piano 
+
+  La differenza di potenziale è invece $Delta V eq int_0^d arrow(E) dd arrow(l) eq int_0^d sigma/ep_0 dd t eq sigma d/ep_0 $
+
+  Quindi 
+
+  $ C eq (sigma S)/(sigma d/ep_0) eq ep_0 S/d $
+]
+
+#xpl(title: "Capacità condensatore cilindrico")[
+  Determinare l'espressione della capacità di un condensatore cilindrico di carica $Q$, raggio interno $r_"int"$ e raggio esterno $r_"ext"$. 
+]
+#sol[\
+  Per determinare la soluzione, di nuovo calcolo il campo elettrico per trovare la diffenza di potenziale.
+  
+  #text(fill : red, [da finire!])
+
+  La carica è data dall'integrale sulla superficie del 
+
+  $ C eq 2pi ep L/(log(r_"ext"/r_"int")) $
+]
+
+#xpl(title : "Capacità condensatore sferico")[
+
+] 
+#sol[
+  #text(fill : red, [da finire!])
+
+  $ 4pi ep (r_"int" r_"ext")/(r_"ext" - r_"int") $
+]  
+
+#pagebreak(weak : true)
+
+== Condensatori in serie ed in parallelo 
+  
+  Nel caso di circuiti elettrici, si parla di condensatori in serie se sono disposti uno dopo l'altro seguendo la corrente. Si parla invece di condensatori in parallelo se il filo ha una o più biforcazioni in cui ognuna è disposta un condensatore, e poi questi di riuniscono.
+
+ #image("images/capacitori.png")
+ 
+- *Capacità condensatori in parallelo* 
+  
+  Nel caso di condensatori in parallelo si ha che su ogni condensatore è "disposta"" la stessa differenza di potenziale $Delta V$.\
+  
+  Ciò significa che $C_1 eq Q_1/(Delta V), C_2 eq Q_2/(Delta V), dots$
+
+  Quindi 
+  
+  $ C_"eq" eq C_1 + C_2 + dots + C_n $
+
+- *Capacità condensatori in serie* 
+
+  Nel caso di condensatori in serie, ciò che rimane costante è invece la carica su ogni condensatore. 
+
+  Ciò significa che $C_1 eq Q/(Delta V_1), C_2 eq Q/(Delta V_2). dots$
+  
+  $ 1/C_"eq" eq 1/(C_1 + C_2 + dots + C_n) $
+
+== Energia e forza di un condensatore 
+
+Come visto nelle sezioni precedenti, l'energia è data dalla formula $U eq 1/2 Q Delta V$ 
+
+Sfruttando le identità $Q eq C Delta V$ e $Delta V eq Q/C $ si ottengono 
+
+$ U eq 1/2 C Delta V^2 eq 1/2 Q^2/C $
+
+La forza tra le armature di un condensatore piano ha espressione $F(arrow(r)) eq Q arrow(E)(arrow(r))$
+
+$ F eq Q sigma/ (2ep_0) eq Q (Q)/(2 ep_0 S) eq Q^2/(2 ep_0 S) $
 
 #pagebreak(weak : true)
 
@@ -679,6 +782,8 @@ Dove $N$ è il \# di particelle per unità di volume.
 
 Inoltre vale la relazione $ep_r eq chi +1 $
 
+#pagebreak(weak : true)
+
 == Descrizione mascroscopica della polarizzazione 
 
 In un mezzo isotropo e lineare si ha: $arrow(P) eq ep_0 chi arrow(E) eq ep_0(ep_r -1)arrow(E)$
@@ -690,6 +795,14 @@ In un mezzo isotropo e lineare si ha: $arrow(P) eq ep_0 chi arrow(E) eq ep_0(ep_
 Il vettore di polarizzazione è l'elemento cardine per calcolare le densità di carica di polarizzazione. 
 
 == Densità volumetrica e superficiale di carica di polarizzazione 
+
+Il contributo al potenziale elettrico dell'elemento di di volume di un dielettrico $dd tau'$ può essere valutato attraverso l'espressione del potenziale di dipolo 
+
+$ d V(arrow(r)) &eq (arrow(P)(arrow(r')) dot (arrow(r) - arrow(r)'))/(4 pi ep_0 abs(arrow(r)-arrow(r'))^3)dd tau' \ &eq (arrow(P)(arrow(r')))/(4 pi ep_0) dot grad_(arrow(r')) (1/abs(arrow(r) - arrow(r'))) dd tau' \ ("prop. gradiente")&eq 1/(4 pi ep_0) nabla_arrow(r') dot ((arrow(P)(arrow(r)))/(abs(arrow(r)-arrow(r')))) dd tau' - 1/(4 pi ep_0) (nabla_arrow(r')dot arrow(P)(arrow(r')))/(abs(arrow(r)-arrow(r'))) dd tau'  $
+
+Quindi 
+
+$ V(arrow(r) &eq int_Omega 1/(4 pi ep_0) nabla_arrow(r') dot ((arrow(P)(arrow(r')))/(abs(arrow(r)-arrow(r')))) - 1/(4 pi ep_0) (nabla_arrow(r') dot arrow(P)(arrow(r')))/(abs(arrow(r)-arrow(r'))) dd tau' \ ("teo div")&eq 1/(4 pi ep_0)int_(par Omega) (arrow(P)(arrow(r')) dot hat(n))/abs(arrow(r)-arrow(r')) dd S' - 1/(4 pi ep_0)int_Omega (nabla_arrow(r') dot arrow(P)(arrow(r')))/(abs(arrow(r)-arrow(r')))dd tau'  $
 
 Queste cariche sono due tipi di cariche distinte, infatti: 
 
@@ -707,23 +820,19 @@ Dalle identità sviluppate sino ad ora seguono le *Equazione dell'elettrostatica
 
 - $int_Sigma arrow(D) dot hat(n) dd S eq Q_"lib"$
 
-*Condizioni di continuità all'interfaccia fra due mezzi*
+#pagebreak(weak : true)
+
+== Condizioni di continuità all'interfaccia fra due mezzi
+
+Nel caso dei dielettrici, al loro interno, il campo può presentare delle discontinuità. Ciò rendere il flusso di $arrow(E) != 0$ anche nel caso in cui la carica interna totale sia nulla.\ Il vettore spostamento risolve questo problema in quanto "non considera" le cariche di polarizzazione, e quindi l'integrale sul volume darà la carica libera. 
+
+Da questo ne deduciamo che il vettore spostamento $arrow(D)$ è costante lungo la sua componente normale nell'interfaccia tra due mezzi.
+
+L'integrale su cammino chiuso del campo, invece, rimane nullo. Ciò significa che la sua componente tangenzale all'interfaccia tra due mezzi rimane nulla. 
 
 - $E_(t 1) eq E_(t 2) $
 
 - $D_(n 1) eq D_(n 2)$
-
-#pagebreak(weak : true)
-
-= Energia elettrostatica 
-
-Per una distribuzione di cariche discrete vale $ quad U eq 1/2 1/(4pi ep) sum_(i != j \ i,j) (q_i q_j)/r_(i j) eq 1/2 sum_i q_i V_i $ Dove $V_i$ è il potenziale di tutte le cariche $eq.not i$
-
-Portandolo al continuo si ottiene: $quad U = 1/2 int rho V dd tau $
-
-Se invece il sistema è un sistema di conduttori, si ha che: $quad U eq sum_i Q_i V_i quad$ dove questa volta $V_i$ è il potenziali del conduttore $i$.
-
-Infine è definita la *densità di energia del campo* come $u eq 1/2 arrow(E) dot arrow(D) eq 1/2 ep_0 ep_r E^2$
 
 #pagebreak(weak : true)
 
@@ -757,7 +866,7 @@ Infine è definita la *densità di energia del campo* come $u eq 1/2 arrow(E) do
   $ integral.cont_(par Omega) arrow(J) dd arrow(S) eq int_Omega div arrow(J) dd tau $
   Eguagliando le quantità dentro il segno di integrale si ottiene la tesi.
 ]
-
+#pagebreak(weak : true)
 #oss[ Dal teorema della continuità segue che la densità di corrente ortogonale alla direzione del filo conduttore è nulla, ossia $ J_tack.t eq 0 $
 ]
 
@@ -780,6 +889,8 @@ Come conseguenza della Legge di Ohm, vale il seguente risultato
 ]
 
 #cor[Le cariche, all'interno di un conduttore omogeneo dove scorre corrente stazionaria, si dispongono tutte sulla superficie]
+
+#pagebreak(weak : true)
 
 == Legge di Ohm per conduttori macroscopici
 
@@ -806,11 +917,21 @@ Definisco la *resistenza* di un conduttore attraverso l'identità $R eq rho L/S$
 
 *N.B.* l'unità di misura della resitenza è L'Ohm, $1 Omega eq 1 V/A $
 
+#pagebreak(weak : true)
+
 == Resistori in serie e in parallelo 
 
-- Resistenze in serie: $quad R_"eq" eq R_1 + R_2 + dots + R_n$
+- *Resistenze in serie*
+  
+  Nei resistori in serie l'intesità di corrente che scorre in ogni resistore è la stessa, mentre Potenziale elettrico ha una caduta ad ogni interazione con un resistore, dunque $R_1 eq (Delta V_1)/I, R_2 eq (Delta V_2)/I, dots $
+  
+  $ R_"eq" eq R_1 + R_2 + dots + R_n $
 
-- Resistenze in parallelo: $quad R_"eq" eq 1/(R_1 + R_2 + dots + R_n)$
+- *Resistenze in parallelo* 
+  
+  Nei resistori in parallelo è la differenza di potenziale a rimanere costante,\ quindi  $R_1 eq (Delta V_1)/I, R_2 eq (Delta V_2)/I, dots$
+  
+  $ 1/R_"eq" eq 1/(R_1 + R_2 + dots + R_n) $
 
 == Effetto Joule 
 
@@ -823,15 +944,21 @@ Il passaggio di corrente in un conduttore è euristicamente equivalente al passa
   In forma locale $dd P eq arrow(J) arrow(E) dd tau$
 ]
 
-Osservando che $dd L eq -dd U eq dd Q Delta V eq I Delta V dd t $
+#theo(title : "Terza legge di Ohm")[
+Su un conduttore finito vale $ P eq I Delta V  eq I^2 R eq (Delta V^2)/R $
 
-Su un conduttore finito vale $P eq V I eq I^2 R eq (Delta V^2)/R $
+]
+#proof[ 
+  Basta osservare che $dd L eq -dd U eq dd Q Delta V eq I Delta V dd t $
+]
 
-Questa identità è anche nota come *Terza legge di Ohm*
 
+Si può ottenere la densità di potenza dissipata, che ha espressione $w eq (dd^2 L)/(dd t dd tau) eq arrow(J) dot arrow(E) eq sigma E^2 $
+
+//#pagebreak(weak : true)
 == Seconda legge di Kirchhoff
 
-#theo(title:"Seconda legge di Kirchhoff (o legge delle maglie")[ $ quad sum_k I_k R_k eq sum_k V_k $ ]
+#theo(title:"Seconda legge di Kirchhoff (o legge delle maglie) ")[ $ quad sum_k I_k R_k eq sum_k V_k $ ]
 #proof[
   La dimostrazione segue dall'applicazione della prima legge di Ohm per conduttori macroscopici ad una maglia di conduttori.
 ]
@@ -839,6 +966,40 @@ Questa identità è anche nota come *Terza legge di Ohm*
 #pagebreak(weak: true)
 
 = Correnti non stazionarie
+
+Un *circuito RC* è un circuito con 3 elementi in serie: un generatore di tensione f, un resistore R e un capacitore C. \ Immaginiamo che sia inoltre presente un interruttore per scollegare dal circuito il generatore, e formare così un circuito chiuso per il condensatore e il resistore. \ Immaginiamo che il capacitore sia scarico, e ad un istante $t_0$ attacchiamo il generatore. 
+
+Per la legge di Kirchhoff di questa maglia si ha $ f - R I - Q/C eq 0 $
+
+Sostituirendo nella formula $I eq (dd Q)/(dd t) $ si ha 
+
+$ f eq R (dd Q)/(dd t) + Q/C $
+
+Questa EDP ha soluzione $ Q(t) eq f C (1 - e^(-t/tau)) $
+
+Dove $tau := R C $ è detto *Tempo di Ricarica*
+
+Da questa formula si ricava, per l'identità $ I eq (dd Q)/(dd t)$, che l'espressione di $I(t)$ è 
+
+$ I(t) eq f/R e^(- t/tau) $
+
+Mentre quella per la differenza di potenziale si ricava da $Delta V eq R I$, quindi 
+
+$ Delta V (t) eq f (1 - e^(- t/tau)) $
+
+Per $t aa infi $ si ha che \ 
+- $Q(t) aa Q_max eq f C$ \  
+- $I(t) aa 0 $
+- $Delta V(t) aa f $
+
+Se, a capacitore carico, si "stacca" il generatore, lasciando chiuso il circuito tra condensatore e resistore, si ha che $ R I + Q/C eq 0 $ 
+
+Che ha soluzione $ Q(t) eq Q_max e^(-t/tau) $
+
+Da cui si ricavano $ Delta V(t) eq Q(t)/C wide "e" wide I(t) eq Q(t)/(R C) $
+
+Osserviamo che $Q(t) aa 0 $, quindi anche $Delta V (t) "e" I(t) $ tendono ad annullarsi per $t aa infi$.
+
 
 #pagebreak(weak : true)
 
@@ -902,6 +1063,8 @@ Da queste formule si ricavano:
 ]
 
 - Il campo magnetico generato da una corrente ha invece formula $ arrow(B) eq mu_0/(4pi) I int (arrow(dd l) times arrow(r))/(r^3) $
+
+#pagebreak(weak : true)
 
 == Applicazioni della prima formula di Laplace
 
@@ -984,7 +1147,7 @@ Questa arbitrarietà permettere di scegliere $arrow(A)$ tale che $div arrow(A) e
   $ Phi eq L I $
 ]
 
-= Energia magnetica 
+== Energia magnetica 
 
 - Per un sistema di correnti e circuiti: $U eq 1/2 sum_k I_k Phi_K$
 
@@ -1016,7 +1179,7 @@ $ L (dd I)/(dd t) + R I eq V $
 
 == Circuito RLC in serie 
 
-$ L (dd^2 I)/(dd t^2) + R (dd I)/(dd t) + !/C I eq V $
+$ L (dd^2 I)/(dd t^2) + R (dd I)/(dd t) + 1/C I eq V $
 
 = Onde elettromagnetiche 
 
@@ -1139,13 +1302,11 @@ Da cui otteniamo
 
 Qui sono raccolte alcune tra le domande più classiche e più frequenti. 
 
-== Majorana
-
 === elettrostatica 
 - Campo elettrico del dipolo elettrico 
 - Sviluppo in serie di multipoli 
 - Cosa succede se si mette un dipolo in un campo esterno (distinguere i casi se E_ext uniforme oppure no, parlare del momento, forza ed energia)
-- Domande sulla legge di Bohr 
+- Domande sulla legge di Ohm 
 - Corrente di spostamento 
 - Equazione di continuità 
 
