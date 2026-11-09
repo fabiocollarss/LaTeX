@@ -1081,6 +1081,9 @@ Da questa equivalenza di ricavano esplicitamente le formule dei seguenti casi
 Sperimentalmente si trova che due fili paralleli su cui scorre corrente hanno come interazione un'allontanamento se la corrente è discorde, ed un avvicinamento se è invece concorde. 
 
 Il verso di questa forza di attrazione/repulsione è dettata dalla regola della mano destra.
+
+#pagebreak(weak : true)
+
 == Potenziale vettore 
 
 #def(title : "Potenziale vettoree")[
@@ -1091,7 +1094,12 @@ Il verso di questa forza di attrazione/repulsione è dettata dalla regola della 
   $ arrow(A)(arrow(r)) eq mu_0/(4 pi) integral dd tau' (arrow(J)(arrow(r)))/(abs(arrow(r)-arrow(r)')) $
 ]
 #proof[
-  $ curl arrow(A)(arrow(r)) &eq  $
+  $ 
+  curl arrow(A)(arrow(r)) &eq mu_0/(4 pi)int curl (arrow(J)(arrow(r')))/abs(arrow(r)-arrow(r'))dd tau' \ 
+  &eq mu_0/(4pi) int grad (1/abs(arrow(r)-arrow(r'))) times arrow(J)(arrow(r')) dd tau' \ 
+  &eq - mu_0/(4pi) int (arrow(r)-arrow(r'))/abs(arrow(r)-arrow(r'))^3 times arrow(J)(arrow(r')) dd tau' \ 
+  &eq mu/(4 pi) int (arrow(J)(arrow(r'))times (arrow(r)- arrow(r')))/abs(arrow(r) - arrow(r')) dd tau' eq arrow(B)(arrow(r))
+  $
 ]
 #cor(title: "Seconda equazione di Maxwell")[
   $ div arrow(B) eq 0 $
@@ -1107,6 +1115,7 @@ Il verso di questa forza di attrazione/repulsione è dettata dalla regola della 
   Il fatto che la divergenza del campo magnetico sia nullo, è il fatto fisico che ci dice che non ci possono essere poli magnetici isolati.
 ]
 
+#pagebreak(weak : true)
 
 == Libertà di Gauge 
 Così come il potenziale elettrostatico è definito a meno di una costante additiva, allo stesso modo il potnziale vettore del campo magnetico è definito a meno di un campo vettoriale a rotore nullo. 
@@ -1117,12 +1126,24 @@ Questa arbitrarietà permettere di scegliere $arrow(A)$ tale che $div arrow(A) e
 
 == Quarta equazione di Maxwell e teorema della circuitazione
 
-- Equazione del poteniale: $grad^2 arrow(A) eq - mu_0 arrow(J)$
+Dall'espressione per il potenziale $laplace V eq - rho/ep_0 $ si ottiene che 
+
+- Equazione del poteniale vettore: $laplace arrow(A) eq - mu_0 arrow(J)$
 - $curl arrow(B) eq mu_0 arrow(J)$
-- $integral.cont arrow(B) times arrow(dd l) eq mu_0 sum I_"conc"$
+
+#cor[\
+  La circuitazione di $arrow(B)$ lungo una linea chiusa intorno ad un circuito dove scorre correte $I$ vale 
+
+  $ integral.cont_L arrow(B) dd arrow(l) eq int_S_L curl arrow(B) dd arrow(S) eq mu_0 int_S_L arrow(J) dd arrow(S) eq mu_0 I $
+]
+
+#cor[\
+  $integral.cont arrow(B) times arrow(dd l) eq mu_0 sum I_"conc"$
+]
 
 #pagebreak(weak:true)
 
+== Forza elettromotrice indotta 
 
 #def(title : "Forza elettromotrice")[
   Le correnti indotte dalla variazione dei campi magnetici sono esprimibili come 
@@ -1144,8 +1165,10 @@ Questa arbitrarietà permettere di scegliere $arrow(A)$ tale che $div arrow(A) e
 #def(title : "Coefficiente di autoinduzione")[
   Una corrente influenza anche se stessa, la relazione di tale fenomeno è descritta dalla formula
 
-  $ Phi eq L I $
+  $ Phi(arrow(B)) eq L I $
 ]
+
+Dal coefficienti di autoinduzione, usando la definizione di $f_i$, si ha che $ f_i eq -L (dd I)/(dd t) $
 
 == Energia magnetica 
 
@@ -1186,10 +1209,10 @@ $ L (dd^2 I)/(dd t^2) + R (dd I)/(dd t) + 1/C I eq V $
 Il comportamento delle onde elettromagnetiche è descritto dalle equazioni di Maxwell 
 
 $ &"Forma differenziale" &"Forma integrale"& wide wide wide  \
-  &div arrow(D) eq rho &int_Sigma arrow(D) hat(n) dd S eq Q_"int" \
+  &div arrow(E) eq rho/ep_0 &int_Sigma arrow(D) hat(n) dd S eq Q_"int" \
   &div arrow(B) eq 0 &int_Sigma arrow(B) hat(n) dd S eq 0 \ 
   &curl(arrow(E)) eq - (par arrow(B))/(par t) &wide wide integral.cont arrow(E) arrow( dd l) eq - par/(par t) int_Sigma arrow(B) hat(n) dd S & \ 
-&curl arrow(B) eq mu_0 arrow(J)
+&curl arrow(B) eq mu_0 (arrow(J) + ep_0(par arrow(E))/(par t))
 $
 
 Da cui otteniamo 
