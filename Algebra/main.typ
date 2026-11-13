@@ -71,3 +71,6 @@ Queste note sono appunti presi per scopo di studio personale.\ In particolare se
 //TESTO
 
 #include "Capitoli/Intro_Gruppi.typ"
+#pagebreak(weak : true)
+#include "Capitoli/Omomorfismi.typ"
+

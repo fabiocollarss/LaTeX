@@ -13,3 +13,4 @@
 // Comandi di Algebra 
 
 #let subn = $lt.closed.eq $
+#let ord = $italic("ord")$

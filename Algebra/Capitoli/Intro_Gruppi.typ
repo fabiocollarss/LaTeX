@@ -62,6 +62,21 @@
   - $(g^n)^m eq g^(n m)$ 
 ]
 
+#def(title : "ordine di un gruppo")[
+  Sia $G$ un gruppo e $g in G$ si definisce l'*ordine di g* come segue:
+
+  - se $g^n eq.not e space forall n in ZZ_(>=1)$ allora $ord(g) eq infi$
+  
+  - altrimenti $ord(g) eq min{n in ZZ_(gt.eq 1) | g^n eq e } $
+]
+
+#prop[
+  Sia $G$ un gruppo *finito*, allora $ord(g) < infi space forall g in G$
+]
+#proof[
+  Sia $G$ gruppo finito e $g in G$. G è chiuso rispetto all'operazione di gruppo, quindi \ $g^n in G forall n in ZZ_(gt.eq 1)$. Visto che $G$ è finito allora $exists n_g | g^(n_g) eq e$
+]
+
 
 #pagebreak(weak : true)
 
@@ -135,15 +150,18 @@
 
 #pagebreak(weak : true)
 
-== Prime proprietà dei gruppi 
-#text(fill : red,[da fare!])
-
-#pagebreak(weak : true)
-
 == Sottogruppi 
 
 #def[
   Sia $(G, circle.filled.tiny)$ un gruppo e $H subset.eq G$ un sottoinsieme.\ se $(H, circle.filled.tiny)$ è un gruppo, allora è detto *Sottogruppo di G* 
+]
+
+#oss[
+  Sia $G$ un gruppo e $H lt.eq G$ un sottoinsieme di $G$, allora $H$ è un sottogruppo se e solo se 
+
+  - $H$ è chiuso rispetto all'operazione di gruppo ereditata da $G$
+
+  - $H$ è chiuso rispetto all'esistenza degli inversi 
 ]
 
 #prop[\
@@ -161,6 +179,13 @@
   - Per lo stesso motivo, ho che $ forall g in H, space g^(n_g -1) in H Aa exists g^(-1) $
 ]
 
+#xpl[\
+  Dato $(ZZ, +)$, il sottoinsieme $ (m) eq {n dot m | n in ZZ} $ è un sottogruppo di $(ZZ,+)$
+]
+
+#xpl[\
+  Sia $G$ un gruppo e sia $g in G$, allora il sottonsieme $ chevron.l g chevron.r eq {g^n | n in ZZ_(gt.eq 1)} $ è un sottoinsieme di $G$
+]
 
 #pagebreak(weak : true)
 
@@ -294,7 +319,7 @@
 #cor[\
   Sia $G$ gruppo finito di ordine primo. Allora
 
-  - $exists g in G$ tale che $abs(chevron.l g chevron.r) eq abs(G)$
+  - $exists g in G$ tale che $chevron.l g chevron.r eq abs(G)$
 
   - $G$ non possiede sottogruppi non banali 
 ]
@@ -306,4 +331,165 @@
   Se $g != e Aa deg(g) eq p  Aa chevron.l g chevron.r eq G $ 
 ]
 
-== Sottogruppi di $ZZ, C_n, D_n$ 
+#pagebreak(weak : true)
+
+= Proprietà dei sottogruppi  
+
+#prop[\
+  Sia $G$ un gruppo e $H,K lt.eq G$ sottogruppi, all ora $H inter K lt.eq G$ è ancora un sottoinsieme di $G$
+]
+#proof[\
+  Basti notare che viene preservata sia la chiusura rispetto all'operazione, che quella relativa all'esistenza dell'inverso. 
+]
+
+#oss[
+  Il viceversa non è vero, infatti: 
+
+  +  Presi $ G :eq (chevron.l g chevron.r, compose) union H:eq (chevron.l h chevron.r,compose)$ Due gruppi tali che \ $ord(G) eq p_1 "primo" ord(H) eq p_2 "primo", p_1 != p_2$. \ Allora si ha che \ Presi due elementi $g in G, h in H, g,h eq.not e Aa (g compose h) in.not G union H $
+
+  + Siano $p, q in ZZ_(gt.eq 1) "primi",quad (p),(q) lt.eq (ZZ,+)$ Allora \ $ p + q in.not (p)union(q) $
+
+  *N.B* Ciò che si perde è la chiusura rispetto all'operazione di gruppo. 
+]
+
+Esiste comunque un modo per generare un gruppo a partire da due sottogruppi. L'idea è quella di estendere il gruppo agli elementi composti in modo da ottenere la chiusura.
+
+#def()[
+  Siano $H,K lt.eq (G, compose)$ due sottogruppi. Definisco \ $ H K eq { h compose k | h in H, k in K } $
+]<H_K>
+
+#prop[\
+  Siano $H,K lt.eq G$, allora \ $H K lt.eq G "se e solo se" H K eq K H$
+]
+#proof[\
+  - $(Aa)$  Se $H K lt.eq G $ allora è chiuso rispetto all'operazione e agli inversi, quindi 
+    $ H K &eq {h k | h in H, K in K}  eq {(h k)^(-1) | h in H, k in K} \ &eq {k^(-1)h^(-1) | k in K, h in H }  eq {k h | h in H, k in K} eq K H $
+
+  - $(arrow.double.l)$ Se $ H K eq K H$ allora
+  + presi $h_!, h_2,k_1,k_2$ si ha che $(h_1 k_1) (h_2 k_2) eq h_1 (k_1 h_2) k_2 eq h_1 (h_3 k_3) k_1 in H K $
+  + preso $h k in H K, (h k)^(-1) = k^(-1) h^(-1) eq tilde(h) tilde(k) in H K$ 
+]
+
+#pagebreak(weak : true)
+
+#prop[\ Se $G$ è abeliano allora $H K <= G$]
+#proof[\ Se $G$ è abeliano allora $h k eq k h$. La dimostrazione è quindi analoga a quella precedente.]
+
+#prop[\
+  Sia $G$ un gruppo, $H, K lt.eq G$ due sottogruppi finiti. Allora $ abs(H K) eq (abs(H) abs(K))/(abs(H inter K)) $
+]
+#proof[\
+  La tesi è valida se $H inter K eq {e}$. Suppongo quindi intersezione non banale e verifico che la formula sia ancora valida.
+
+  $ 
+    abs(H K) &eq abs(H) dot abs(H K slash H) eq abs(H) dot abs({H k | k in K, k in.not H}) \
+    &eq abs(H) dot abs({k | k in K, k in.not H}) eq abs(H) dot abs(K - (K inter H)}) eq abs(H) dot abs(K)/abs(K inter H)
+  $ 
+]
+
+#def(title : "Sottogruppo generato da un sottoinsieme")[
+  Sia $G$ un gruppo e $X subset.eq G$ un suo sottoinsieme. E' definito il *Sottogruppo generato da X* come segue 
+
+  $ chevron.l X chevron.r :eq inter.big_(H lt.eq G \ X subset.eq H) H $
+
+  Denoteremo inoltre nel seguente modo i casi:  
+  - $X_1, X_2 subset.eq G, "allora" chevron.l X_1, X_2 chevron.r :eq chevron(X_1 union X_2) $
+  - $g_1, dots , g_n in G, "allora" chevron(g_1 ","dots "," g_n) :eq chevron({g_1,dots,g_n}) $
+]
+
+#prop[\
+  Siano $H,K lt.eq G$ due sottogruppi. Allora $H K lt.eq G "se e solo se" chevron(H union K) eq H K$ 
+]
+#proof[\ 
+  $(Aa)$ \ 
+  $chevron(H union K) gt.eq H K$. Se $H K$ è un sottogruppo allora sono proprio equivalenti 
+  
+  $(space arrow.double.l space)$ \
+  Se $chevron<H union K> eq H K Aa$ La tesi è banalmente verificata per definizion di sottogruppo 
+]
+#pagebreak(weak :true)
+== Sottogruppi di $ZZ$
+
+#theo(title: $"Caratterizzazione dei sottogruppi di" (ZZ,+)$)[
+  Sia $H lt.eq (ZZ,+)$ un sottogruppo, allora $exists m in ZZ_(gt.eq 1) | H eq (m) $
+]
+#proof[\
+  Per $H eq {0} or H eq ZZ$ la tesi è banalmente vera.\ Ora considero un sottogruppo $H lt.eq ZZ$ non banale. \
+  $H$ contiene elementi strettamente positivi, in quanto chiuso rispetto all'inverso. Definisco \ $m eq min{n in ZZ_(gt.eq 1) | n in H}$.\ Allora $H eq (m)$. 
+]
+
+#ex[Verificare che l'insieme dei laterali sinistri $ZZ slash (m)$ eredita l'operazione + e forma un gruppo]
+#sol[
+  Per definizione si ha che $ZZ slash (m) eq {z dot (m) | z in ZZ}$.\ Quindi per ogni $z in ZZ$ si ha che $z(m) eq {z m z' | z' in ZZ}$.\ Identificando $l eq z m$ si può associare $z(m) "a" (l) eq (z m)$ che è un sottogruppo di $ZZ$. 
+]
+
+*Notazione:* Seguendo la @H_K[definizione], il gruppo generato da \ $(a),(b) lt.eq (ZZ,+)$ si scriverà $(a)+(b)$
+
+#ex[
+  Dimostrare che $(a) lt.eq (b) "se e solo se" b | a "(b divide a)"$
+]
+#proof[\
+  $(a) lt.eq (b)$ se e solo se $exists t in ZZ "tale che" (a) eq t(b)$ se e solo se $a/b eq t$.
+]
+
+#prop[\
+  Dati $a,b in ZZ, quad m :eq "mcm"(a,b), quad M :eq"MCD"(a,b),space$ vale \ 
+  + $(m) eq (a) inter (b)$
+  + $(M) eq chevron((a)","(b)) eq (a)+(b)$
+]
+#proof[\
+  + $z in (m) Aa z eq t (a b) Aa z eq cases((t a) b Aa z in (b), (t b)a Aa z in (a)) Aa z in (a)inter(b)$
+  
+  + Il fatto che $M$ sia MCD significa che $a eq t_1 M "e" b eq t_2 M$.\ $z in (a)+(b) Aa z eq s_1 a + s_2 b eq (s_1 t_1 + s_2 t_2)M$.\ Facendo variare $s_1 "e" s_2 in ZZ$ si ottengono tutte le combinazioni lineare di $s M, s in ZZ$ 
+]
+
+#pagebreak(weak : true)
+
+== Sottogruppi di $C_n e D_n$  
+
+#prop(title : [Dimensione di $D_n "e" C_n$])[
+ Sia $n gt.eq 3$. Allora $ abs(C_n) eq n, quad abs(D_n) eq 2n $
+]
+#proof[\
+  Consideriamo un n-agono nel piano. Fisso arbitrariamente un lato $l$. Ogni isometria del piano che preserva l'n-agono è univocamente determinata dall'immagine di $l$.\ Tale immagine $phi(l)$ dovrà necessariamente coindidere con uno dei lati dell'n-agono, in una delle due possibili orientazioni. Da cui si ottiene 
+
+  - $abs(D_n) eq 2n$ poiché sono possibili entrambe le orientazioni 
+  - $abs(C_n) eq n$ poiché è possibile scegliere una sola delle due orientazioni possibili. 
+]
+
+#oss[
+  - $D_n$ è composto da n rotazioni e n riflessioni 
+  - $C_n$ è il gruppo ciclico $chevron(rho)$ dove $ord(rho) eq n$
+]
+
+#prop(title : [Caratterizzazione di $D_n$])[
+  Sia $n gt.eq 3$, allora di $D_n eq chevron(rho "," sigma)$\ dove $rho$ è il numero di rotazioni che preservano l'orientazione e $sigma$ è la riflessione rispetto al lato dell'n-agono.
+]
+#proof[
+  Basta scrivere $H eq chevron(rho) "e" K eq chevron(sigma)$.\ Si ha che $abs(H) eq n, quad abs(K) eq 2, quad H inter K eq {e}. $\ Allora per i risultati visti in precedenza di ha che $abs(H K) eq (abs(H) abs(K))/(abs(H inter K)) eq abs(H) abs(K) eq 2n $.\ Visto che $abs(D_n)eq 2n$ la tesi è dimostrata.
+]
+
+#prop[
+  Sia $n gt.eq 3$ allora
+  + $D_n eq {rho^i sigma | i = 1,dots,n} union {rho^i | i = 1,dots,n}$
+  + $sigma rho^i eq rho^(n-i) sigma$
+]
+#proof[
+  + La prima parte dell'enunciato è ovvia
+  + $rho^i sigma rho^i sigma eq id Aa sigma rho^i sigma eq rho^(n-i) Aa sigma rho^i eq rho^(n-i) sigma$
+]
+
+#ex[
+  Sia $n gt.eq 3$ Dimostrare che se $H lt.eq C_n$, allora $H eq chevron(rho^d)$ dove $d | n$ 
+]
+
+#ex[
+  Sia n ≥ 3 e sia H ≤ Dn un sottogruppo. Allora
+H = 〈ρ d 〉
+oppure
+dove d , i ∈ Z sono interi positivi tali che d | n e 1 ≤ i ≤ d .
+]
+
+#ex[Si esibiscano un sottogruppo normale e un sottogruppo non normale di D3]
+
+
