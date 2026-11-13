@@ -479,15 +479,20 @@ Esiste comunque un modo per generare un gruppo a partire da due sottogruppi. L'i
   + $rho^i sigma rho^i sigma eq id Aa sigma rho^i sigma eq rho^(n-i) Aa sigma rho^i eq rho^(n-i) sigma$
 ]
 
+#pagebreak(weak : true)
+
 #ex[
   Sia $n gt.eq 3$ Dimostrare che se $H lt.eq C_n$, allora $H eq chevron(rho^d)$ dove $d | n$ 
 ]
+#proof[ 
+  Sia $H lt.eq C_n$. Considero $rho^d eq min_(i) (rho^i | rho^i in H)$. Verifio che $H eq chevron(rho^d)$.\
+  $rho^d in H Aa rho^d dot dots dot rho^d in H Aa chevron(rho^d) lt.eq H $.\
+  D'altra parte, se esistesse $rho^s in.not chevron(rho^d)$ allora posso costruire $rho^d'$ dove $d' < d quad  arrow.zigzag$\
+  Visto che il sottogruppo è chiuso rispetto all'inverso per definzione, segue che $(rho^d)^(-1) eq rho^(n -d)$, da cui si deduce che $d | n$.
+]
 
 #ex[
-  Sia n ≥ 3 e sia H ≤ Dn un sottogruppo. Allora
-H = 〈ρ d 〉
-oppure
-dove d , i ∈ Z sono interi positivi tali che d | n e 1 ≤ i ≤ d .
+  Sia $n ≥ 3$ e sia $H ≤ D_n$ un sottogruppo. Allora $H = 〈ρ^ d 〉$ oppure dove d , i ∈ Z sono interi positivi tali che d | n e 1 ≤ i ≤ d .
 ]
 
 #ex[Si esibiscano un sottogruppo normale e un sottogruppo non normale di D3]
