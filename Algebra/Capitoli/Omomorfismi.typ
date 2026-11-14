@@ -25,7 +25,7 @@
 
 //TESTO
 
-= Omomorfismi di gruppi 
+= Caratterizzazione sottogruppi normali 
 
 #prop(title : "Caratterizzazione dei sottogruppi normali")[
   Sia $(G, compose)$ un gruppo e $N lt.eq G$ un suo sottogruppo, allora sono equivalenti 
@@ -39,7 +39,7 @@
       compose : &(N backslash G) times (N backslash G) &&arrow.long  N backslash G \ 
                 &(N f) compose (N g) &&arrow.long N(f compose g)
     $
-]
+]<Car_Subn>
 #proof[\
   *$(1 Aa 2)$*\ Verifico che $N subset.eq g N g^(-1) space forall g in G$.\ Siano $g in G, space n in N$, allora $n eq g^(-1) (g n g^(-1)) g$.\ Mi basta quindi mostrare che $g^(-1) n g in N$. Ma questo segue dall'ipotesi!
 
@@ -72,7 +72,11 @@
   + tutti i sottogruppi di $Q_8$ sono normali 
 ]
 #proof[\
-  #text(fill : red, [da fare!])
+  Considero l'equazione $i j k = -1$. Allora significa che, moltiplicando in un caso per $-i$ a sinistra, e e in un caso per per $-k$ a destra, si ottengono: 
+
+  $  j k eq i wide ; wide i j eq k $
+
+  A questo punto basta osservare che $j(j k) eq j i Aa j i eq -k$. Questa identità conferma che invertire l'ordine degli elementi del gruppo non è irrilevante, ossia il gruppo *non* è abeliano. 
 ]
 
 #def[Un gruppo $G$ è detto\
@@ -80,5 +84,100 @@
   - *Gruppo di Hamilton* se $G$ è un gruppo di Dedekind *non* abeliano 
 ]
 
+#prop[
+  Sia $G$ un gruppo e $N subn G$.\ Allora l'operazione definita nella @Car_Subn[proposizione] Definisce una struttura di gruppo 
+]
+#proof[ L'operazione è ben definita in $G slash N eq N backslash G$ poiché $N$ è normale. Rimane da verificare gli assiomi di gruppo. 
+  - L'operazione indotta è associativa, infatti:\ $(N f N g)N h eq (N f g) N h eq N f g h eq (N f)(N g h) eq (N f)(N g N h) $
+  - L'elemento neutro è dato dal laterale $N e eq e N$
+  - L'inverso di $N g$ è dato da $N g^(-1)$
+]
 
+#def(title : "Normalizzatore")[
+  Dato un gruppo $G$ e $H lt.eq G$ un suo sottogruppo, è definito il *Normalizzatore di H in G* come l'insieme 
 
+  $ N(H):eq {g in G | g^(-1)H g eq H} $
+]
+
+#oss[Data la precedente definizione, si ha che $H subset.eq N(H) subset.eq G$]
+
+#pagebreak(weak : true)
+
+#ex[Sia $G$ un gruppo e $H lt.eq G$. Dimostrare che $H subn N(H)$]
+
+#proof[
+  Sia $H$ un sottogruppo di $G$. Allora $H$ è sottogruppo normale di $N(H)$ per definizione. Infatti preso comunque $f in N(H)$ si ha che $f^(-1) H f eq H $, che per la caratterizzazione dei gruppi normali è equivalente alla normalità di $H$.  
+]
+
+#pagebreak(weak : true)
+
+= Omomorfismo di gruppi
+
+#def()[
+  SIano $(G_1, compose), (G_2, star)$ due gruppi.\ Diremmo che un'applicazione $phi : G_1 aa G_2$ è un *omorfismo* se e solo se il seguente diagramma commuta. 
+
+  $ 
+    G_1 &times G_1 wide arrow.long^compose wide &&G_1 \
+    phi times phi &arrow.b &&arrow.b phi \
+    G_2 &times G_2 wide arrow.long^star wide &&G_2
+  $
+
+  Ossia se vale $phi(g_1 compose g_2) eq phi(g_1) star phi(g_2) quad forall g_1,g_2 in G_1 $
+]
+
+#def[
+  Siano $G_1, G_2$ due gruppi e $phi : G_1 aa G_2$ un omomorfismo.\ Se $phi$ è invertibile allora è detto *isomorfismo*
+]
+
+#prop[
+  Composizione di omomorfismi di gruppi è un omomorfismo.
+]
+#proof[
+  Siano $(G_1, circle.filled.small), (G_2, dot),  (G_3,star)$ tre gruppi, $phi : G_1 aa G_2 "e" psi: G_2 aa G_3$ omomorfismi di gruppi. Presi $g_1, g_2 in G_1$ si ha 
+  $ psi compose phi (g_1 circle.filled.small g_2) eq psi (phi(g_1) dot phi(g_2)) eq psi compose phi (g_1) star psi compose phi (g_2) $
+]
+
+#prop[Siano $(G_1, compose),(G_2, dot)$ due gruppi, $phi$ un omorfimso da $G_1 "in" G_2$. Allora 
+  + $phi(e_1) eq e_2$
+  + $phi(g^(1)) eq phi(g)^(-1) quad forall g in G_1$
+]
+#proof[\
+  + Basta osservare che $phi(g) eq phi(g compose e_1) eq phi(g) dot phi(e_1)$
+
+  + Basta osservare che $phi(e_1) eq phi(g^(-1) compose g) eq phi(g^(-1)) dot phi(g) eq e_2$
+]
+
+#xpl[
+  SIa $(G, dot)$ un gruppo e $N subn G$.\ Definisco $pi : G aa G slash N$ come $pi(g) eq g N eq N g$.\ Allora $pi$ è un omomorfismo di gruppi. 
+]
+
+#pagebreak(weak : true)
+
+#ex[
+  Sia $n gt.eq 1, KK$ un campo.\ Considero l'applicazione $det : G L_n (KK) aa KK^ast$. Si mostri che $det$ è un omomorfismo. 
+]
+#sol[
+  Considero le operazione sugli insiemi come il prodotto adeguato nel rispettivo caso.\ Per le proprietà del determinante si ha che\ 
+  $det(A_1 dot A_2) eq det(A_1) dot det(A_2)$.\
+  Da cui la tesi.
+]
+
+#ex[
+  Mostrare che il logaritmo naturale è un omomorfismo da $(R_+, dot) "in" (RR, +)$.  
+]
+#sol[
+  La tesi è banalmente verificata dalla relazione $ln(a dot b) eq ln(a)+ln(b)$
+]
+
+#def[
+  sia $phi: G_1 aa G_2$ un omorfismo di gruppi. Il *nucleo di $phi$* è definito come $ ker(phi) :eq {g in G_1 | phi(g) eq e_2} $
+]
+
+#ex[
+  Il nucleo di $phi$ è un sottogruppo normale di $G_1$
+]
+#sol[
+  Sia $H eq ker(phi) subset.eq G_1$ dove $phi: G_1 aa G_2$ omomorfismo. Allora preso $g in G_1, h in H$ si ha\
+  $ phi(g^(-1) h g) eq phi(g^(-1)) phi(h) phi(g) eq phi(g)^(-1) e_2 phi(g) eq e_2 $
+  Quindi se ne deduce che $ g^(-1) h g in ker(phi) quad Aa quad g^(-1)H g subset.eq ker(phi) wide arrow.double^"prop" wide H "normale" $ 
+]
