@@ -181,3 +181,50 @@
   $ phi(g^(-1) h g) eq phi(g^(-1)) phi(h) phi(g) eq phi(g)^(-1) e_2 phi(g) eq e_2 $
   Quindi se ne deduce che $ g^(-1) h g in ker(phi) quad Aa quad g^(-1)H g subset.eq ker(phi) wide arrow.double^"prop" wide H "normale" $ 
 ]
+
+#prop[
+  Sia $(G, dot)$ un gruppo e sia $N lt.eq G$ un sottogruppo. Allora\ $ N subn G wide "se e solo se" wide exists phi: G aa G_2 "omom t.c." N eq ker(phi) $
+]
+#proof[
+  Abbiamo già verificato che se $n$ è nucleo di un omomorfismo allora è normale in $G$.\ Viceversa, se $N subn G$ allora la proiezione $pi : G aa G slash G$ è un omomorfismo. Il suo nucleo è tale che 
+  $ ker(pi) eq {g in G | pi(g) eq N}eq{g in G | g N eq N} eq {g in G | g in N} eq N $
+]
+
+#pagebreak(weak : true)
+
+#ex[
+  Sia $phi : G_1 aa G_2$ un omomorfismo di gruppi. Dimostrare che $phi$ è iniettivo se e solo se $ker(phi) eq e_1$.
+]
+#proof[\
+  ($1 Aa 2$)\ Si ha che $e_1 in ker(phi)$. Se inoltre $phi$ iniettivo allora ${e_1} eq ker(phi)$
+  
+  ($2 Aa 1$)\ Siano $f,g in G_1 | phi(f) eq phi(g)$. Allora\ $phi(f^(-1) g) eq e_2 Aa f^(-1) g eq e_1 Aa f eq g$
+]
+
+#def[Sia $phi : G_1 aa G_2$ omomorfismo di gruppi. *L'immagine di $phi$* è il sottoinsieme 
+  $ Im(phi) eq {f in G_2 | exists g in G_1 "t.c." phi(g) eq f} subset.eq G_2 $
+]
+
+#ex[Sia $(g,dot)$ gurrpo, sia $g in G$.
+  - Dimostrare che $phi : ZZ aa G "definita da" n aa g^n$ è un omomorfismo.
+  - Determinare nucleo e immagine di tale applicazione 
+]
+
+#prop[
+  Sia $phi : G_1 aa G_2$ un omomorfismo di gruppi.
+  + Se $H_1 lt.eq G_1$ allora $phi(H_1) lt.eq G_2$. Inoltre se $H_1 subn G_1$ allora $phi(H_1) subn phi(G_2)$.
+  + Se $H_2 lt.eq G_2$ allora $phi^(-1)(H_2) lt.eq G_1$. Inoltre se $H_2 subn G_2$ allora $phi^(-1)(H_2) subn G_1$. 
+]
+#proof[
+  + La prima parte è immediata. Per la seconda, si prendono $g in G_1, h in H_1$ e si ha\ 
+    $phi(g)phi(h)phi(g)^(-1) subn phi(H_1)$, da cui la tesi. 
+
+  + La prima parte è immediata. Per la seconda, invece, considero l'omomorfismo\ 
+    $G_1 aa^phi G_2 aa^pi G_2 slash H_2 $, ossia $phi eq pi compose phi$.\ 
+    Questo è un omomorfismo il cui nucleo è\
+    $ ker(pi compose phi) &eq {g in G_1 | pi compose phi(g) eq H_2} \ &eq {g in G_1 | phi(g)H_2 eq H_2}\ &eq {g in G_1 | phi(g) in H_2} eq phi^(-1)(H_2) $
+]
+
+#cor[Sia $phi: G_1 aa G_2$ omomorfismo di gruppi. Allora $phi(G_1) lt.eq G_2$ ]
+
+#ex[Esibire un omomorfismo di gruppi tale che $N subn G_1$ ma $phi(N)$ non è sottogruppo normale di $G_2$]

@@ -72,5 +72,18 @@ Queste note sono appunti presi per scopo di studio personale.\ In particolare se
 
 #include "Capitoli/Intro_Gruppi.typ"
 #pagebreak(weak : true)
-#include "Capitoli/Omomorfismi.typ"
 
+#include "Capitoli/Omomorfismi.typ"
+#pagebreak(weak:true)
+
+#include "Capitoli/Gruppo_Quoziente.typ"
+#pagebreak(weak:true)
+
+#include "Capitoli/Isomorfismi.typ"
+#pagebreak(weak : true)
+
+#include "Capitoli/Classificazione_Gruppi.typ"
+#pagebreak(weak : true)
+
+#include "Capitoli/Prodotto_Diretto.typ"
+#pagebreak(weak : true)

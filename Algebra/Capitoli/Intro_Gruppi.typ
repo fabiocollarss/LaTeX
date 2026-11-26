@@ -14,7 +14,6 @@
 #set align(left)
 
 //SHOW
-//SHOW
 #show link: text.with(fill: blue)
 #show ref: text.with(fill: blue.darken(50%))
 
